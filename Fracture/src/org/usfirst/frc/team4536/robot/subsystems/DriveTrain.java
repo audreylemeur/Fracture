@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class DriveTrain extends Subsystem {
 
     Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
     
     /**
      * @author Noah
@@ -23,9 +24,9 @@ public class DriveTrain extends Subsystem {
     public DriveTrain(int leftFrontMotorChannel, int leftBackMotorChannel, int rightFrontMotorChannel, int rightBackMotorChannel) {
     	
     	leftFrontMotor = new Spark(leftFrontMotorChannel);
-    	leftBackMotor = new Spark(leftFrontMotorChannel);
-    	rightFrontMotor = new Spark(leftFrontMotorChannel);
-    	rightBackMotor = new Spark(leftFrontMotorChannel);
+    	leftBackMotor = new Spark(leftBackMotorChannel);
+    	rightFrontMotor = new Spark(rightFrontMotorChannel);
+    	rightBackMotor = new Spark(rightBackMotorChannel);
     	
     	leftFrontMotor.set(0);
     	leftBackMotor.set(0);
@@ -48,13 +49,29 @@ public class DriveTrain extends Subsystem {
      * 1 means forward -1 means backwards
      * Feed values into this method through a command
      */
-    public void Drive(double leftFrontMotorThrottle, double leftBackMotorThrottle, double rightFrontMotorThrottle, double rightBackMotorThrottle) {
+    public void Drive(double forwardThrottle, double strafeThrottle, double turnThrottle) {
     	//TODO Make sure the negative signs are correct for Sidewinder and Fracture
+    	
+    	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
+        leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
+        rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
+        rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
+    	
     	leftFrontMotor.set(-leftFrontMotorThrottle);
     	leftBackMotor.set(-leftBackMotorThrottle);
     	rightFrontMotor.set(rightFrontMotorThrottle);
     	rightBackMotor.set(rightBackMotorThrottle);
     	
     }
+    
+    public void DriveBasic(double leftFrontMotorThrottleBasic, double leftBackMotorThrottleBasic, double rightFrontMotorThrottleBasic, double rightBackMotorThrottleBasic) {
+    	
+    	leftFrontMotor.set(-leftFrontMotorThrottleBasic);
+    	leftBackMotor.set(-leftBackMotorThrottleBasic);
+    	rightFrontMotor.set(rightFrontMotorThrottleBasic);
+    	rightBackMotor.set(rightBackMotorThrottleBasic);
+    	
+    }
+    
 }
 

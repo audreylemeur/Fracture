@@ -10,8 +10,7 @@ import org.usfirst.frc.team4536.robot.Utilities;
  */
 public class Drive extends CommandBase {
 	
-	private static double forwardThrottle, strafeThrottle, turnThrottle;
-	double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+	private double forwardThrottle, strafeThrottle, turnThrottle;
 	
     public Drive() {
     	requires(driveTrain);
@@ -29,15 +28,9 @@ public class Drive extends CommandBase {
     	
     	forwardThrottle = Utilities.deadZone(-OI.primaryStick.getY(), Constants.DEAD_ZONE);
 		strafeThrottle = Utilities.deadZone(OI.primaryStick.getX(), Constants.DEAD_ZONE);
-		
     	turnThrottle = Utilities.deadZone(OI.secondaryStick.getX(), Constants.DEAD_ZONE);
     	
-    	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
-        leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
-        rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
-        rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
-    	
-    	driveTrain.Drive(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
+    	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	
     }
     
