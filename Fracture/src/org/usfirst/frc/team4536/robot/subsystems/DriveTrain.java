@@ -57,10 +57,7 @@ public class DriveTrain extends Subsystem {
         rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
         rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
     	
-    	leftFrontMotor.set(-leftFrontMotorThrottle);
-    	leftBackMotor.set(-leftBackMotorThrottle);
-    	rightFrontMotor.set(rightFrontMotorThrottle);
-    	rightBackMotor.set(rightBackMotorThrottle);
+    	DriveBasic(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
     	
     }
     

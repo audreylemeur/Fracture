@@ -31,7 +31,6 @@ public class Drive extends CommandBase {
     	turnThrottle = Utilities.deadZone(OI.secondaryStick.getX(), Constants.DEAD_ZONE);
     	
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
-    	
     }
     
     protected boolean isFinished() {
