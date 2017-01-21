@@ -1,6 +1,10 @@
 package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com.kauailabs.navx.frc.*;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
@@ -10,6 +14,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class DriveTrain extends Subsystem {
 
     Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    AHRS navX;
     double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
     
     /**
@@ -32,6 +37,12 @@ public class DriveTrain extends Subsystem {
     	leftBackMotor.set(0);
     	rightFrontMotor.set(0);
     	rightBackMotor.set(0);
+    	
+    	try {
+    		navX = new AHRS(SPI.Port.kMXP);
+    	} catch(RuntimeException ex) {
+    		DriverStation.reportError("Error instantiating naxV-MXP: "+ex.getMessage(), true);
+    	}
     	
     }
 
@@ -67,6 +78,26 @@ public class DriveTrain extends Subsystem {
     	leftBackMotor.set(-leftBackMotorThrottleBasic);
     	rightFrontMotor.set(rightFrontMotorThrottleBasic);
     	rightBackMotor.set(rightBackMotorThrottleBasic);
+    	
+    }
+   
+    /**
+    * @author Audrey
+    * @return Yaw value between -180 and 180 degrees
+    */
+    public double getYaw() {
+    	
+    	return navX.getYaw();
+    	
+    }
+    
+    /**
+     * @author Audrey
+     * @return Angle between -360 and 360 degrees
+     */
+    public double getAngle() {
+    	
+    	return navX.getAngle();
     	
     }
     
