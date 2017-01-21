@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-
+import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc.team4536.robot.commands.ExampleCommand;
 
 /**
@@ -36,4 +36,12 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public static Joystick primaryStick;
+	public static Joystick secondaryStick;
+	
+	public OI() {
+		primaryStick = new Joystick(RobotMap.PRIMARY_STICK);
+		secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
+	}
 }
