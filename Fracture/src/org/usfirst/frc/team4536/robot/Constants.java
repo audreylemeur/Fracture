@@ -9,4 +9,7 @@ public class Constants {
 	public static final double TURN_SPEED_CURVE = 0;
 	public static final double STRAFE_SPEED_CURVE = 0;
 
+	
+	public static final double HOLD_ANGLE_P_CONSTANT = .02; //Throttle per degree
+	
 }

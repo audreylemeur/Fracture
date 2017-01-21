@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.usfirst.frc.team4536.robot.Constants;
+
 import com.kauailabs.navx.frc.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -51,12 +54,11 @@ public class DriveTrain extends Subsystem {
     
     /**
      * @author Noah
-     * @param leftFrontMotorThrottle
-     * @param leftBackMotorThrottle
-     * @param rightFrontMotorThrottle
-     * @param rightBackMotorThrottle
+     * @param forwardThrottle
+     * @param strafeThrottle
+     * @param turnThrottle
      * 
-     * Motor ranges: -1 to 1
+     * Throttle ranges: -1 to 1
      * 1 means forward -1 means backwards
      * Feed values into this method through a command
      */
@@ -72,12 +74,42 @@ public class DriveTrain extends Subsystem {
     	
     }
     
+    /**
+     * @author Noah
+     * @param leftFrontMotorThrottleBasic
+     * @param leftBackMotorThrottleBasic
+     * @param rightFrontMotorThrottleBasic
+     * @param rightBackMotorThrottleBasic
+     * 
+     * Motor ranges: -1 to 1
+     * 1 means forward -1 means backwards
+     * Feed values into this method through a command
+     */
     public void DriveBasic(double leftFrontMotorThrottleBasic, double leftBackMotorThrottleBasic, double rightFrontMotorThrottleBasic, double rightBackMotorThrottleBasic) {
     	
     	leftFrontMotor.set(-leftFrontMotorThrottleBasic);
     	leftBackMotor.set(-leftBackMotorThrottleBasic);
     	rightFrontMotor.set(rightFrontMotorThrottleBasic);
     	rightBackMotor.set(rightBackMotorThrottleBasic);
+    	
+    }
+    
+    /**
+     * @author Noah
+     * @param forwardThrottle -1 to 1
+     * @param strafeThrottle -1 to 1
+     * @param desiredAngle -180 to 180, should use the getYaw method
+     * @param pConstant proportionality constant for the angle
+     * 
+     * Method for driving robot-centric while holding a certain angle
+     */
+    public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
+    	
+    	double angle = getYaw();
+    	double angleDifference = desiredAngle - angle;
+    	double turnThrottle = angleDifference * Constants.HOLD_ANGLE_P_CONSTANT;
+    	
+    	Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	
     }
    

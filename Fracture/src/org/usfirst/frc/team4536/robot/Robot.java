@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
+	Command driveHoldAngle;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
+		driveHoldAngle = new DriveHoldAngle();
 		
 	}
 
@@ -49,7 +51,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		drive.cancel();
+		//drive.cancel();
+		driveHoldAngle.cancel();
 	}
 
 	@Override
@@ -101,7 +104,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		drive.start();
+		//drive.start();
+		driveHoldAngle.start();
 
 	}
 
