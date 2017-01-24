@@ -232,7 +232,7 @@ public final class Utilities {
 	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
 	 */
 		
-		public static double shortestAngle(double ang, double desAng){
+		public static double shortestAngle1(double ang, double desAng){
 			   
 			
 			if(ang <= -180){
