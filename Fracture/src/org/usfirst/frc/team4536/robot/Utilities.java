@@ -226,6 +226,45 @@ public final class Utilities {
 	}
 	
 	/**
+	 * @author Theo
+	 * @param ang This is the robot's original angle.(Can be between -180 and 180 degrees or 0 and 360).
+	 * @param desAng This is the angle we want the robot to be facing towards or directly opposite to.
+	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
+	 */
+		
+		public static double shortestAngle1(double ang, double desAng){
+			   
+			
+			if(ang <= -180){
+		           ang = ang + 360;
+		       }
+		       if(desAng <= -180){
+		           desAng = desAng + 360;
+		       }
+		       if(ang > 180.0){
+		           ang = ang - 360.0;
+		       }
+		       if(desAng > 180.0){
+		           desAng = desAng-360.0;
+		       }
+		       double backAng;
+		       if(desAng <= 0.0){
+		           backAng = desAng + 180.0;
+		       }
+		       else{
+		           backAng = desAng - 180.0; 
+		       }
+		       double faceForward = desAng - ang;
+		       double faceBackward = backAng - ang;
+		       if(Math.abs(faceForward) <= Math.abs(faceBackward)){
+		           return(faceForward);
+		       }
+		       else{
+		           return(faceBackward);
+		       }
+	 }
+	
+	/**
 	 * @author Audrey
 	 * @param velocity The current velocity of the motor system in feet per second
 	 * @param stiction The static friction of the motor system in throttle
