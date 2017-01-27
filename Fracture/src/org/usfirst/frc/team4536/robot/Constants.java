@@ -9,10 +9,12 @@ public class Constants {
 	public static final double TURN_SPEED_CURVE = 0;
 	public static final double STRAFE_SPEED_CURVE = 0;
 
-	
+	public static final int CAMERA_RESOLUTION_WIDTH = 1280;
+	public static final int CAMERA_RESOLUTION_HEIGHT = 780;
+  
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
 	
-	
-	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1;
+	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
 	
 }
+
