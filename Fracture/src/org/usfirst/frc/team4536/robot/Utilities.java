@@ -204,6 +204,7 @@ public final class Utilities {
 		return powerDistributionPanel.getVoltage();
 	}
 	
+	
 	/**
 	 *@author Audrey
 	 *@param startingAngle The angle the robot is turning from
@@ -213,16 +214,25 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		double difference;
-		difference = startingAngle - desiredAngle;
-		if (difference > -180.0 && difference <= 180.0)
-			return -difference;
-		else if (difference <= -180.0)
-			return -(difference + 360.0);
-		else if (difference > 180.0)
-			return -(difference - 360.0);
-		else 
-			return 0.0;
+		double difference = startingAngle - desiredAngle;
+		return angleConverter(difference);
+	}
+	
+	/**
+	 * @author Theo
+	 * @param ang This can be any angle.
+	 * @return the inputted angle once it has been converted to a scale from -180 to 180
+	 */
+	public static double angleConverter(double ang){
+		
+		ang = ang % 360;
+		if(ang > 180){
+			ang = ang -360;
+		}
+		if(ang < -180){
+			ang = ang + 360;
+		}
+		return(ang);
 	}
 	
 	/**
@@ -231,29 +241,16 @@ public final class Utilities {
 	 * @param desAng This is the angle we want the robot to be facing towards or directly opposite to.
 	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
 	 */
-		public static double shortestAngle(double ang, double desAng){
-		
-		if(ang > 180.0){
-			ang = ang - 360.0;
-		}
-		if(desAng > 180.0){
-			desAng = desAng - 360.0;
-		}
-		double backAng;
-		if(desAng <= 0.0){
-			backAng = desAng + 180.0;
-		}
-		else{
-			backAng = desAng - 180.0; 
-		}
-		double faceForward = desAng - ang;
-		double faceBackward = backAng - ang;
-		if(Math.abs(faceForward) < Math.abs(faceBackward)){
+	 
+	public static double shortestAngle(double ang, double desAng){
+
+		ang = angleConverter(ang);
+		desAng = angleConverter(desAng);
+		double backAng = angleConverter(desAng + 180);
+		double faceForward = angleConverter(desAng - ang);
+		double faceBackward = angleConverter(backAng - ang);
+		if(Math.abs(faceForward) <= Math.abs(faceBackward))
 			return(faceForward);
-		}
-		else if(Math.abs(faceBackward) < Math.abs(faceForward)){
-			return(faceBackward);
-		}
 		else{
 			return(faceBackward);
 		}

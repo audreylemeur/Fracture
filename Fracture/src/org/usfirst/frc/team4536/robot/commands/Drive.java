@@ -25,10 +25,8 @@ public class Drive extends CommandBase {
     }
     
     protected void execute() {
-    	
-    	forwardThrottle = Utilities.deadZone(-OI.primaryStick.getY(), Constants.DEAD_ZONE);
-		strafeThrottle = Utilities.deadZone(OI.primaryStick.getX(), Constants.DEAD_ZONE);
-    	turnThrottle = Utilities.deadZone(OI.secondaryStick.getX(), Constants.DEAD_ZONE);
+    
+
     	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.SCALE_PARAM);
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.SCALE_PARAM);
     	System.out.println("forward " + Utilities.scale(0.3, 0.9, 0.9));
