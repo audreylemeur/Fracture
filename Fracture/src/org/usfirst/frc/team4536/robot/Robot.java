@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-		camera0.setResolution(1280, 780);
+		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
 		oi = new OI();
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
