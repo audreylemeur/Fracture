@@ -14,6 +14,6 @@ public class RobotMap {
 	public static final int RIGHT_BACK_MOTOR = 3;
 	
 	public static final int PRIMARY_RIGHT_STICK = 0;
-	public static final int PRIMARY_LEFT_STICK = 0;
-	public static final int SECONDARY_STICK = 1;
+	public static final int PRIMARY_LEFT_STICK = 1;
+	public static final int SECONDARY_STICK = 2;
 }
