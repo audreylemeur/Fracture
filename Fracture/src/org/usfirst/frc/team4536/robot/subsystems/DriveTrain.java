@@ -131,15 +131,9 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
     	
-    	double angle = getYaw();
-    	double angleDifference = desiredAngle - angle;
-    	if (angleDifference > 180) {
-    		angleDifference = angleDifference - 360;
-    	}
-    	else if (angleDifference < -180) {
-    		angleDifference = angleDifference + 360;
-    	}
-    	double turnThrottle = angleDifference * Constants.HOLD_ANGLE_P_CONSTANT;
+    	double angleDif = Utilities.angleDifference(getYaw(), desiredAngle);
+    	
+    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
     	
     	Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	

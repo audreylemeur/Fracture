@@ -20,15 +20,15 @@ public class OI {
 	public static Button holdRight;
 	
 	public static void ButtonHandling() {
-		holdFeeder = new JoystickButton(primaryStick, 9);
-		holdLeft = new JoystickButton(primaryStick, 10);
-		holdMiddle = new JoystickButton(primaryStick, 11);
-		holdRight = new JoystickButton(primaryStick, 12);
+		holdFeeder = new JoystickButton(primaryStick, RobotMap.HOLD_FEEDER_BUTTON);
+		holdLeft = new JoystickButton(primaryStick, RobotMap.HOLD_LEFT_BUTTON);
+		holdMiddle = new JoystickButton(primaryStick, RobotMap.HOLD_MIDDLE_BUTTON);
+		holdRight = new JoystickButton(primaryStick, RobotMap.HOLD_RIGHT_BUTTON);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(90));
-		holdLeft.whenPressed(new DriveHoldAngle(180));
-		holdMiddle.whenPressed(new DriveHoldAngle(-90));
-		holdRight.whenPressed(new DriveHoldAngle(0));
+		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
 		
 		holdFeeder.whenReleased(new Drive());
 		holdLeft.whenReleased(new Drive());
