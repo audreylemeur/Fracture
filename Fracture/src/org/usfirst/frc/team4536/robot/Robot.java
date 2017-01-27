@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team4536.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -9,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4536.robot.Utilities;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +28,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
+	//Command driveHoldAngle;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -33,12 +36,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
 		oi = new OI();
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
+		//driveHoldAngle = new DriveHoldAngle();
 		
 	}
 
@@ -50,6 +56,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		drive.cancel();
+		
+		Utilities.stopTimer();
+		Utilities.resetTimer();
 	}
 
 	@Override
@@ -82,6 +91,8 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
+		Utilities.startTimer();
 	}
 
 	/**
@@ -90,6 +101,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		Utilities.updateCycleTime();
 	}
 
 	@Override
@@ -100,9 +113,10 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		
+    
 		drive.start();
-
+		
+		Utilities.startTimer();
 	}
 
 	/**
@@ -111,6 +125,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		Utilities.updateCycleTime();
 	}
 
 	/**
