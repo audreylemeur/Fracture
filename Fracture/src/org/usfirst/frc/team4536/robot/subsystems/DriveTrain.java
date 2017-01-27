@@ -3,6 +3,7 @@ package org.usfirst.frc.team4536.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4536.robot.Constants;
+import org.usfirst.frc.team4536.robot.Utilities;
 
 import com.kauailabs.navx.frc.*;
 
@@ -19,6 +20,8 @@ public class DriveTrain extends Subsystem {
     Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
     AHRS navX;
     double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+    double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     
     /**
      * @author Noah
@@ -70,7 +73,30 @@ public class DriveTrain extends Subsystem {
         rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
         rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
     	
-    	DriveBasic(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
+    	DriveAccelLimit(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
+    	
+    }
+    
+    /**
+     * @author Noah
+     * @param leftFrontMotorThrottleInput
+     * @param leftBackMotorThrottleInput
+     * @param rightFrontMotorThrottleInput
+     * @param rightBackMotorThrottleInput
+     */
+    public void DriveAccelLimit(double leftFrontMotorThrottleInput, double leftBackMotorThrottleInput, double rightFrontMotorThrottleInput, double rightBackMotorThrottleInput) {
+    	
+    	leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	
+    	leftFrontMotorThrottleAccelPrev = leftFrontMotorThrottleAccel;
+    	leftBackMotorThrottleAccelPrev = leftBackMotorThrottleAccel;
+    	rightFrontMotorThrottleAccelPrev = rightFrontMotorThrottleAccel;
+    	rightBackMotorThrottleAccelPrev = rightBackMotorThrottleAccel;
+    	
+    	DriveBasic(leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel);
     	
     }
     

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4536.robot.Utilities;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
-	Command driveHoldAngle;
+	//Command driveHoldAngle;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
-		driveHoldAngle = new DriveHoldAngle();
+		//driveHoldAngle = new DriveHoldAngle();
 		
 	}
 
@@ -51,8 +51,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		//drive.cancel();
-		driveHoldAngle.cancel();
+		drive.cancel();
+		
+		Utilities.stopTimer();
+		Utilities.resetTimer();
 	}
 
 	@Override
@@ -85,6 +87,8 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
+		Utilities.startTimer();
 	}
 
 	/**
@@ -93,6 +97,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		Utilities.updateCycleTime();
 	}
 
 	@Override
@@ -104,9 +110,9 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		//drive.start();
-		driveHoldAngle.start();
-
+		drive.start();
+		
+		Utilities.startTimer();
 	}
 
 	/**
@@ -115,6 +121,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		Utilities.updateCycleTime();
 	}
 
 	/**

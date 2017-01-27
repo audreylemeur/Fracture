@@ -4,6 +4,9 @@ import org.usfirst.frc.team4536.robot.Constants;
 import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.robot.Utilities;
 
+//TODO THIS DOES NOT WORK. Don't worry i'll fix it. ;)
+//Do not try to make anything that builds upon it.
+
 /**
  * @author Noah
  * Class to drive robot-centric while holding an angle
