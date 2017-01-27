@@ -12,6 +12,7 @@ import org.usfirst.frc.team4536.robot.subsystems.*;
 public class CommandBase extends Command {
 	
 	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_FRONT_MOTOR, RobotMap.LEFT_BACK_MOTOR, RobotMap.RIGHT_FRONT_MOTOR, RobotMap.RIGHT_BACK_MOTOR);
+	private double forwardThrottle;
 	
     public CommandBase() {
     }

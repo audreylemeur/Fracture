@@ -18,9 +18,9 @@ public class Drive extends CommandBase {
     
     protected void initialize() {
     	
-    	forwardThrottle = 0;
-    	strafeThrottle = 0;
-    	turnThrottle = 0;
+    	forwardThrottle = 0.0;
+    	strafeThrottle = 0.0;
+    	turnThrottle = 0.0;
     	
     }
     
@@ -31,8 +31,8 @@ public class Drive extends CommandBase {
     	turnThrottle = Utilities.deadZone(OI.secondaryStick.getX(), Constants.DEAD_ZONE);
     	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.SCALE_PARAM);
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.SCALE_PARAM);
-    	System.out.println("forward " + Utilities.scale(0.3, 0.9, 0.8));
-    	System.out.println("strafe " + Utilities.scale(0.9, 0.3, 0.8));
+    	System.out.println("forward " + Utilities.scale(0.3, 0.9, 0.9));
+    	System.out.println("strafe " + Utilities.scale(0.9, 0.3, 0.9));
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
     

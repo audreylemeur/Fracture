@@ -60,7 +60,7 @@ public final class Utilities {
 	 */
 	public static final double limit(double input) {
 		
-		return limit(input, 1);
+		return limit(input, 1.0);
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public final class Utilities {
 		double adjustedCurve = limit(curve, 0.1, Double.MAX_VALUE);
 		double adjustedInput = limit(input, 1.0);
 		//if the input is negative, outputs can be undefined and positive for certain curves
-		if(input < 0) {
+		if(input < 0.0) {
 			return -Math.pow(Math.abs(adjustedInput), adjustedCurve);
 		}
 		
@@ -90,7 +90,7 @@ public final class Utilities {
 	public static final double deadZone(double input, double deadZone){
 	
 		if((input > -deadZone) && (input < deadZone)) 
-			return 0;
+			return 0.0;
 		else
 			return input;
 	}
@@ -215,14 +215,14 @@ public final class Utilities {
 	public static final double angleDifference(double startingAngle, double desiredAngle){
 		double difference;
 		difference = startingAngle - desiredAngle;
-		if (difference > -180 && difference <= 180)
+		if (difference > -180.0 && difference <= 180.0)
 			return -difference;
-		else if (difference <= -180)
-			return -(difference + 360);
-		else if (difference > 180)
-			return -(difference - 360);
+		else if (difference <= -180.0)
+			return -(difference + 360.0);
+		else if (difference > 180.0)
+			return -(difference - 360.0);
 		else 
-			return 0;
+			return 0.0;
 	}
 	
 	/**
@@ -233,18 +233,18 @@ public final class Utilities {
 	 */
 		public static double shortestAngle(double ang, double desAng){
 		
-		if(ang > 180){
-			ang = ang - 360;
+		if(ang > 180.0){
+			ang = ang - 360.0;
 		}
-		if(desAng > 180){
-			desAng = desAng-360;
+		if(desAng > 180.0){
+			desAng = desAng - 360.0;
 		}
 		double backAng;
-		if(desAng <= 0){
-			backAng = desAng + 180;
+		if(desAng <= 0.0){
+			backAng = desAng + 180.0;
 		}
 		else{
-			backAng = desAng - 180; 
+			backAng = desAng - 180.0; 
 		}
 		double faceForward = desAng - ang;
 		double faceBackward = backAng - ang;
@@ -278,7 +278,7 @@ public final class Utilities {
 			
 			double focusedRange = 1 - stiction;
 			
-			if (velocity < 0) {
+			if (velocity < 0.0) {
 				
 				return velocityToThrottle*focusedRange - stiction;
 			}
@@ -291,14 +291,19 @@ public final class Utilities {
 	
 	
 	public static double scale(double a, double b, double scaleParam){
+		
 		double newA;
-		if((Math.abs(a) + Math.abs(b)) > scaleParam){
-			newA = a * scaleParam/(Math.abs(a)+Math.abs(b));		
+		
+		if ((Math.abs(a) + Math.abs(b)) > scaleParam){
+	
+			newA = a * scaleParam/(Math.abs(a) + Math.abs(b));		
 		}
 		else{
+		
 			newA = a;
 		}
 		return newA;
 	}
+	
 	
 }
