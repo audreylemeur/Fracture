@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	
-	public static Joystick primaryStick;
+	public static Joystick primaryRightStick;
+	public static Joystick primaryLeftStick;
 	public static Joystick secondaryStick;
 	
 	public OI() {
-		primaryStick = new Joystick(RobotMap.PRIMARY_STICK);
+		primaryRightStick = new Joystick(RobotMap.PRIMARY_RIGHT_STICK);
+		primaryLeftStick = new Joystick(RobotMap.PRIMARY_LEFT_STICK);
 		secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
 	}
 }
