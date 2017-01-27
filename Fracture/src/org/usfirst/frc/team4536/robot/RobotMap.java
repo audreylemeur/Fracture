@@ -15,6 +15,8 @@ public class RobotMap {
 	public static final int RIGHT_FRONT_MOTOR = 2;
 	public static final int RIGHT_BACK_MOTOR = 3;
 	
+	public static final int CLIMBER_MOTOR = 4;
+	
 	//Joysticks
 	
 	public static final int PRIMARY_STICK = 0;

@@ -13,6 +13,7 @@ public class OI {
 	
 	public static ModifiedJoystick primaryStick = new ModifiedJoystick(RobotMap.PRIMARY_STICK);
 	public static ModifiedJoystick secondaryStick = new ModifiedJoystick(RobotMap.SECONDARY_STICK);
+	public static ModifiedJoystick tertiaryStick = new ModifiedJoystick(2); //TODO remove this before pulling into the main
 	
 	public static Button holdFeeder;
 	public static Button holdLeft;
