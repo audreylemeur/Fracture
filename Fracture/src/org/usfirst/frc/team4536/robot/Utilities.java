@@ -214,8 +214,6 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		startingAngle = angleConverter(startingAngle);
-		desiredAngle = angleConverter(desiredAngle);
 		double difference = desiredAngle -startingAngle;
 		return angleConverter(difference);
 	}
@@ -248,15 +246,9 @@ public final class Utilities {
 
 		ang = angleConverter(ang);
 		desAng = angleConverter(desAng);
-		double backAng;
-		if(desAng <= 0.0)
-			backAng = desAng + 180.0;
-		else
-			backAng = desAng - 180.0; 
-		double faceForward = desAng - ang;
-		double faceBackward = backAng - ang;
-		faceForward = angleConverter(faceForward);
-		faceBackward = angleConverter(faceBackward);
+		double backAng = angleConverter(desAng + 180);
+		double faceForward = angleConverter(desAng - ang);
+		double faceBackward = angleConverter(backAng - ang);
 		if(Math.abs(faceForward) <= Math.abs(faceBackward))
 			return(faceForward);
 		else
