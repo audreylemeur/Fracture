@@ -20,21 +20,26 @@ public class MotionProfile extends Profile{
 	private double robotAngle; //The angle the robot is actually facing.
 	
 	/**
-	 * @author Liam
-	 * @param distance The distance the profile should travel in feet. Negative distances move backwards, positive forwards.
-	 * @param maxSpeed The maximum speed the profile may achieve in feet per second. Speed is a scalar so it's always positive.
-	 * @param maxAcceleration The maximum acceleration the speed can change by in feet per second squared. We treat acceleration as the raw change in speed and thus as a scalar so it is always positive.
+	 * @author Liam & Theo
+	 * @param dst The distance the profile should travel in feet. Negative distances move backwards, positive forwards.
+	 * @param mS The maximum speed the profile may achieve in feet per second. Speed is a scalar so it's always positive.
+	 * @param mA The maximum acceleration the speed can change by in feet per second squared. We treat acceleration as the raw change in speed and thus as a scalar so it is always positive.
+	 * @param dAng the direction we want the robot to be moving in. In degrees.
+	 * @param rAng the direction the robot is facing. In degrees.
 	 */
-	public MotionProfile (double distance, double maxSpeed, double maxAcceleration) {
+	public MotionProfile (double dst, double mS, double mA, double dAng, double rAng) {
 		
-		this.distance = distance;
-		this.desiredMaxSpeed = Math.abs(maxSpeed);
-		this.desiredMaxAcceleration = Math.abs(maxAcceleration);
+		distance = dst;
+		desiredMaxSpeed = Math.abs(mS);
+		desiredMaxAcceleration = Math.abs(mA);
+		desiredAngle = Utilities.angleConverter(dAng);
+		robotAngle = Utilities.angleConverter(rAng);
+
 		
-		criticalTime = this.desiredMaxSpeed/this.desiredMaxAcceleration;
-		criticalDistance = criticalTime * this.desiredMaxSpeed/2;
+		criticalTime = desiredMaxSpeed/desiredMaxAcceleration;
+		criticalDistance = criticalTime * desiredMaxSpeed/2;
 		
- 		if (Math.abs(this.distance) > criticalDistance) {
+ 		if (Math.abs(distance) > criticalDistance) {
 			
 			triangle = false;
 		}
@@ -45,11 +50,11 @@ public class MotionProfile extends Profile{
 		
 		if (triangle) {
 			
-			this.timeNeeded = 2*Math.sqrt(Math.abs(this.distance/this.desiredMaxAcceleration));
+			timeNeeded = 2*Math.sqrt(Math.abs(distance/desiredMaxAcceleration));
 		}
 		else {
 			
-			this.timeNeeded = (2*criticalTime) + ((Math.abs(this.distance) - 2*criticalDistance)/this.desiredMaxSpeed);
+			timeNeeded = (2*criticalTime) + ((Math.abs(distance) - 2*criticalDistance)/desiredMaxSpeed);
 		}
 	}
 		
