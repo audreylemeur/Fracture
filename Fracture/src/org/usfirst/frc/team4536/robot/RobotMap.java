@@ -19,8 +19,9 @@ public class RobotMap {
 	
 	//Joysticks
 	
-	public static final int PRIMARY_STICK = 0;
-	public static final int SECONDARY_STICK = 1;
+	public static final int PRIMARY_LEFT_STICK = 0;
+	public static final int PRIMARY_RIGHT_STICK = 1;
+	public static final int SECONDARY_STICK = 2;
 	
 	//Buttons
 	

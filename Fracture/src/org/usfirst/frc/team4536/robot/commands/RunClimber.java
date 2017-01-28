@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4536.robot.OI;
 
 /**
@@ -19,7 +18,7 @@ public class RunClimber extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.setClimber(OI.tertiaryStick.getModY());
+    	climber.setClimber(OI.secondaryStick.getModY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
