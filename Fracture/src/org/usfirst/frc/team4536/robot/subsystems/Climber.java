@@ -1,9 +1,10 @@
 package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Spark;
 
-import org.usfirst.frc.team4536.robot.Utilities;
+import org.usfirst.frc.team4536.utilities.Utilities;
+
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * @author Noah

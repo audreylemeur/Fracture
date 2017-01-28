@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4536.robot;
+package org.usfirst.frc.team4536.utilities;
 
 import java.lang.Math;
 import edu.wpi.first.wpilibj.Timer;
@@ -184,7 +184,7 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		double difference = startingAngle - desiredAngle;
+		double difference = desiredAngle - startingAngle;
 		return angleConverter(difference);
 	}
 	
