@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4536.robot;
 
+import org.usfirst.frc.team4536.robot.commands.*;
+
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -9,11 +11,28 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	
-	public static Joystick primaryStick;
-	public static Joystick secondaryStick;
+	public static ModifiedJoystick primaryStick = new ModifiedJoystick(RobotMap.PRIMARY_STICK);
+	public static ModifiedJoystick secondaryStick = new ModifiedJoystick(RobotMap.SECONDARY_STICK);
 	
-	public OI() {
-		primaryStick = new Joystick(RobotMap.PRIMARY_STICK);
-		secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
+	public static Button holdFeeder;
+	public static Button holdLeft;
+	public static Button holdMiddle;
+	public static Button holdRight;
+	
+	public static void ButtonHandling() {
+		holdFeeder = new JoystickButton(primaryStick, RobotMap.HOLD_FEEDER_BUTTON);
+		holdLeft = new JoystickButton(primaryStick, RobotMap.HOLD_LEFT_BUTTON);
+		holdMiddle = new JoystickButton(primaryStick, RobotMap.HOLD_MIDDLE_BUTTON);
+		holdRight = new JoystickButton(primaryStick, RobotMap.HOLD_RIGHT_BUTTON);
+		
+		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		
+		holdFeeder.whenReleased(new Drive());
+		holdLeft.whenReleased(new Drive());
+		holdMiddle.whenReleased(new Drive());
+		holdRight.whenReleased(new Drive());
 	}
 }

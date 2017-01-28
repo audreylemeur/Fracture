@@ -4,6 +4,7 @@ import java.lang.Math;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
+
 public final class Utilities {
 	
 	private Utilities() {} // prevent object construction which is useless. All variables and methods are static.
@@ -205,7 +206,7 @@ public final class Utilities {
 	}
 	
 	/**
-	 *@author Audrey
+	 *@author Audrey & Theo
 	 *@param startingAngle The angle the robot is turning from
 	 *@param desiredAngle The angle the robot is turning to
 	 *@return The difference between those two angles as a number from -180 to 180
@@ -213,17 +214,46 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		double difference;
-		difference = startingAngle - desiredAngle;
-		if (difference > -180 && difference <= 180)
-			return -difference;
-		else if (difference <= -180)
-			return -(difference + 360);
-		else if (difference > 180)
-			return -(difference - 360);
-		else 
-			return 0;
+		double difference = desiredAngle -startingAngle;
+		return angleConverter(difference);
 	}
+	
+	/**
+	 * @author Theo
+	 * @param ang This can be any angle.
+	 * @return the inputted angle once it has been converted to a scale from -180 to 180
+	 */
+	public static double angleConverter(double ang){
+		
+		ang = ang % 360;
+		if(ang > 180){
+			ang = ang -360;
+		}
+		if(ang < -180){
+			ang = ang + 360;
+		}
+		return(ang);
+	}
+	
+	/**
+	 * @author Theo
+	 * @param ang This is the robot's original angle.(Can be between -180 and 180 degrees or 0 and 360).
+	 * @param desAng This is the angle we want the robot to be facing towards or directly opposite to.
+	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
+	 */
+		
+	public static double shortestAngle(double ang, double desAng){
+
+		ang = angleConverter(ang);
+		desAng = angleConverter(desAng);
+		double backAng = angleConverter(desAng + 180);
+		double faceForward = angleConverter(desAng - ang);
+		double faceBackward = angleConverter(backAng - ang);
+		if(Math.abs(faceForward) <= Math.abs(faceBackward))
+			return(faceForward);
+		else
+			return(faceBackward);
+	 }
 	
 	/**
 	 * @author Audrey
@@ -253,6 +283,18 @@ public final class Utilities {
 				return velocityToThrottle*focusedRange + stiction;
 			}
 		}
+	}
+	
+	
+	public static double scale(double a, double b, double scaleParam){
+		double newA;
+		if((Math.abs(a) + Math.abs(b)) > scaleParam){
+			newA = a * scaleParam/(Math.abs(a)+Math.abs(b));		
+		}
+		else{
+			newA = a;
+		}
+		return newA;
 	}
 	
 }
