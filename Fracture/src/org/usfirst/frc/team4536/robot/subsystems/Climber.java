@@ -25,7 +25,7 @@ public class Climber extends Subsystem {
     
     /**
      * @author Noah
-     * @param input
+     * @param input Range is from 1 to 0, negative values are not accepted
      */
     public void setClimber(double input) {
     	Utilities.limit(input, 0, 1);
