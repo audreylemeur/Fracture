@@ -39,10 +39,10 @@ public class DriveTrain extends Subsystem {
     	rightFrontMotor = new Spark(rightFrontMotorChannel);
     	rightBackMotor = new Spark(rightBackMotorChannel);
     	
-    	leftFrontMotor.set(0);
-    	leftBackMotor.set(0);
-    	rightFrontMotor.set(0);
-    	rightBackMotor.set(0);
+    	leftFrontMotor.set(0.0);
+    	leftBackMotor.set(0.0);
+    	rightFrontMotor.set(0.0);
+    	rightBackMotor.set(0.0);
     	
     	try {
     		navX = new AHRS(SPI.Port.kMXP);
