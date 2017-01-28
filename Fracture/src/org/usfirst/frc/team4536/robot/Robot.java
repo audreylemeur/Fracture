@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.robot.Utilities;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,13 +20,12 @@ import org.usfirst.frc.team4536.robot.Utilities;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	//public static OI oi;
-
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
+	Command runClimber;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -37,12 +35,12 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
-		//oi = new OI();
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
+		runClimber = new RunClimber();
 		
 		OI.ButtonHandling();
 		
@@ -56,6 +54,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		drive.cancel();
+		runClimber.cancel();
 		
 		Utilities.stopTimer();
 		Utilities.resetTimer();
@@ -115,6 +114,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
     
 		drive.start();
+		runClimber.start();
 		
 		Utilities.startTimer();
 	}
