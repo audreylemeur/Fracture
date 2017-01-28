@@ -5,9 +5,9 @@ public class Constants {
 /*-----------------------------------------------------------Utilities----------------------------------------------------------*/
 	
 	public static final double DEAD_ZONE = 0.05;
-	public static final double FORWARD_SPEED_CURVE = 0;
-	public static final double TURN_SPEED_CURVE = 0;
-	public static final double STRAFE_SPEED_CURVE = 0;
+  public static final double FORWARD_SPEED_CURVE = 0.0;
+	public static final double TURN_SPEED_CURVE = 0.0;
+	public static final double STRAFE_SPEED_CURVE = 0.0;
 	public static final double SCALE_PARAM = 0.8; //TODO this needs fine tuning
 	
 	//Camera
@@ -29,4 +29,3 @@ public class Constants {
 	public static final double HOLD_RIGHT_ANGLE = 0.0;
 	
 }
-
