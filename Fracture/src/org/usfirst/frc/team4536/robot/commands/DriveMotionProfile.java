@@ -1,8 +1,8 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import org.usfirst.frc.team4536.robot.Constants;
+import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.robot.MotionProfile;
-import org.usfirst.frc.team4536.robot.Utilities;
+import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
 public class DriveMotionProfile extends CommandBase{
