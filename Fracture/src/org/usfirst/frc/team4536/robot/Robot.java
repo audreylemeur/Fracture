@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.EnhancedTimer;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
@@ -28,7 +29,8 @@ public class Robot extends IterativeRobot {
 	
 	Command drive;
 	Command runClimber;
-
+	EnhancedTimer cycleTimer;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -43,6 +45,7 @@ public class Robot extends IterativeRobot {
 		
 		drive = new Drive();
 		runClimber = new RunClimber();
+		cycleTimer = new EnhancedTimer();
 		
 		OI.ButtonHandling();
 		
@@ -58,8 +61,8 @@ public class Robot extends IterativeRobot {
 		drive.cancel();
 		runClimber.cancel();
 		
-		Utilities.stopTimer();
-		Utilities.resetTimer();
+		cycleTimer.stopTimer();
+		cycleTimer.resetTimer();
 	}
 
 	@Override
@@ -93,7 +96,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
-		Utilities.startTimer();
+		cycleTimer.startTimer();
 	}
 
 	/**
@@ -103,7 +106,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		
-		Utilities.updateCycleTime();
+		cycleTimer.updateCycleTime();
 	}
 
 	@Override
@@ -118,7 +121,7 @@ public class Robot extends IterativeRobot {
 		drive.start();
 		runClimber.start();
 		
-		Utilities.startTimer();
+		cycleTimer.startTimer();
 	}
 
 	/**
@@ -128,7 +131,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		Utilities.updateCycleTime();
+		cycleTimer.updateCycleTime();
 	}
 
 	/**
