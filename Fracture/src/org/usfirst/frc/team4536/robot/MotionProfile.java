@@ -240,4 +240,12 @@ public class MotionProfile extends Profile{
 			
 			return distance;
 		}
+		
+		/**
+		 * @author Theo
+		 * @return the angle we want the robot to be moving in. In degrees, relative to the field.
+		 */
+		public double getDesiredAngle(){
+			return desiredAngle;
+		}
 }
