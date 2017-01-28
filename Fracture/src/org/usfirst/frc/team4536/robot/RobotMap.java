@@ -8,11 +8,22 @@ package org.usfirst.frc.team4536.robot;
  */
 public class RobotMap {
 	
+	//Motors
+	
 	public static final int LEFT_FRONT_MOTOR = 0;
 	public static final int LEFT_BACK_MOTOR = 1;
 	public static final int RIGHT_FRONT_MOTOR = 2;
 	public static final int RIGHT_BACK_MOTOR = 3;
 	
+	//Joysticks
+	
 	public static final int PRIMARY_STICK = 0;
 	public static final int SECONDARY_STICK = 1;
+	
+	//Buttons
+	
+	public static final int HOLD_FEEDER_BUTTON = 9;
+	public static final int HOLD_LEFT_BUTTON = 10;
+	public static final int HOLD_MIDDLE_BUTTON = 11;
+	public static final int HOLD_RIGHT_BUTTON = 12;
 }

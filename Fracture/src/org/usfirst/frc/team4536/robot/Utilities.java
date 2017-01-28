@@ -4,7 +4,6 @@ import java.lang.Math;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
-
 public final class Utilities {
 	
 	private Utilities() {} // prevent object construction which is useless. All variables and methods are static.
@@ -61,7 +60,7 @@ public final class Utilities {
 	 */
 	public static final double limit(double input) {
 		
-		return limit(input, 1);
+		return limit(input, 1.0);
 	}
 	
 	/**
@@ -75,7 +74,7 @@ public final class Utilities {
 		double adjustedCurve = limit(curve, 0.1, Double.MAX_VALUE);
 		double adjustedInput = limit(input, 1.0);
 		//if the input is negative, outputs can be undefined and positive for certain curves
-		if(input < 0) {
+		if(input < 0.0) {
 			return -Math.pow(Math.abs(adjustedInput), adjustedCurve);
 		}
 		
@@ -91,7 +90,7 @@ public final class Utilities {
 	public static final double deadZone(double input, double deadZone){
 	
 		if((input > -deadZone) && (input < deadZone)) 
-			return 0;
+			return 0.0;
 		else
 			return input;
 	}
@@ -205,6 +204,7 @@ public final class Utilities {
 		return powerDistributionPanel.getVoltage();
 	}
 	
+	
 	/**
 	 *@author Audrey
 	 *@param startingAngle The angle the robot is turning from
@@ -214,21 +214,23 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		double difference;
-		difference = startingAngle - desiredAngle;
-		if (difference > -180 && difference <= 180)
-			return -difference;
-		else if (difference <= -180)
-			return -(difference + 360);
-		else if (difference > 180)
-			return -(difference - 360);
-		else 
-			return 0;
+		double difference = startingAngle - desiredAngle;
+		return angleConverter(difference);
 	}
 	
+	/**
+	 * @author Theo
+	 * @param ang This can be any angle.
+	 * @return the inputted angle once it has been converted to a scale from -180 to 180
+	 */
 	public static double angleConverter(double ang){
+		
+		ang = ang % 360;
 		if(ang > 180){
-			ang = ang - 360;
+			ang = ang -360;
+		}
+		if(ang < -180){
+			ang = ang + 360;
 		}
 		return(ang);
 	}
@@ -239,39 +241,20 @@ public final class Utilities {
 	 * @param desAng This is the angle we want the robot to be facing towards or directly opposite to.
 	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
 	 */
-		
-	public static double shortestAngle1(double ang, double desAng){
+	 
+	public static double shortestAngle(double ang, double desAng){
 
 		ang = angleConverter(ang);
 		desAng = angleConverter(desAng);
-		double backAng;
-		if(desAng <= 0.0){
-			backAng = desAng + 180.0;
-		}
-		else{
-			backAng = desAng - 180.0; 
-		}
-		double faceForward = desAng - ang;
-		double faceBackward = backAng - ang;
-		if(faceForward < -180){
-			faceForward = 360 + faceForward;
-		}
-		else if(faceForward > 180){
-			faceForward = faceForward -360;
-		}
-		if(faceBackward < -180){
-			faceBackward = 360 + faceBackward;
-		}
-		else if(faceBackward > 180){
-		 	faceBackward = faceBackward -360;
-		}
-		if(Math.abs(faceForward) <= Math.abs(faceBackward)){
+		double backAng = angleConverter(desAng + 180);
+		double faceForward = angleConverter(desAng - ang);
+		double faceBackward = angleConverter(backAng - ang);
+		if(Math.abs(faceForward) <= Math.abs(faceBackward))
 			return(faceForward);
-		}
 		else{
 			return(faceBackward);
 		}
-	 }
+	}
 	
 	/**
 	 * @author Audrey
@@ -292,7 +275,7 @@ public final class Utilities {
 			
 			double focusedRange = 1 - stiction;
 			
-			if (velocity < 0) {
+			if (velocity < 0.0) {
 				
 				return velocityToThrottle*focusedRange - stiction;
 			}
@@ -302,5 +285,22 @@ public final class Utilities {
 			}
 		}
 	}
+	
+	
+	public static double scale(double a, double b, double scaleParam){
+		
+		double newA;
+		
+		if ((Math.abs(a) + Math.abs(b)) > scaleParam){
+	
+			newA = a * scaleParam/(Math.abs(a) + Math.abs(b));		
+		}
+		else{
+		
+			newA = a;
+		}
+		return newA;
+	}
+	
 	
 }
