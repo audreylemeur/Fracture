@@ -24,8 +24,8 @@ public class MotionProfile extends Profile{
 	 * @param dst The distance the profile should travel in feet. Negative distances move backwards, positive forwards.
 	 * @param mS The maximum speed the profile may achieve in feet per second. Speed is a scalar so it's always positive.
 	 * @param mA The maximum acceleration the speed can change by in feet per second squared. We treat acceleration as the raw change in speed and thus as a scalar so it is always positive.
-	 * @param dAng the direction we want the robot to be moving in. In degrees.
-	 * @param rAng the direction the robot is facing. In degrees.
+	 * @param dAng the direction we want the robot to be moving in. In degrees. Relative to the field.
+	 * @param rAng the direction the robot is facing. In degrees. Relative to the field.
 	 */
 	public MotionProfile (double dst, double mS, double mA, double dAng, double rAng) {
 		
