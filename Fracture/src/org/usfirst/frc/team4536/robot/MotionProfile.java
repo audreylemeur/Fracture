@@ -16,8 +16,8 @@ public class MotionProfile extends Profile{
 	private double criticalDistance; // This determines whether the profile is a triangle or a trapezoid.
 	private double criticalTime; // This is the time it takes to reach maxSpeed if it is reached
 	private boolean triangle; // Whether the profile develops a triangle or trapezoid profile
-	private double desiredAngle; //The angle we want the robot to be traveling at.
-	private double robotAngle; //The angle the robot is actually facing.
+	private double desiredAngle; //The angle we want the robot to be traveling at in relation to the field.
+	private double robotAngle; //The angle the robot is actually facing in relation to the field.
 	
 	/**
 	 * @author Liam & Theo
@@ -67,7 +67,7 @@ public class MotionProfile extends Profile{
 		 */
 		public double getForwardThrottle(double time){
 			
-			return (Math.sin(Math.toRadians(desiredAngle-robotAngle)) * Utilities.adjustForStiction(idealVelocity(time), Constants.Forward_Stiction, Constants.Drive_Train_Max_Velocity));
+			return (Math.sin(Math.toRadians(desiredAngle-robotAngle)) * Utilities.adjustForStiction(idealVelocity(time), Constants.FORWARD_STICTION, Constants.DRIVE_TRAIN_MAX_VELOCITY));
 		}
 		
 		/**
@@ -77,7 +77,7 @@ public class MotionProfile extends Profile{
 		 */
 		public double getStrafeThrottle(double time){
 			
-			return (Math.cos(Math.toRadians(desiredAngle - robotAngle)) * Utilities.adjustForStiction(idealVelocity(time), Constants.Forward_Stiction, Constants.Drive_Train_Max_Velocity));
+			return (Math.cos(Math.toRadians(desiredAngle - robotAngle)) * Utilities.adjustForStiction(idealVelocity(time), Constants.FORWARD_STICTION, Constants.DRIVE_TRAIN_MAX_VELOCITY));
 		}
 		
 		/**
