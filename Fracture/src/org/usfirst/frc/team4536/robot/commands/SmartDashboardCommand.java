@@ -14,6 +14,9 @@ public class SmartDashboardCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getYaw());
+    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavXPitch());
+    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavXRoll());
     }
 
     // Called repeatedly when this Command is scheduled to run

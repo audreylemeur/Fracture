@@ -23,7 +23,7 @@ import org.usfirst.frc.team4536.robot.Utilities;
 public class Robot extends IterativeRobot {
 
 	//public static OI oi;
-
+	Command smartDashboardCommand;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
@@ -55,8 +55,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
 		drive.cancel();
-		
 		Utilities.stopTimer();
 		Utilities.resetTimer();
 	}
@@ -94,6 +96,9 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
+		if (smartDashboardCommand != null) {
+			smartDashboardCommand.start();
+       }
 		Utilities.startTimer();
 		CommandBase.driveTrain.resetnavX();
 	}
@@ -104,6 +109,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
+
 		
 		Utilities.updateCycleTime();
 	}
@@ -116,7 +124,12 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-    
+		
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
+
+		
 		drive.start();
 		
 		Utilities.startTimer();
@@ -131,7 +144,7 @@ public class Robot extends IterativeRobot {
 		
 		Utilities.updateCycleTime();
 	}
-
+	
 	/**
 	 * This function is called periodically during test mode
 	 */
