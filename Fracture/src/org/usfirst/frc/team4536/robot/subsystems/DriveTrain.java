@@ -2,8 +2,8 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
+import org.usfirst.frc.team4536.robot.Constants;
+import org.usfirst.frc.team4536.robot.Utilities;
 
 import com.kauailabs.navx.frc.*;
 
