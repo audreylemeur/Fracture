@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4536.robot;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.utilities.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
