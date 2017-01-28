@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4536.robot;
 
 import java.lang.Math;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
 public final class Utilities {
@@ -10,7 +9,6 @@ public final class Utilities {
 	
 	/*------------------------------------------------Objects---------------------------------------------*/
 	
-	public static PowerDistributionPanel powerDistributionPanel = new PowerDistributionPanel();
 	public static Timer timer = new Timer();
 	
 	/*-----------------------------------------------Cycle Time-------------------------------------------*/
@@ -176,34 +174,6 @@ public final class Utilities {
 		
 		return finalThrottle;
 	}
-	
-	/**
-	 * @author Audrey
-	 * @return The total current drawn from the power distribution board from ALL robot systems.
-	 */
-	public static final double getTotalCurrent() {
-		
-		return powerDistributionPanel.getTotalCurrent();
-	}
-	
-	/**
-	 *@author Audrey
-	 *@param slot the slot in the power distribution panel 
-	 * for which you want to know the current.
-	 */
-	public static final double getCurrent(int slot) {
-		
-		return powerDistributionPanel.getCurrent(slot);
-	}
-	
-	/**
-	 * @author Audrey
-	 */
-	public static final double getVoltage() {
-		
-		return powerDistributionPanel.getVoltage();
-	}
-	
 	
 	/**
 	 *@author Audrey
