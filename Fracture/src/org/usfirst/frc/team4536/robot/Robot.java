@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	
 	Command drive;
 	Command runClimber;
+	Command driveProfile;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 		
 		drive = new Drive();
 		runClimber = new RunClimber();
+		driveProfile = new DriveMotionProfile(1.0, 1.0, 1.0, 90, 0);
 		
 		OI.ButtonHandling();
 		
@@ -80,8 +82,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+		//autonomousCommand = chooser.getSelected();
+		if (driveProfile != null)
+			driveProfile.start();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -90,8 +93,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		//if (autonomousCommand != null)
+			//autonomousCommand.start();
 		
 		Utilities.startTimer();
 	}
