@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.EnhancedTimer;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,13 +24,15 @@ import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-
+	//public static OI oi;
+	Command smartDashboardCommand;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
-
+	Command runClimber;
+	EnhancedTimer cycleTimer;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -37,12 +41,15 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
-		oi = new OI();
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
+		runClimber = new RunClimber();
+		cycleTimer = new EnhancedTimer();
+		
+		OI.ButtonHandling();
 		
 	}
 
@@ -53,7 +60,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
 		drive.cancel();
+
+		runClimber.cancel();
+		
+		cycleTimer.stopTimer();
+		cycleTimer.resetTimer();
 	}
 
 	@Override
@@ -75,7 +90,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
+		
+		
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -86,6 +103,15 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
+		cycleTimer.startTimer();
+
+		if (smartDashboardCommand != null) {
+			smartDashboardCommand.start();
+       }
+		
+		CommandBase.driveTrain.resetnavX();
+
 	}
 
 	/**
@@ -94,6 +120,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+
+		cycleTimer.updateCycleTime();
+
 	}
 
 	@Override
@@ -104,11 +134,16 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
 
 		
 		drive.start();
-
-
+		runClimber.start();
+		
+		cycleTimer.startTimer();
 	}
 
 	/**
@@ -117,13 +152,19 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		cycleTimer.updateCycleTime();
 	}
-
+	
 	/**
 	 * This function is called periodically during test mode
 	 */
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	public void testInit(){
+		
 	}
 }

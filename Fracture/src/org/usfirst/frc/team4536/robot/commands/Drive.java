@@ -1,8 +1,6 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import org.usfirst.frc.team4536.robot.Constants;
 import org.usfirst.frc.team4536.robot.OI;
-import org.usfirst.frc.team4536.robot.Utilities;
 
 /**
  * @author Noah
@@ -18,18 +16,17 @@ public class Drive extends CommandBase {
     
     protected void initialize() {
     	
-    	forwardThrottle = 0;
-    	strafeThrottle = 0;
-    	turnThrottle = 0;
+    	forwardThrottle = 0.0;
+    	strafeThrottle = 0.0;
+    	turnThrottle = 0.0;
     	
     }
     
     protected void execute() {
     	
-    	forwardThrottle = Utilities.deadZone(-OI.primaryStick.getY(), Constants.DEAD_ZONE);
-		strafeThrottle = Utilities.deadZone(OI.primaryStick.getX(), Constants.DEAD_ZONE);
-    	turnThrottle = Utilities.deadZone(OI.secondaryStick.getX(), Constants.DEAD_ZONE);
-    	
+    	forwardThrottle = -OI.primaryLeftStick.getModY();
+    	strafeThrottle = OI.primaryLeftStick.getModX();
+    	turnThrottle = OI.primaryRightStick.getModX();
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
     
