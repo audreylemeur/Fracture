@@ -1,25 +1,10 @@
 package org.usfirst.frc.team4536.utilities;
 
 import java.lang.Math;
-import edu.wpi.first.wpilibj.Timer;
 
 public final class Utilities {
 	
 	private Utilities() {} // prevent object construction which is useless. All variables and methods are static.
-	
-	/*------------------------------------------------Objects---------------------------------------------*/
-	
-	public static Timer timer = new Timer();
-	
-	/*-----------------------------------------------Cycle Time-------------------------------------------*/
-	
-	private static double currentTime, prevTime = 0.0;
-	public static double cycleTime = 0.0;
-	
-	/*--------------------------------------------AccelerationLimit---------------------------------------*/
-	
-	private static double throttleDiff, accelerationLimit = 0.0;
-	public static double finalThrottle = 0.0;
 	
 	/*------------------------------------------------methods---------------------------------------------*/
 	
@@ -94,64 +79,6 @@ public final class Utilities {
 	}
 	
 	/**
-	 *@author Audrey
-	 * Starts the timer.
-	 */
-	public static final void startTimer() {
-		
-		timer.start();
-		prevTime = 0.0;
-	}
-	
-	/**
-	 * @author Audrey
-	 * Resets the timer by making the start time the current time so all time values are then compared to that new more recent time.
-	 */
-	public static final void resetTimer() {
-		
-		timer.reset();
-		prevTime = 0.0;
-	}
-	
-	/**
-	 * @author Audrey
-	 * Stops the timer.
-	 */
-	public static final void stopTimer() {
-		
-		timer.stop();
-	}
-	
-	/**
-	 * @author Audrey
-	 * @return the current time of the timer in seconds.
-	 */
-	public static final double getTime() {
-		
-		return timer.get();
-	}
-	
-	/**
-	 * @author Audrey
-	 * Updates the cycle time calculation of our code. This should only be called once per cycle or it will be incorrect.
-	 */
-	public static final void updateCycleTime() {
-		
-		currentTime = getTime();
-		cycleTime = currentTime - prevTime;
-		prevTime = currentTime;
-	}
-	
-	/**
-	 * @author Audrey
-	 * @return The cycle time of our code in seconds.
-	 */
-	public static final double getCycleTime() {
-		
-		return cycleTime;
-	}
-	
-	/**
 	 * @author Audrey
 	 * @param throttle - the throttle of an object.
 	 * @param prevThrottle - Throttle Value from previous cycle of code.
@@ -160,11 +87,11 @@ public final class Utilities {
 	 */
 	public static final double accelLimit(double throttle, double prevThrottle, double fullSpeedTime) {
 		
-		finalThrottle = throttle;
+		double finalThrottle = throttle;
 		
-		throttleDiff = throttle - prevThrottle;
+		double throttleDiff = throttle - prevThrottle;
 
-		accelerationLimit = getCycleTime() / fullSpeedTime;
+		double accelerationLimit = EnhancedTimer.cycleTime / fullSpeedTime;
 
 		
 		if (throttleDiff > accelerationLimit)
