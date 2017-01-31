@@ -1,28 +1,10 @@
-package org.usfirst.frc.team4536.robot;
+package org.usfirst.frc.team4536.utilities;
 
 import java.lang.Math;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Timer;
-
 
 public final class Utilities {
 	
 	private Utilities() {} // prevent object construction which is useless. All variables and methods are static.
-	
-	/*------------------------------------------------Objects---------------------------------------------*/
-	
-	public static PowerDistributionPanel powerDistributionPanel = new PowerDistributionPanel();
-	public static Timer timer = new Timer();
-	
-	/*-----------------------------------------------Cycle Time-------------------------------------------*/
-	
-	private static double currentTime, prevTime = 0.0;
-	public static double cycleTime = 0.0;
-	
-	/*--------------------------------------------AccelerationLimit---------------------------------------*/
-	
-	private static double throttleDiff, accelerationLimit = 0.0;
-	public static double finalThrottle = 0.0;
 	
 	/*------------------------------------------------methods---------------------------------------------*/
 	
@@ -61,7 +43,7 @@ public final class Utilities {
 	 */
 	public static final double limit(double input) {
 		
-		return limit(input, 1);
+		return limit(input, 1.0);
 	}
 	
 	/**
@@ -75,7 +57,7 @@ public final class Utilities {
 		double adjustedCurve = limit(curve, 0.1, Double.MAX_VALUE);
 		double adjustedInput = limit(input, 1.0);
 		//if the input is negative, outputs can be undefined and positive for certain curves
-		if(input < 0) {
+		if(input < 0.0) {
 			return -Math.pow(Math.abs(adjustedInput), adjustedCurve);
 		}
 		
@@ -91,67 +73,9 @@ public final class Utilities {
 	public static final double deadZone(double input, double deadZone){
 	
 		if((input > -deadZone) && (input < deadZone)) 
-			return 0;
+			return 0.0;
 		else
 			return input;
-	}
-	
-	/**
-	 *@author Audrey
-	 * Starts the timer.
-	 */
-	public static final void startTimer() {
-		
-		timer.start();
-		prevTime = 0.0;
-	}
-	
-	/**
-	 * @author Audrey
-	 * Resets the timer by making the start time the current time so all time values are then compared to that new more recent time.
-	 */
-	public static final void resetTimer() {
-		
-		timer.reset();
-		prevTime = 0.0;
-	}
-	
-	/**
-	 * @author Audrey
-	 * Stops the timer.
-	 */
-	public static final void stopTimer() {
-		
-		timer.stop();
-	}
-	
-	/**
-	 * @author Audrey
-	 * @return the current time of the timer in seconds.
-	 */
-	public static final double getTime() {
-		
-		return timer.get();
-	}
-	
-	/**
-	 * @author Audrey
-	 * Updates the cycle time calculation of our code. This should only be called once per cycle or it will be incorrect.
-	 */
-	public static final void updateCycleTime() {
-		
-		currentTime = getTime();
-		cycleTime = currentTime - prevTime;
-		prevTime = currentTime;
-	}
-	
-	/**
-	 * @author Audrey
-	 * @return The cycle time of our code in seconds.
-	 */
-	public static final double getCycleTime() {
-		
-		return cycleTime;
 	}
 	
 	/**
@@ -163,11 +87,11 @@ public final class Utilities {
 	 */
 	public static final double accelLimit(double throttle, double prevThrottle, double fullSpeedTime) {
 		
-		finalThrottle = throttle;
+		double finalThrottle = throttle;
 		
-		throttleDiff = throttle - prevThrottle;
+		double throttleDiff = throttle - prevThrottle;
 
-		accelerationLimit = getCycleTime() / fullSpeedTime;
+		double accelerationLimit = EnhancedTimer.cycleTime / fullSpeedTime;
 
 		
 		if (throttleDiff > accelerationLimit)
@@ -179,34 +103,7 @@ public final class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
-	 * @return The total current drawn from the power distribution board from ALL robot systems.
-	 */
-	public static final double getTotalCurrent() {
-		
-		return powerDistributionPanel.getTotalCurrent();
-	}
-	
-	/**
 	 *@author Audrey
-	 *@param slot the slot in the power distribution panel 
-	 * for which you want to know the current.
-	 */
-	public static final double getCurrent(int slot) {
-		
-		return powerDistributionPanel.getCurrent(slot);
-	}
-	
-	/**
-	 * @author Audrey
-	 */
-	public static final double getVoltage() {
-		
-		return powerDistributionPanel.getVoltage();
-	}
-	
-	/**
-	 *@author Audrey & Theo
 	 *@param startingAngle The angle the robot is turning from
 	 *@param desiredAngle The angle the robot is turning to
 	 *@return The difference between those two angles as a number from -180 to 180
@@ -214,7 +111,7 @@ public final class Utilities {
 	 * -20
 	 */
 	public static final double angleDifference(double startingAngle, double desiredAngle){
-		double difference = desiredAngle -startingAngle;
+		double difference = desiredAngle - startingAngle;
 		return angleConverter(difference);
 	}
 	
@@ -241,7 +138,7 @@ public final class Utilities {
 	 * @param desAng This is the angle we want the robot to be facing towards or directly opposite to.
 	 * @return The difference between starting angle and desired angle or the difference between starting angle and the opposite of the desired angle depending on which is smaller.
 	 */
-		
+	 
 	public static double shortestAngle(double ang, double desAng){
 
 		ang = angleConverter(ang);
@@ -251,9 +148,10 @@ public final class Utilities {
 		double faceBackward = angleConverter(backAng - ang);
 		if(Math.abs(faceForward) <= Math.abs(faceBackward))
 			return(faceForward);
-		else
+		else{
 			return(faceBackward);
-	 }
+		}
+	}
 	
 	/**
 	 * @author Audrey
@@ -274,7 +172,7 @@ public final class Utilities {
 			
 			double focusedRange = 1 - stiction;
 			
-			if (velocity < 0) {
+			if (velocity < 0.0) {
 				
 				return velocityToThrottle*focusedRange - stiction;
 			}
@@ -287,14 +185,19 @@ public final class Utilities {
 	
 	
 	public static double scale(double a, double b, double scaleParam){
+		
 		double newA;
-		if((Math.abs(a) + Math.abs(b)) > scaleParam){
-			newA = a * scaleParam/(Math.abs(a)+Math.abs(b));		
+		
+		if ((Math.abs(a) + Math.abs(b)) > scaleParam){
+	
+			newA = a * scaleParam/(Math.abs(a) + Math.abs(b));		
 		}
 		else{
+		
 			newA = a;
 		}
 		return newA;
 	}
+	
 	
 }

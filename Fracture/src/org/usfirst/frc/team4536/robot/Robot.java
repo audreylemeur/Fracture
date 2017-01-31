@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
-import org.usfirst.frc.team4536.robot.Utilities;
+import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.EnhancedTimer;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,7 +30,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	Command drive;
-
+	Command runClimber;
+	EnhancedTimer cycleTimer;
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -37,12 +41,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
-		//oi = new OI();
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		drive = new Drive();
+		runClimber = new RunClimber();
+		cycleTimer = new EnhancedTimer();
 		
 		OI.ButtonHandling();
 		
@@ -59,8 +64,11 @@ public class Robot extends IterativeRobot {
         	smartDashboardCommand.start();
         }
 		drive.cancel();
-		Utilities.stopTimer();
-		Utilities.resetTimer();
+
+		runClimber.cancel();
+		
+		cycleTimer.stopTimer();
+		cycleTimer.resetTimer();
 	}
 
 	@Override
@@ -96,11 +104,14 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 		
+		cycleTimer.startTimer();
+
 		if (smartDashboardCommand != null) {
 			smartDashboardCommand.start();
        }
-		Utilities.startTimer();
+		
 		CommandBase.driveTrain.resetnavX();
+
 	}
 
 	/**
@@ -110,10 +121,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		
-		
 
-		
-		Utilities.updateCycleTime();
+		cycleTimer.updateCycleTime();
+
 	}
 
 	@Override
@@ -131,8 +141,9 @@ public class Robot extends IterativeRobot {
 
 		
 		drive.start();
+		runClimber.start();
 		
-		Utilities.startTimer();
+		cycleTimer.startTimer();
 	}
 
 	/**
@@ -142,7 +153,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		Utilities.updateCycleTime();
+		cycleTimer.updateCycleTime();
 	}
 	
 	/**
@@ -151,5 +162,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	public void testInit(){
+		
 	}
 }

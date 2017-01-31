@@ -2,8 +2,8 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.robot.Constants;
-import org.usfirst.frc.team4536.robot.Utilities;
+import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 import com.kauailabs.navx.frc.*;
 
@@ -39,10 +39,10 @@ public class DriveTrain extends Subsystem {
     	rightFrontMotor = new Spark(rightFrontMotorChannel);
     	rightBackMotor = new Spark(rightBackMotorChannel);
     	
-    	leftFrontMotor.set(0);
-    	leftBackMotor.set(0);
-    	rightFrontMotor.set(0);
-    	rightBackMotor.set(0);
+    	leftFrontMotor.set(0.0);
+    	leftBackMotor.set(0.0);
+    	rightFrontMotor.set(0.0);
+    	rightBackMotor.set(0.0);
     	
     	try {
     		navX = new AHRS(SPI.Port.kMXP);
@@ -148,6 +148,7 @@ public class DriveTrain extends Subsystem {
     	return navX.getYaw();
     	
     }
+    
     
     /**
      * @author Audrey
