@@ -23,7 +23,9 @@ import org.usfirst.frc.team4536.utilities.Utilities;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
+	//public static OI oi;
+	Command smartDashboardCommand;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
@@ -59,7 +61,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
 		drive.cancel();
+
 		runClimber.cancel();
 		
 		cycleTimer.stopTimer();
@@ -87,6 +93,8 @@ public class Robot extends IterativeRobot {
 		//autonomousCommand = chooser.getSelected();
 		if (driveProfile != null)
 			driveProfile.start();
+		autonomousCommand = chooser.getSelected();
+
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -99,6 +107,13 @@ public class Robot extends IterativeRobot {
 			//autonomousCommand.start();
 		
 		cycleTimer.startTimer();
+
+		if (smartDashboardCommand != null) {
+			smartDashboardCommand.start();
+       }
+		
+		CommandBase.driveTrain.resetnavX();
+
 	}
 
 	/**
@@ -108,7 +123,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		
+
 		cycleTimer.updateCycleTime();
+
 	}
 
 	@Override
@@ -119,7 +136,12 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-    
+		
+		if (smartDashboardCommand != null) {        	
+        	smartDashboardCommand.start();
+        }
+
+		
 		drive.start();
 		runClimber.start();
 		
@@ -135,7 +157,7 @@ public class Robot extends IterativeRobot {
 		
 		cycleTimer.updateCycleTime();
 	}
-
+	
 	/**
 	 * This function is called periodically during test mode
 	 */
