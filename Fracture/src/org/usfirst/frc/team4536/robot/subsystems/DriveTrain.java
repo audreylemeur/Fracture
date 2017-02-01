@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Encoder;
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
+
 	
 	Encoder strafeEncoder;
 	Encoder forwardEncoder;
@@ -140,7 +141,7 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
     	
-    	double angleDif = Utilities.angleDifference(getYaw(), desiredAngle);
+    	double angleDif = Utilities.angleDifference(navX.getYaw(), desiredAngle);
     	
     	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
     	
@@ -148,6 +149,7 @@ public class DriveTrain extends Subsystem {
     	
     }
     
+
     /**
      * @author Theo
      * @return strafe encoder distance in inches.
@@ -205,23 +207,32 @@ public class DriveTrain extends Subsystem {
     	resetForwardEncoder();
     }
     
+
+    public AHRS getNavX()
+    {
+    	return navX;
+    }
+
     /**
     * @author Audrey
     * @return Yaw value between -180 and 180 degrees
     */
-    public double getYaw() {
+   /* public double getYaw() {
     	
     	return navX.getYaw();
     	
     }
-    
+   
     
     /**
      * @author Audrey
      * @return Angle between -180 and 180 degrees
      */
-    public double getAngle() {
-    	return Utilities.angleConverter(navX.getAngle());
+
+    /**public double getAngle() {
+    	
+    	return navX.getAngle();
+    	
     }
     
     /**
@@ -255,7 +266,7 @@ public class DriveTrain extends Subsystem {
     
     public double getNavXRoll(){
 		return navX.getRoll();
-	}
+	}**/
 
    
 }
