@@ -28,4 +28,11 @@ public class RobotMap {
 	public static final int HOLD_LEFT_BUTTON = 10;
 	public static final int HOLD_MIDDLE_BUTTON = 11;
 	public static final int HOLD_RIGHT_BUTTON = 12;
+	
+	//Encoders These values are copied from last year and almost definitely incorrect.
+	
+	public static final int STRAFE_ENCODER_CHANNEL_A = 8;
+	public static final int STRAFE_ENCODER_CHANNEL_B = 9;
+	public static final int FORWARD_ENCODER_CHANNEL_A = 6;
+	public static final int FORWARD_ENCODER_CHANNEL_B = 7;
 }

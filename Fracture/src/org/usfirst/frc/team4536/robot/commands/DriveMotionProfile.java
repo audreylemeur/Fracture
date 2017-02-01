@@ -13,8 +13,8 @@ public class DriveMotionProfile extends CommandBase{
 
 /**
  * @author Theo
- * @param distance the distance we want the robot to travel. Can be negative or positive. In meters
- * @param goalAngle the angle at which we want the robot to be moving. In degrees.
+ * @param distance the distance we want the robot to travel. Can be negative or positive. In feet.
+ * @param goalAngle the angle at which we want the robot to be moving. In feet.
  * @param startAngle the angle the robot is facing. In degrees.
  * Uses the default values for max speed and max acceleration.
  */
@@ -25,9 +25,9 @@ public DriveMotionProfile(double distance, double goalAngle, double startAngle) 
 
 /**
  * @author Theo
- * @param distance the distance we want the robot to travel. Can be negative or positive. In meters.
- * @param maxSpeed the maximum possible speed we want the robot to be traveling at. Always positive. In meters/second.
- * @param maxAcceleration the maximum change in speed we will allow to occur. Always positive. In meters/second squared.
+ * @param distance the distance we want the robot to travel. Can be negative or positive. In feet.
+ * @param maxSpeed the maximum possible speed we want the robot to be traveling at. Always positive. In feet/second.
+ * @param maxAcceleration the maximum change in speed we will allow to occur. Always positive. In feet/second squared.
  * @param goalAngle the angle at which we want the robot to be moving. In degrees.
  * @param startAngle the angle the robot is facing. In degrees.
  * similar to the one above but allows overriding the default values of max speed and max acceleration.
@@ -40,9 +40,9 @@ public DriveMotionProfile(double distance, double maxSpeed, double maxAccelerati
 
 /**
  * @author Theo
- * @param distance the distance we want the robot to travel. Can be negative or positive. In meters.
- * @param maxSpeed the maximum possible speed we want the robot to be traveling at. Always positive. In meters/second.
- * @param maxAcceleration the maximum change in speed we will allow to occur. Always positive. In meters/second squared.
+ * @param distance the distance we want the robot to travel. Can be negative or positive. In feet.
+ * @param maxSpeed the maximum possible speed we want the robot to be traveling at. Always positive. In feet/second.
+ * @param maxAcceleration the maximum change in speed we will allow to occur. Always positive. In feet/second squared.
  * @param goalAngle the angle at which we want the robot to be moving. In degrees.
  * @param startAngle the angle the robot is facing. In degrees.
  * @param navXProportionality A custom value for NavXProportionality that can be used to override the default. In throttle/inch.

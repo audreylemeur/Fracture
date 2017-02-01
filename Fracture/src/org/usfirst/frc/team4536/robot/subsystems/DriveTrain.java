@@ -37,7 +37,9 @@ public class DriveTrain extends Subsystem {
      * 
      * Motor channels should be set in CommandBase
      */
-    public DriveTrain(int leftFrontMotorChannel, int leftBackMotorChannel, int rightFrontMotorChannel, int rightBackMotorChannel, int strafeEncoderChannelA, int strafeEncoderChannelB, int forwardEncoderChannelA, int forwardEncoderChannelB) {
+    public DriveTrain(int leftFrontMotorChannel, int leftBackMotorChannel, int rightFrontMotorChannel, 
+    		int rightBackMotorChannel, int strafeEncoderChannelA, int strafeEncoderChannelB, 
+    		int forwardEncoderChannelA, int forwardEncoderChannelB) {
     	
     	leftFrontMotor = new Spark(leftFrontMotorChannel);
     	leftBackMotor = new Spark(leftBackMotorChannel);
