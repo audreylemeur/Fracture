@@ -76,7 +76,7 @@ protected void initialize() {
 	timer.reset();
 	timer.start();
 	
-	startingAngle = driveTrain.getAngle();
+	startingAngle = driveTrain.getNavX().getAngle();
 	setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
 }
 

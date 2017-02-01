@@ -112,7 +112,7 @@ public class Robot extends IterativeRobot {
 			smartDashboardCommand.start();
        }
 		
-		CommandBase.driveTrain.resetnavX();
+		CommandBase.driveTrain.getNavX().reset();
 
 	}
 
