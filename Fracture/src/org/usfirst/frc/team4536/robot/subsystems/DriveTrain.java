@@ -10,20 +10,25 @@ import com.kauailabs.navx.frc.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  * @author Noah
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
-
+	
+	Encoder strafeEncoder;
+	Encoder forwardEncoder;
+	
     Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
     AHRS navX;
     double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
     double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
     double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
+    private double lastDesiredAngle;
     
-    /**
+	/**
      * @author Noah
      * @param leftFrontMotorChannel
      * @param leftBackMotorChannel
@@ -32,12 +37,14 @@ public class DriveTrain extends Subsystem {
      * 
      * Motor channels should be set in CommandBase
      */
-    public DriveTrain(int leftFrontMotorChannel, int leftBackMotorChannel, int rightFrontMotorChannel, int rightBackMotorChannel) {
+    public DriveTrain(int leftFrontMotorChannel, int leftBackMotorChannel, int rightFrontMotorChannel, int rightBackMotorChannel, int strafeEncoderChannelA, int strafeEncoderChannelB, int forwardEncoderChannelA, int forwardEncoderChannelB) {
     	
     	leftFrontMotor = new Spark(leftFrontMotorChannel);
     	leftBackMotor = new Spark(leftBackMotorChannel);
     	rightFrontMotor = new Spark(rightFrontMotorChannel);
     	rightBackMotor = new Spark(rightBackMotorChannel);
+    	strafeEncoder = new Encoder(strafeEncoderChannelA, strafeEncoderChannelB);
+    	forwardEncoder = new Encoder(forwardEncoderChannelA, forwardEncoderChannelB);
     	
     	leftFrontMotor.set(0.0);
     	leftBackMotor.set(0.0);
@@ -138,7 +145,64 @@ public class DriveTrain extends Subsystem {
     	Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	
     }
-   
+    
+    /**
+     * @author Theo
+     * @return strafe encoder distance in inches.
+     */
+    public double getStrafeEncoder(){
+    	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
+    }
+    
+    /**
+     * @author Theo
+     * @return forward encoder distance in inches.
+     */
+    public double getForwardEncoder(){
+    	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
+    }
+    
+   /**
+    * @author Theo
+    * @return forward encoder rate(velocity) in inches/second.
+    */
+    public double getForwardRate(){
+    	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
+    }
+    
+    /**
+     * @author Theo
+     * @return strafe encoder rate(velocity) in inches/second.
+     */
+    public double getStrafeRate(){
+    	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
+    }
+    
+    /**
+     * @author Theo
+     * resets the strafe encoder.
+     */
+    public void resetStrafeEncoder(){
+    	strafeEncoder.reset();
+    }
+    
+    /**
+     * @author Theo
+     * resets the forward encoder.
+     */
+    public void resetForwardEncoder(){
+    	forwardEncoder.reset();
+    }
+    
+    /**
+     * @author Theo
+     * resets both the strafe and forward encoders.
+     */
+    public void resetEncoders(){
+    	resetStrafeEncoder();
+    	resetForwardEncoder();
+    }
+    
     /**
     * @author Audrey
     * @return Yaw value between -180 and 180 degrees
@@ -152,24 +216,42 @@ public class DriveTrain extends Subsystem {
     
     /**
      * @author Audrey
-     * @return Angle between -360 and 360 degrees
+     * @return Angle between -180 and 180 degrees
      */
     public double getAngle() {
-    	
-    	return navX.getAngle();
-    	
+    	return Utilities.angleConverter(navX.getAngle());
     }
+    
+    /**
+     * @author Theo
+     * @return the value of lastDesiredAngle
+     */
+    public double getLastDesiredAngle() {
+		return lastDesiredAngle;
+	}
+    
+    /**
+     * @author Theo
+     * @param desiredAngle the value we want lastDesiredAngle to possess.
+     * sets the value of lastDesiredAngle.
+     */
+	public void setLastDesiredAngle(double desiredAngle) {
+		lastDesiredAngle = desiredAngle;
+	}
+	
      public void resetnavX(){
     	 navX.reset();
      }
+     
     public double getYawRate(){
     	return navX.getRawGyroZ();
     }
+    
     public double getNavXPitch(){
     	return navX.getPitch();
     }
+    
     public double getNavXRoll(){
-		
 		return navX.getRoll();
 	}
 
