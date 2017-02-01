@@ -69,9 +69,9 @@ public class DriveTrain extends Subsystem {
     	//TODO Make sure the negative signs are correct for Sidewinder and Fracture
     	
     	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
-        leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
+        leftBackMotorThrottle = -forwardThrottle + turnThrottle - strafeThrottle;
         rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
-        rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
+        rightBackMotorThrottle = -forwardThrottle - turnThrottle + strafeThrottle;
     	
     	DriveAccelLimit(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
     	
