@@ -13,6 +13,7 @@ public class CommandBase extends Command {
 	
 	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_FRONT_MOTOR, RobotMap.LEFT_BACK_MOTOR, RobotMap.RIGHT_FRONT_MOTOR, RobotMap.RIGHT_BACK_MOTOR);
 	public static Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+	public static GearSlide gearSlide = new GearSlide(RobotMap.GEAR_SLIDE_MOTOR);
 	
     public CommandBase() {
     }
