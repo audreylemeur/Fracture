@@ -159,20 +159,34 @@ public class DriveTrain extends Subsystem {
     	return navX.getAngle();
     	
     }
-     public void resetnavX(){
+    
+    /**
+     * @author Eddie
+     * resets navX to 0
+     */
+    
+    public void resetnavX(){
     	 navX.reset();
-     }
-    public double getYawRate(){
+    }
+    
+    
+    /**
+     * @author Eddie
+     * @return the z-axis rotation rate
+     */
+    public double getYawRate() {
     	return navX.getRawGyroZ();
     }
-    public double getNavXPitch(){
+    
+    public double getNavXPitch() {
     	return navX.getPitch();
     }
-    public double getNavXRoll(){
+    
+    public double getNavXRoll() {
 		
 		return navX.getRoll();
-	}
-
-   
+	}  
+    
+    
 }
 
