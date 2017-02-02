@@ -25,6 +25,12 @@ public class SmartDashboardCommand extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
+    
+    /**
+     * @author Eddie
+     * displays values in the Smart Dashboard
+     */
+    
     protected void execute() {
     	SmartDashboard.putNumber("Primary Joystick Y: ", OI.primaryLeftStick.getY());
 		SmartDashboard.putNumber("Primary Joystick X: ", OI.primaryLeftStick.getX());
