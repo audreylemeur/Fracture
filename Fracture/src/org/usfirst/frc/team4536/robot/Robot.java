@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		smartDashboardCommand = new SmartDashboardCommand();
+		
 		drive = new Drive();
 		runClimber = new RunClimber();
 		cycleTimer = new EnhancedTimer();
