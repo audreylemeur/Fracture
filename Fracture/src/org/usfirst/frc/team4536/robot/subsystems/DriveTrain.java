@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class DriveTrain extends Subsystem {
 
-    Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
-    AHRS navX;
-    double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
-    double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
-    double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
+    private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    private AHRS navX;
+    private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+    private double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     
     /**
      * @author Noah
@@ -131,30 +131,34 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
     	
-    	double angleDif = Utilities.angleDifference(getYaw(), desiredAngle);
+    	double angleDif = Utilities.angleDifference(navX.getYaw(), desiredAngle);
     	
     	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
     	
     	Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	
     }
-   
+    
+    public AHRS getNavX()
+    {
+    	return navX;
+    }
     /**
     * @author Audrey
     * @return Yaw value between -180 and 180 degrees
     */
-    public double getYaw() {
+   /* public double getYaw() {
     	
     	return navX.getYaw();
     	
     }
-    
+   
     
     /**
      * @author Audrey
      * @return Angle between -360 and 360 degrees
      */
-    public double getAngle() {
+    /**public double getAngle() {
     	
     	return navX.getAngle();
     	
@@ -185,8 +189,6 @@ public class DriveTrain extends Subsystem {
     public double getNavXRoll() {
 		
 		return navX.getRoll();
-	}  
-    
-    
+	} 
 }
 

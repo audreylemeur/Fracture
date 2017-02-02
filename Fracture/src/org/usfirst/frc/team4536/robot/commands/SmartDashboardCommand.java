@@ -19,9 +19,9 @@ public class SmartDashboardCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	/*SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getYaw());
-    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavXPitch());
-    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavXRoll());*/
+    	SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getNavX().getYaw());
+    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
+    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,16 +32,16 @@ public class SmartDashboardCommand extends CommandBase {
      */
     
     protected void execute() {
+
     	SmartDashboard.putNumber("Primary Joystick Y: ", OI.primaryLeftStick.getY());
-		SmartDashboard.putNumber("Primary Joystick X: ", OI.primaryLeftStick.getX());
-		SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());
-		SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());
-		SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());
-		SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());
-		SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getYaw());
-    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavXPitch());
-    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavXRoll());
-    	//SmartDashboard.putNumber("Time: ", EnhancedTimer.getTime());
+		  SmartDashboard.putNumber("Primary Joystick X: ", OI.primaryLeftStick.getX());
+		  SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());
+		  SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());
+		  SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());
+		  SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());
+			SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getNavX().getYaw());
+    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
+    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
     }
     
 
