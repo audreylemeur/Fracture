@@ -1,18 +1,15 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4536.robot.OI;
 
-
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
 public class SmartDashboardCommand extends CommandBase {
-	
-	 
-    
-	public SmartDashboardCommand() {
+
+    public SmartDashboardCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -26,14 +23,14 @@ public class SmartDashboardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-    	SmartDashboard.putNumber("Primary Joystick Y: ", OI.primaryLeftStick.getY());
-		  SmartDashboard.putNumber("Primary Joystick X: ", OI.primaryLeftStick.getX());
-		  SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());
-		  SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());
-		  SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());
-		  SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());
-			SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getNavX().getYaw());
+    	SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getNavX().getYaw());
+    	SmartDashboard.putNumber("Primary Joystick Y: ", OI.primaryLeftStick.getY());		
+    	SmartDashboard.putNumber("Primary Joystick X: ", OI.primaryLeftStick.getX());		
+    	SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());		
+    	SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());		
+    	SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());		
+    	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());		
+    	SmartDashboard.putNumber("Turn Rate in Degrees per Second: ", driveTrain.getNavX().getYaw());
     	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
     	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
     }
