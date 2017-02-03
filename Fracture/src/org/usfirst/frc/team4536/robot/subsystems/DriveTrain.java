@@ -124,14 +124,14 @@ public class DriveTrain extends Subsystem {
      * @author Noah
      * @param forwardThrottle -1 to 1
      * @param strafeThrottle -1 to 1
-     * @param desiredAngle -180 to 180, should use the getYaw method
+     * @param desiredAngle -360 to 360, should use the getAngle method
      * @param pConstant proportionality constant for the angle
      * 
      * Method for driving robot-centric while holding a certain angle
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
     	
-    	double angleDif = Utilities.angleDifference(navX.getYaw(), desiredAngle);
+    	double angleDif = Utilities.angleDifference(navX.getAngle(), desiredAngle);
     	
     	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
     	
