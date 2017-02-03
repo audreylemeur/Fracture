@@ -214,40 +214,6 @@ public class DriveTrain extends Subsystem {
     }
 
     /**
-    * @author Audrey
-    * @return Yaw value between -180 and 180 degrees
-    */
-   /* public double getYaw() {
-    	
-    	return navX.getYaw();
-    	
-    }
-   
-    
-    /**
-     * @author Audrey
-     * @return Angle between -180 and 180 degrees
-     */
-
-    /**public double getAngle() {
-    	
-    	return navX.getAngle();
-    	
-    }
-    
-     public void resetnavX(){
-    	 navX.reset();
-     }
-     
-    public double getYawRate(){
-    	return navX.getRawGyroZ();
-    }
-    
-    public double getNavXPitch(){
-    	return navX.getPitch();
-    }**/
-    
-    /**
      * @author Theo
      * @return the value of lastDesiredAngle
      */
