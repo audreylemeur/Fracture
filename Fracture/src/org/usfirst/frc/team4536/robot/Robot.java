@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 		
 		drive = new Drive();
 		runClimber = new RunClimber();
-		driveProfile = new DriveMotionProfile(1.0, 1.0, 1.0, 90, 0);
+		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
 		OI.ButtonHandling();
 		

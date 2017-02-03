@@ -235,6 +235,18 @@ public class DriveTrain extends Subsystem {
     	
     }
     
+     public void resetnavX(){
+    	 navX.reset();
+     }
+     
+    public double getYawRate(){
+    	return navX.getRawGyroZ();
+    }
+    
+    public double getNavXPitch(){
+    	return navX.getPitch();
+    }**/
+    
     /**
      * @author Theo
      * @return the value of lastDesiredAngle
@@ -251,23 +263,6 @@ public class DriveTrain extends Subsystem {
 	public void setLastDesiredAngle(double desiredAngle) {
 		lastDesiredAngle = desiredAngle;
 	}
-	
-     public void resetnavX(){
-    	 navX.reset();
-     }
-     
-    public double getYawRate(){
-    	return navX.getRawGyroZ();
-    }
-    
-    public double getNavXPitch(){
-    	return navX.getPitch();
-    }
-    
-    public double getNavXRoll(){
-		return navX.getRoll();
-	}**/
-
    
 }
 
