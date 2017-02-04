@@ -2,7 +2,7 @@ package org.usfirst.frc.team4536.utilities;
 
 public class Constants {
   
-/*-----------------------------------------------------------Utilities----------------------------------------------------------*/
+	//Utilities
 	
 	public static final double DEAD_ZONE = 0.05;
 	public static final double FORWARD_SPEED_CURVE = 0.0;
@@ -41,5 +41,14 @@ public class Constants {
     public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.; //Ticks per inch
     
     //Angle Adjustments
+    
     public static final int TRIM_STEP = 3;
+    
+    //Sao Drive (These need to modified to fit needs)
+    
+    public static final double SAO_FORWARD_CURVE = 0.0;
+    public static final double SAO_STRAFE_CURVE = 0.0;
+    public static final double SAO_FORWARD_MAX_SPEED = 1;
+    public static final double SAO_STRAFE_MAX_SPEED = 1;
+    public static final double SAO_ANGLE_PROPORTIONALITY = 0.07;
 }
