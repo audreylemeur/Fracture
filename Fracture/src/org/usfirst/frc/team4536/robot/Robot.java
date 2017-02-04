@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.EnhancedTimer;
 import org.usfirst.frc.team4536.utilities.Utilities;
@@ -141,7 +142,7 @@ public class Robot extends IterativeRobot {
         	smartDashboardCommand.start();
         }
 
-		
+		CommandBase.driveTrain.setLastDesiredAngle(60);
 		drive.start();
 		runClimber.start();
 		

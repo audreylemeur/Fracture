@@ -39,7 +39,7 @@ public class MotionProfile extends Profile{
 		robotAngle = Utilities.angleConverter(rAng);
 
 		
-		criticalTime = desiredMaxSpeed/desiredMaxAcceleration;
+		criticalTime = desiredMaxSpeed/desiredMaxAcceleration; //This is in seconds
 		criticalDistance = criticalTime * desiredMaxSpeed/2;
 		
  		if (Math.abs(distance) > criticalDistance) {
@@ -57,7 +57,7 @@ public class MotionProfile extends Profile{
 		}
 		else {
 			
-			timeNeeded = (2*criticalTime) + ((Math.abs(distance) - 2*criticalDistance)/desiredMaxSpeed);
+			timeNeeded = (2*criticalTime) + ((Math.abs(distance) - 2*criticalDistance)/desiredMaxSpeed); //Still in seconds
 		}
 	}
 		
@@ -253,4 +253,17 @@ public class MotionProfile extends Profile{
 		public double getDesiredAngle(){
 			return desiredAngle;
 		}
-}
+		
+		/**
+		 * @author Theo
+		 * @param time a certain period of time since the motionProfile began.
+		 * @return The distance the robot should have traveled by the end of that time.
+		 */
+		public double newIdealDistance(double time){
+			 double idealDistanceTravelled = 0;
+			  for(double i = 0.0; i < time; i += .02){
+				  idealDistanceTravelled += (0.02 * idealVelocity(i) + (idealVelocity(i + 0.02) - idealVelocity(i)) *  0.01);
+			  }
+			  return(idealDistanceTravelled);
+		}		
+	}
