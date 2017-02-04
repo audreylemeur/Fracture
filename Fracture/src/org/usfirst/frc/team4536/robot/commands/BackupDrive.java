@@ -27,8 +27,8 @@ public class BackupDrive extends CommandBase {
     protected void execute() {
     	
     	forwardThrottle = Utilities.speedCurve(-OI.primaryLeftStick.getModY(), Constants.BACKUP_DRIVE_FORWARD_SPEED_CURVE);
-    	strafeThrottle = Utilities.speedCurve(OI.primaryLeftStick.getModY(), Constants.BACKUP_DRIVE_STRAFE_SPEED_CURVE);
-    	turnThrottle = Utilities.speedCurve(OI.primaryLeftStick.getModY(), Constants.BACKUP_DRIVE_TURN_SPEED_CURVE);
+    	strafeThrottle = Utilities.speedCurve(OI.primaryLeftStick.getModX(), Constants.BACKUP_DRIVE_STRAFE_SPEED_CURVE);
+    	turnThrottle = Utilities.speedCurve(OI.primaryRightStick.getModX(), Constants.BACKUP_DRIVE_TURN_SPEED_CURVE);
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
     
