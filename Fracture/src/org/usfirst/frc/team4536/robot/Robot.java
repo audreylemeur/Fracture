@@ -29,7 +29,6 @@ public class Robot extends IterativeRobot {
 	Command smartDashboardCommand;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
 	Command backupDrive;
 	Command runClimber;
 	Command driveProfile;
@@ -47,8 +46,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		backupDrive = new BackupDrive();
-    smartDashboardCommand = new SmartDashboardCommand();
-		Drive drive = new Drive();
+		smartDashboardCommand = new SmartDashboardCommand();
 		runClimber = new RunClimber();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
