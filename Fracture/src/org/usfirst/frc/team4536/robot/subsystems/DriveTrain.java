@@ -79,9 +79,9 @@ public class DriveTrain extends Subsystem {
     	//TODO Make sure the negative signs are correct for Sidewinder and Fracture
     	
     	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
-        leftBackMotorThrottle = -forwardThrottle + turnThrottle - strafeThrottle;
+        leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
         rightFrontMotorThrottle = forwardThrottle - turnThrottle - strafeThrottle;
-        rightBackMotorThrottle = -forwardThrottle - turnThrottle + strafeThrottle;
+        rightBackMotorThrottle = forwardThrottle - turnThrottle + strafeThrottle;
     	
     	DriveAccelLimit(leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle);
     	
@@ -119,14 +119,14 @@ public class DriveTrain extends Subsystem {
      * 
      * Motor ranges: -1 to 1
      * 1 means forward -1 means backwards
-     * Feed values into this method through a command
+     * Feed values into this method through a command or method
      */
     public void DriveBasic(double leftFrontMotorThrottleBasic, double leftBackMotorThrottleBasic, double rightFrontMotorThrottleBasic, double rightBackMotorThrottleBasic) {
     	
-    	leftFrontMotor.set(-leftFrontMotorThrottleBasic);
-    	leftBackMotor.set(-leftBackMotorThrottleBasic);
-    	rightFrontMotor.set(rightFrontMotorThrottleBasic);
-    	rightBackMotor.set(rightBackMotorThrottleBasic);
+    	leftFrontMotor.set(leftFrontMotorThrottleBasic);
+    	leftBackMotor.set(leftBackMotorThrottleBasic);
+    	rightFrontMotor.set(-rightFrontMotorThrottleBasic);
+    	rightBackMotor.set(-rightBackMotorThrottleBasic);
     	
     }
     
