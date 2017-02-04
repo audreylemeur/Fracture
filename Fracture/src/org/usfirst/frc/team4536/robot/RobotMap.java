@@ -29,6 +29,7 @@ public class RobotMap {
 	public static final int HOLD_LEFT_BUTTON = 10;
 	public static final int HOLD_MIDDLE_BUTTON = 11;
 	public static final int HOLD_RIGHT_BUTTON = 12;
+	public static final int HOLD_CENTER_BUTTON = 3;
 	
 	//Encoders These values are copied from last year and almost definitely incorrect.
 	

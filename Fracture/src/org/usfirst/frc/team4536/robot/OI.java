@@ -20,21 +20,25 @@ public class OI {
 	public static Button holdLeft;
 	public static Button holdMiddle;
 	public static Button holdRight;
+	public static Button fieldCentric;
 	
 	public static void ButtonHandling() {
 		holdFeeder = new JoystickButton(primaryLeftStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdLeft = new JoystickButton(primaryLeftStick, RobotMap.HOLD_LEFT_BUTTON);
 		holdMiddle = new JoystickButton(primaryLeftStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdRight = new JoystickButton(primaryLeftStick, RobotMap.HOLD_RIGHT_BUTTON);
+		fieldCentric = new JoystickButton(primaryLeftStick, RobotMap.HOLD_CENTER_BUTTON);
 		
 		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
 		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
 		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
 		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		fieldCentric.whenPressed(new HoldAngle(Constants.HOLD_RIGHT_ANGLE));
 		
 		holdFeeder.whenReleased(new Drive());
 		holdLeft.whenReleased(new Drive());
 		holdMiddle.whenReleased(new Drive());
 		holdRight.whenReleased(new Drive());
+		fieldCentric.whenReleased(new Drive());
 	}
 }
