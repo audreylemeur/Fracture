@@ -22,7 +22,9 @@ public class Constants {
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
-	
+	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 10.0;
+	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 12.0;
+	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 8.0;
 	//OI
 	
 	public static final double HOLD_FEEDER_ANGLE = 90.0;
