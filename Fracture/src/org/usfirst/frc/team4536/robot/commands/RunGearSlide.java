@@ -6,7 +6,7 @@ import org.usfirst.frc.team4536.robot.OI;
  *Command to rotate the gear slide
  */
 public class RunGearSlide extends CommandBase {
-
+/*
     public RunGearSlide() {
     	requires(gearSlide);
         // Use requires() here to declare subsystem dependencies
@@ -36,5 +36,5 @@ public class RunGearSlide extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
-    }
+    }*/
 }
