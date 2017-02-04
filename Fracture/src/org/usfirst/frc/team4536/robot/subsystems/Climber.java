@@ -29,12 +29,7 @@ public class Climber extends Subsystem {
      * @param input Range is from 1 to 0, negative values are not accepted
      */
     public void setClimber(double input) {
-    	//Utilities.limit(input, 0, 1);
-    	if (input < 0) {
-    		input = 0;
-    	}
-    	//TODO This is temporary
+    	input = Utilities.limit(input, 0, 1);
     	motor.set(input);
     }
 }
-
