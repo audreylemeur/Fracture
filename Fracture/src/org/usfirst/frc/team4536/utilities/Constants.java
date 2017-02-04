@@ -39,4 +39,7 @@ public class Constants {
     public static final double PROFILE_TIMEOUT_OFFSET = .5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
 	
     public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.; //Ticks per inch
+    
+    //Angle Adjustments
+    public static final int TRIM_STEP = 3;
 }
