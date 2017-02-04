@@ -266,8 +266,6 @@ public class DriveTrain extends Subsystem {
     
     public double getNavXRoll(){
 		return navX.getRoll();
-	}**/
-
-   
+    }
 }
 
