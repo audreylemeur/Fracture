@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class DriveTrain extends Subsystem {
 
-	
+	//The encoders are untested until we can get Whiplash working.
 	Encoder strafeEncoder;
 	Encoder forwardEncoder;
 	
