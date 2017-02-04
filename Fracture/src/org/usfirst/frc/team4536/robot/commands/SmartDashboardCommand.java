@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4536.robot.commands;
 
+import org.usfirst.frc.team4536.robot.MotionProfile;
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +36,10 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());		
     	SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());		
     	SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());		
-    	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());		
+    	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());
+    	
+    	//TESTS
+    	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     }
     
 
