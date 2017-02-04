@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.EnhancedTimer;
 import org.usfirst.frc.team4536.utilities.Utilities;
@@ -29,7 +30,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
-	Command drive;
+	Command backupDrive;
 	Command runClimber;
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
@@ -45,7 +46,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		smartDashboardCommand = new SmartDashboardCommand();
+		backupDrive = new BackupDrive();
+    smartDashboardCommand = new SmartDashboardCommand();
 		drive = new Drive();
 		runClimber = new RunClimber();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
@@ -64,7 +66,7 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
         }
-		drive.cancel();
+		backupDrive.cancel();
 
 		runClimber.cancel();
 		
@@ -141,10 +143,10 @@ public class Robot extends IterativeRobot {
         	smartDashboardCommand.start();
         }
 
-		
+		backupDrive.start();
+		CommandBase.driveTrain.setLastDesiredAngle(60);
 		drive.start();
-		runClimber.start();
-		
+		runClimber.start();	
 		cycleTimer.startTimer();
 	}
 
