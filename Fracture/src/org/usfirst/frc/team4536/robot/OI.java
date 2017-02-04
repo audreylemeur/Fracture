@@ -29,7 +29,7 @@ public class OI {
 		holdMiddle = new JoystickButton(primaryLeftStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdRight = new JoystickButton(primaryLeftStick, RobotMap.HOLD_RIGHT_BUTTON);
 		
-		double feederStationAngle = 0;
+		double feederStationAngle = 0.0;
 		if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Blue) {
 			feederStationAngle = 116.6;
 		}
