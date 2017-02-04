@@ -25,7 +25,8 @@ public class SmartDashboardCommand extends CommandBase {
     protected void execute() {
     	
     	//NavX
-    	SmartDashboard.putNumber("Adjusted Angle: ", Utilities.angleConverter(driveTrain.getNavX().getAngle()));
+    	SmartDashboard.putNumber("Adjusted Angle: ", driveTrain.getNavX().getAngle());
+    	SmartDashboard.putNumber("Yaw: ", driveTrain.getNavX().getYaw());
     	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
     	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
     	
