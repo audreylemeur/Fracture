@@ -7,12 +7,14 @@ package org.usfirst.frc.team4536.robot;
  * floating around.
  */
 public class RobotMap {
-		//Motors
 	
-	public static final int LEFT_FRONT_MOTOR = 0;
+	//Motors
+	
+	public static final int LEFT_FRONT_MOTOR = 2;
 	public static final int LEFT_BACK_MOTOR = 1;
-	public static final int RIGHT_FRONT_MOTOR = 2;
+	public static final int RIGHT_FRONT_MOTOR = 0;
 	public static final int RIGHT_BACK_MOTOR = 3;
+	
 	public static final int GEAR_SLIDE_MOTOR = 5;
 	
 	public static final int CLIMBER_MOTOR = 4;
@@ -30,6 +32,9 @@ public class RobotMap {
 	public static final int HOLD_MIDDLE_BUTTON = 11;
 	public static final int HOLD_RIGHT_BUTTON = 12;
 	public static final int HOLD_CENTER_BUTTON = 3;
+	
+	public static final int PLUS_DEGREE_BUTTON = 6;
+	public static final int MINUS_DEGREE_BUTTON = 7;
 	
 	//Encoders These values are copied from last year and almost definitely incorrect.
 	
