@@ -24,6 +24,8 @@ public class OI {
 	public static Button plusDegree;
 	public static Button minusDegree;
 	
+	public static Button switchSao;
+	
 	public static void ButtonHandling() {
 		holdFeeder = new JoystickButton(primaryLeftStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdLeft = new JoystickButton(primaryLeftStick, RobotMap.HOLD_LEFT_BUTTON);
@@ -32,6 +34,8 @@ public class OI {
 		
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
+		
+		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
 		
 		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
 		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
@@ -45,5 +49,8 @@ public class OI {
 		holdLeft.whenReleased(new Drive());
 		holdMiddle.whenReleased(new Drive());
 		holdRight.whenReleased(new Drive());
+		
+		switchSao.whenPressed(new SaoDrive());
+		
 	}
 }
