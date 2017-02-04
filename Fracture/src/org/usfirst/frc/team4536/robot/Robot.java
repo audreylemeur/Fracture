@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		backupDrive = new BackupDrive();
     smartDashboardCommand = new SmartDashboardCommand();
-		drive = new Drive();
+		Drive drive = new Drive();
 		runClimber = new RunClimber();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
@@ -145,7 +145,6 @@ public class Robot extends IterativeRobot {
 
 		backupDrive.start();
 		CommandBase.driveTrain.setLastDesiredAngle(60);
-		drive.start();
 		runClimber.start();	
 		cycleTimer.startTimer();
 	}

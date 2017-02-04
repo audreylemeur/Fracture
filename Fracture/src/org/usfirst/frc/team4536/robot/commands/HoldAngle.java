@@ -25,7 +25,7 @@ public class HoldAngle extends CommandBase {
     	forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * -OI.primaryLeftStick.getModMagnitude();
     	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * OI.primaryLeftStick.getModMagnitude();
     	
-    	driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, rAng);
+    	driveTrain.Drive(forwardThrottle, strafeThrottle, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
