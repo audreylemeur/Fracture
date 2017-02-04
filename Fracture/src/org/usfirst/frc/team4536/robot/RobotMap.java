@@ -13,6 +13,7 @@ public class RobotMap {
 	public static final int LEFT_BACK_MOTOR = 1;
 	public static final int RIGHT_FRONT_MOTOR = 2;
 	public static final int RIGHT_BACK_MOTOR = 3;
+	public static final int GEAR_SLIDE_MOTOR = 5;
 	
 	public static final int CLIMBER_MOTOR = 4;
 	
@@ -28,4 +29,14 @@ public class RobotMap {
 	public static final int HOLD_LEFT_BUTTON = 10;
 	public static final int HOLD_MIDDLE_BUTTON = 11;
 	public static final int HOLD_RIGHT_BUTTON = 12;
+	
+	public static final int PLUS_DEGREE_BUTTON = 6;
+	public static final int MINUS_DEGREE_BUTTON = 7;
+	
+	//Encoders These values are copied from last year and almost definitely incorrect.
+	
+	public static final int STRAFE_ENCODER_CHANNEL_A = 8;
+	public static final int STRAFE_ENCODER_CHANNEL_B = 9;
+	public static final int FORWARD_ENCODER_CHANNEL_A = 6;
+	public static final int FORWARD_ENCODER_CHANNEL_B = 7;
 }

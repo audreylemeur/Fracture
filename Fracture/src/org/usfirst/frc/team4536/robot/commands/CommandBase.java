@@ -11,8 +11,12 @@ import org.usfirst.frc.team4536.robot.subsystems.*;
  */
 public class CommandBase extends Command {
 	
-	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_FRONT_MOTOR, RobotMap.LEFT_BACK_MOTOR, RobotMap.RIGHT_FRONT_MOTOR, RobotMap.RIGHT_BACK_MOTOR);
+	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_FRONT_MOTOR, RobotMap.LEFT_BACK_MOTOR, 
+			RobotMap.RIGHT_FRONT_MOTOR, RobotMap.RIGHT_BACK_MOTOR, RobotMap.STRAFE_ENCODER_CHANNEL_A, 
+			RobotMap.STRAFE_ENCODER_CHANNEL_B, RobotMap.FORWARD_ENCODER_CHANNEL_A, RobotMap.FORWARD_ENCODER_CHANNEL_B);
+	
 	public static Climber climber = new Climber(RobotMap.CLIMBER_MOTOR);
+	public static GearSlide gearSlide = new GearSlide(RobotMap.GEAR_SLIDE_MOTOR);//wont work until we fix gearslide to use servo code
 	
     public CommandBase() {
     }
