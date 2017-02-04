@@ -1,10 +1,12 @@
 package org.usfirst.frc.team4536.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.utilities.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,10 +29,20 @@ public class OI {
 		holdMiddle = new JoystickButton(primaryLeftStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdRight = new JoystickButton(primaryLeftStick, RobotMap.HOLD_RIGHT_BUTTON);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		double feederStationAngle = 0;
+		if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Blue) {
+			feederStationAngle = 116.6;
+		}
+		else if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
+			feederStationAngle = -116.6;	
+		}
+		else {
+			feederStationAngle = 0.0;
+		}
+		holdFeeder.whenPressed(new DriveHoldAngle(feederStationAngle));
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
 		
 		holdFeeder.whenReleased(new Drive());
 		holdLeft.whenReleased(new Drive());

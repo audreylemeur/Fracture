@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4536.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team4536.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -33,7 +34,18 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());		
     	SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());		
     	SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());		
-    	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());		
+    	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());	
+    	
+    	if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Blue) {
+    		SmartDashboard.putString("Alliance Color:", "Blue");
+    	}
+    	else if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
+    		SmartDashboard.putString("Alliance Color:", "Red");
+    	}
+    	else {
+    		SmartDashboard.putString("Alliance Color:", "invalid alliance");
+    	}
+ 
     }
     
 
