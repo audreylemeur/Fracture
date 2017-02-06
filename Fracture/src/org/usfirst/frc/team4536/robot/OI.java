@@ -25,6 +25,8 @@ public class OI {
 	public static Button minusDegree;
 	
 	public static Button switchSao;
+	public static Button switchPrimary;
+	public static Button climb;
 	
 	public static void ButtonHandling() {
 		holdFeeder = new JoystickButton(primaryLeftStick, RobotMap.HOLD_FEEDER_BUTTON);
@@ -36,6 +38,8 @@ public class OI {
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 		
 		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
+		switchPrimary = new JoystickButton(primaryLeftStick, RobotMap.PRIMARY_SWITCH);
+		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
 		
 		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
 		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
@@ -51,6 +55,8 @@ public class OI {
 		holdRight.whenReleased(new Drive());
 		
 		switchSao.whenPressed(new SaoDrive());
+		switchPrimary.whenPressed(new Drive());
+		climb.whenPressed(new RunClimber());
 		
 	}
 }
