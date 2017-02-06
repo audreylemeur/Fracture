@@ -44,10 +44,10 @@ public class OI {
 		switchPrimary = new JoystickButton(primaryLeftStick, RobotMap.PRIMARY_SWITCH);
 		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		holdFeeder.whenPressed(new DriveHoldAngle(Constants.FEEDER_STATION_ANGLE));
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
 
 		
 		plusDegree.whenPressed(new AngleAdjustment(true));
