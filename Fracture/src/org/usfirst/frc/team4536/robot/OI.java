@@ -1,10 +1,12 @@
 package org.usfirst.frc.team4536.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.utilities.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,6 +36,7 @@ public class OI {
 		holdMiddle = new JoystickButton(primaryLeftStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdRight = new JoystickButton(primaryLeftStick, RobotMap.HOLD_RIGHT_BUTTON);
 		
+
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 		
@@ -45,6 +48,7 @@ public class OI {
 		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
 		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
 		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+
 		
 		plusDegree.whenPressed(new AngleAdjustment(true));
 		minusDegree.whenPressed(new AngleAdjustment(false));
