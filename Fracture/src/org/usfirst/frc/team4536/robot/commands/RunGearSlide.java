@@ -7,7 +7,7 @@ import org.usfirst.frc.team4536.robot.OI;
  */
 //TODO wont work until we use servo code
 public class RunGearSlide extends CommandBase {
-
+/*
     public RunGearSlide() {
     	requires(gearSlide);
         // Use requires() here to declare subsystem dependencies
@@ -37,5 +37,5 @@ public class RunGearSlide extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
-    }
+    }*/
 }
