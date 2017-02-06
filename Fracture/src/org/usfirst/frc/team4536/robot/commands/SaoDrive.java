@@ -33,8 +33,8 @@ public class SaoDrive extends CommandBase {
 		forwardThrottle = Utilities.speedCurve(forwardThrottle, Constants.SAO_FORWARD_CURVE);
 		strafeThrottle = Utilities.speedCurve(strafeThrottle, Constants.SAO_STRAFE_CURVE);
 		
-		forwardThrottle = Utilities.limit(forwardThrottle, Constants.SAO_FORWARD_MAX_SPEED);
-		strafeThrottle = Utilities.limit(strafeThrottle, Constants.SAO_STRAFE_MAX_SPEED);
+		forwardThrottle = forwardThrottle*Constants.SAO_FORWARD_MAX_SPEED;
+		strafeThrottle = forwardThrottle*Constants.SAO_STRAFE_MAX_SPEED;
 		
 		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
     	
