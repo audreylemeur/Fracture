@@ -46,10 +46,10 @@ public class Constants {
     
     public static final int TRIM_STEP = 3;
     
-    //Sao Drive (These need to modified to fit needs)
+    //Sao Drive (These need to be modified to fit needs)
     
-    public static final double SAO_FORWARD_CURVE = 0.0;
-    public static final double SAO_STRAFE_CURVE = 0.0;
+    public static final double SAO_FORWARD_CURVE = 1;
+    public static final double SAO_STRAFE_CURVE = 1;
     public static final double SAO_FORWARD_MAX_SPEED = 1;
     public static final double SAO_STRAFE_MAX_SPEED = 1;
     public static final double SAO_ANGLE_PROPORTIONALITY = 0.07;
