@@ -1,5 +1,8 @@
 package org.usfirst.frc.team4536.utilities;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Constants {
   
 	//Utilities
@@ -26,11 +29,10 @@ public class Constants {
 	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 1.0;
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 1.0;
 	//OI
-	
-	public static final double HOLD_FEEDER_ANGLE = 90.0;
-	public static final double HOLD_LEFT_ANGLE = 180.0;
-	public static final double HOLD_MIDDLE_ANGLE = -90.0;
-	public static final double HOLD_RIGHT_ANGLE = 0.0;
+	public static final double FEEDER_STATION_ANGLE = 116.6;
+	public static final double LEFT_PEG_ANGLE = -120.0;
+	public static final double MIDDLE_PEG_ANGLE = 0;
+	public static final double RIGHT_PEG_ANGLE = 120.0;
 	
 	//Profile constants
 	//These might need changing, they're mostly just copied from last year.
@@ -38,9 +40,10 @@ public class Constants {
 	public static final double FORWARD_NAVX_PROPORTIONALITY = 0.07; //Measured in throttle per inch.
 	public static final double DEFAULT_SPEED = 10; //Measured in meters per second.
 	public static final double DEFAULT_ACCELERATION = 4; //Measured in meters per second squared.
-    public static final double PROFILE_TIMEOUT_OFFSET = .5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
+    public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
 	
     public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.; //Ticks per inch
+
     
     //Angle Adjustments
     
@@ -52,5 +55,5 @@ public class Constants {
     public static final double SAO_STRAFE_CURVE = 1;
     public static final double SAO_FORWARD_MAX_SPEED = 1;
     public static final double SAO_STRAFE_MAX_SPEED = 1;
-    public static final double SAO_ANGLE_PROPORTIONALITY = 0.07;
+
 }
