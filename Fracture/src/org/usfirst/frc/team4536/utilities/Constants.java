@@ -13,7 +13,7 @@ public class Constants {
 	public static final double STRAFE_SPEED_CURVE = 0.0;
 	public static final double SCALE_PARAM = 0.8; //TODO this needs fine tuning
 	public static final double FORWARD_STICTION = 0.07; //TODO IDK what value this should be
-	public static final double DRIVE_TRAIN_MAX_VELOCITY = 13; //TODO IDK what value this should be
+	public static final double DRIVE_TRAIN_MAX_VELOCITY = 13.0; //TODO IDK what value this should be
 	
 	//Camera
 
@@ -38,22 +38,23 @@ public class Constants {
 	//These might need changing, they're mostly just copied from last year.
 	
 	public static final double FORWARD_NAVX_PROPORTIONALITY = 0.07; //Measured in throttle per inch.
+
 	public static final double DEFAULT_SPEED = 10; //Measured in meters per second.
 	public static final double DEFAULT_ACCELERATION = 4; //Measured in meters per second squared.
-    public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
-	
-    public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.; //Ticks per inch
+  public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
+
+  public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.; //Ticks per inch
 
     
-    //Angle Adjustments
+  //Angle Adjustments
     
-    public static final int TRIM_STEP = 3;
+  public static final int TRIM_STEP = 3;
     
-    //Sao Drive (These need to be modified to fit needs)
+  //Sao Drive (These need to be modified to fit needs)
     
-    public static final double SAO_FORWARD_CURVE = 1;
-    public static final double SAO_STRAFE_CURVE = 1;
-    public static final double SAO_FORWARD_MAX_SPEED = 1;
-    public static final double SAO_STRAFE_MAX_SPEED = 1;
+  public static final double SAO_FORWARD_CURVE = 1;
+  public static final double SAO_STRAFE_CURVE = 1;
+  public static final double SAO_FORWARD_MAX_SPEED = 1;
+  public static final double SAO_STRAFE_MAX_SPEED = 1;
 
 }
