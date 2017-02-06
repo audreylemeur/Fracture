@@ -42,10 +42,10 @@ public class OI {
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(Constants.FEEDER_STATION_ANGLE));
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
+		holdFeeder.whenPressed(new HoldAngle(Constants.FEEDER_STATION_ANGLE));
+		holdLeft.whenPressed(new HoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new HoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		fieldCentric.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 
 		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
