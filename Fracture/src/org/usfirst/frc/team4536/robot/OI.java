@@ -26,6 +26,10 @@ public class OI {
 	public static Button plusDegree;
 	public static Button minusDegree;
 	
+	public static Button switchSao;
+	public static Button switchPrimary;
+	public static Button climb;
+	
 	public static void ButtonHandling() {
 		holdFeeder = new JoystickButton(primaryLeftStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdLeft = new JoystickButton(primaryLeftStick, RobotMap.HOLD_LEFT_BUTTON);
@@ -36,10 +40,14 @@ public class OI {
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
+		switchPrimary = new JoystickButton(primaryLeftStick, RobotMap.PRIMARY_SWITCH);
+		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
+		
+		holdFeeder.whenPressed(new DriveHoldAngle(Constants.FEEDER_STATION_ANGLE));
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
 
 		
 		plusDegree.whenPressed(new AngleAdjustment(true));
@@ -49,5 +57,10 @@ public class OI {
 		holdLeft.whenReleased(new Drive());
 		holdMiddle.whenReleased(new Drive());
 		holdRight.whenReleased(new Drive());
+		
+		switchSao.whenPressed(new SaoDrive());
+		switchPrimary.whenPressed(new Drive());
+		climb.whenPressed(new RunClimber());
+		
 	}
 }
