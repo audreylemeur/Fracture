@@ -37,15 +37,12 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Secondary Joystick Y: ", OI.secondaryStick.getY());		
     	SmartDashboard.putNumber("Secondary Joystick X: ", OI.secondaryStick.getX());		
     	SmartDashboard.putNumber("Tertiary Joystick Y: ", OI.primaryRightStick.getY());		
-
     	SmartDashboard.putNumber("Tertiary Joystick X: ", OI.primaryRightStick.getX());
     	
     	//TESTS
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
 
     }
-    
-
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

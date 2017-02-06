@@ -1,12 +1,12 @@
 package org.usfirst.frc.team4536.test;
 
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
-//import org.junit.Test;
-//import org.usfirst.frc.team4536.utilities.Utilities;
+import org.junit.Test;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 public class UtilitiesTest {
-/*
+
 	@Test
 	public void testLimit3Parameters() {
 		assertEquals(Utilities.limit(0, 2, 5), 2, 0);
@@ -52,7 +52,12 @@ public class UtilitiesTest {
 	}
 	
 	@Test
-	public void testAccelLimit() {
-		assertEquals(Utilities.accelLimit(3, 1, 0), 3, 0);
-	} */
+	public void testAngleConverter() {
+		assertEquals(Utilities.angleConverter(45), 45, 0);
+		assertEquals(Utilities.angleConverter(-990), 90, 0);
+		assertEquals(Utilities.angleConverter(990), -90, 0);
+		assertEquals(Utilities.angleConverter(0), 0, 0);
+		assertEquals(Utilities.angleConverter(279), -81, 0);
+		assertEquals(Utilities.angleConverter(-366), -6, 0);
+	} 
 }
