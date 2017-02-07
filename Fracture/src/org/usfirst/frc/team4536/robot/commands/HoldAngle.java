@@ -9,11 +9,10 @@ import org.usfirst.frc.team4536.utilities.Utilities;
  *Class to drive while holding an angle, field-centric.
  */
 public class HoldAngle extends CommandBase {
-	private double forwardThrottle, strafeThrottle, rAng;
+	private double forwardThrottle, strafeThrottle;
 
     public HoldAngle(double robotAngle) {
         requires(driveTrain);
-        rAng = robotAngle;
     }
 
     protected void initialize() {
@@ -25,17 +24,15 @@ public class HoldAngle extends CommandBase {
     protected void execute() {
     	forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * OI.primaryLeftStick.getModMagnitude();
     	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -OI.primaryLeftStick.getModMagnitude();
-    	
+  
     	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.FORWARD_SCALE);
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.STRAFE_SCALE);
-    	
-    	driveTrain.Drive(forwardThrottle, strafeThrottle, rAng);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-    }
+  }
 
     // Called once after isFinished returns true
     protected void end() {
