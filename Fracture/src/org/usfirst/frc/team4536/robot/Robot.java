@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	//public static OI oi;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
+	Command runClimber;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
