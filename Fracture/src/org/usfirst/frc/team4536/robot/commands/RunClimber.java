@@ -17,7 +17,7 @@ public class RunClimber extends CommandBase {
     }
     
     protected void execute() {
-    	climber.setClimber(OI.secondaryStick.getModY());
+    	climber.setClimber(-OI.secondaryStick.getModY());
     }
     
     protected boolean isFinished() {
