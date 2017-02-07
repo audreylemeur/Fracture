@@ -1,10 +1,12 @@
 package org.usfirst.frc.team4536.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.utilities.Constants;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,6 +27,13 @@ public class OI {
 	public static Button plusDegree;
 	public static Button minusDegree;
 	
+
+	public static double feederStationAngle;
+	public static Button switchSao;
+	public static Button switchPrimary;
+	public static Button climb;
+
+	
 	public static void ButtonHandling() {
 		holdFeeder = new JoystickButton(primaryLeftStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdLeft = new JoystickButton(primaryLeftStick, RobotMap.HOLD_LEFT_BUTTON);
@@ -32,14 +41,24 @@ public class OI {
 		holdRight = new JoystickButton(primaryLeftStick, RobotMap.HOLD_RIGHT_BUTTON);
 		fieldCentric = new JoystickButton(primaryLeftStick, RobotMap.HOLD_CENTER_BUTTON);
 		
+
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 		
-		holdFeeder.whenPressed(new DriveHoldAngle(Constants.HOLD_FEEDER_ANGLE));
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.HOLD_LEFT_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.HOLD_MIDDLE_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.HOLD_RIGHT_ANGLE));
-		fieldCentric.whenPressed(new HoldAngle(Constants.HOLD_RIGHT_ANGLE));
+		holdFeeder.whenPressed(new DriveHoldAngle(feederStationAngle));
+		
+    switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
+		switchPrimary = new JoystickButton(primaryLeftStick, RobotMap.PRIMARY_SWITCH);
+		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
+		
+		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
+		fieldCentric.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
+
+		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
+		switchPrimary = new JoystickButton(primaryLeftStick, RobotMap.PRIMARY_SWITCH);
+		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
 		
 		plusDegree.whenPressed(new AngleAdjustment(true));
 		minusDegree.whenPressed(new AngleAdjustment(false));
@@ -49,5 +68,22 @@ public class OI {
 		holdMiddle.whenReleased(new Drive());
 		holdRight.whenReleased(new Drive());
 		fieldCentric.whenReleased(new Drive());
+
+		switchSao.whenPressed(new SaoDrive());
+		switchPrimary.whenPressed(new Drive());
+		climb.whenPressed(new RunClimber());
+		
+	}
+	
+	public void setFeederStationAngle(){
+		if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Blue) {
+			feederStationAngle = 116.6;
+		}
+		else if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
+			feederStationAngle = -116.6;	
+		}
+		else {
+			feederStationAngle = 0.0;
+		}
 	}
 }
