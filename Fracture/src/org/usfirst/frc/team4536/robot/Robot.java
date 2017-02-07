@@ -28,10 +28,10 @@ public class Robot extends IterativeRobot {
 	//public static OI oi;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
-	Command drive;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
+	Command holdAngle;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
     smartDashboardCommand = new SmartDashboardCommand();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
-		drive = new Drive();
+		holdAngle = new HoldAngle(0);
 		OI.ButtonHandling();
 		
 	}
@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		drive.start();
+		holdAngle.start();
 		
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
