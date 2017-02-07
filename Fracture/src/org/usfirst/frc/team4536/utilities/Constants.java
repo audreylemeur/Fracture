@@ -30,9 +30,9 @@ public class Constants {
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 1.0;
 	//OI
 	public static final double FEEDER_STATION_ANGLE = 116.6;
-	public static final double LEFT_PEG_ANGLE = -120.0;
+	public static final double LEFT_PEG_ANGLE = 60.0;
 	public static final double MIDDLE_PEG_ANGLE = 0;
-	public static final double RIGHT_PEG_ANGLE = 120.0;
+	public static final double RIGHT_PEG_ANGLE = -60.0;
 	
 	//Profile constants
 	//These might need changing, they're mostly just copied from last year.
