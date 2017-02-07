@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4536.robot.commands.*;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.EnhancedTimer;
 import org.usfirst.frc.team4536.utilities.Utilities;
@@ -28,11 +29,10 @@ public class Robot extends IterativeRobot {
 	Command smartDashboardCommand;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
-	Command drive;
-	Command runClimber;
+	Command driveProfile;
 	EnhancedTimer cycleTimer;
-	
+	Command holdAngle;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -44,11 +44,11 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		smartDashboardCommand = new SmartDashboardCommand();
-		drive = new Drive();
-		runClimber = new RunClimber();
+	
+    smartDashboardCommand = new SmartDashboardCommand();
+		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
-		
+		holdAngle = new HoldAngle(0);
 		OI.ButtonHandling();
 		
 	}
@@ -63,10 +63,6 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
         }
-		drive.cancel();
-
-		runClimber.cancel();
-		
 		cycleTimer.stopTimer();
 		cycleTimer.resetTimer();
 	}
@@ -89,10 +85,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		//autonomousCommand = chooser.getSelected();
+		if (driveProfile != null)
+			driveProfile.start();
 		autonomousCommand = chooser.getSelected();
-		
-		
-		
+
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -101,8 +98,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		//if (autonomousCommand != null)
+			//autonomousCommand.start();
 		
 		cycleTimer.startTimer();
 
@@ -135,14 +132,13 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		holdAngle.start();
+		
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
         }
 
-		
-		drive.start();
-		runClimber.start();
-		
+		CommandBase.driveTrain.setLastDesiredAngle(60);
 		cycleTimer.startTimer();
 	}
 
