@@ -59,5 +59,26 @@ public class UtilitiesTest {
 		assertEquals(Utilities.angleConverter(0), 0, 0);
 		assertEquals(Utilities.angleConverter(279), -81, 0);
 		assertEquals(Utilities.angleConverter(-366), -6, 0);
-	} 
+	}
+	
+	@Test
+	public void testAngleDifference() {
+		assertEquals(Utilities.angleDifference(-170, -130), 40, 0);
+		assertEquals(Utilities.angleDifference(-100, -146), -46, 0);
+		assertEquals(Utilities.angleDifference(-53, 0), 53, 0);
+		assertEquals(Utilities.angleDifference(1, -137), -138, 0);
+		assertEquals(Utilities.angleDifference(71, 146), 75, 0);
+	}
+	
+	@Test 
+	public void testShortestAngle() {
+		assertEquals(Utilities.shortestAngle(-991, -553), 78, 0);
+		assertEquals(Utilities.shortestAngle(0, -366), -6, 0);
+		assertEquals(Utilities.shortestAngle(991, 279), 8, 0);
+		assertEquals(Utilities.shortestAngle(1, 180), -1, 0);
+		assertEquals(Utilities.shortestAngle(0, 0), 0, 0);
+		assertEquals(Utilities.shortestAngle(30, 60), 30, 0);
+		assertEquals(Utilities.shortestAngle(45, 160), -65, 0);
+	}
+	
 }
