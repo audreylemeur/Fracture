@@ -8,11 +8,10 @@ import org.usfirst.frc.team4536.utilities.Constants;
  *Class to drive while holding an angle, field-centric.
  */
 public class HoldAngle extends CommandBase {
-	private double forwardThrottle, strafeThrottle, rAng;
+	private double forwardThrottle, strafeThrottle;
 
     public HoldAngle(double robotAngle) {
         requires(driveTrain);
-        rAng = robotAngle;
     }
 
     protected void initialize() {
