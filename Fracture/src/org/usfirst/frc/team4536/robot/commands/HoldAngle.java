@@ -22,11 +22,13 @@ public class HoldAngle extends CommandBase {
     }
 
     protected void execute() {
-    	forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * OI.primaryLeftStick.getModMagnitude();
-    	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryLeftStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -OI.primaryLeftStick.getModMagnitude();
-  
+    	forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * OI.primaryRightStick.getModMagnitude();
+    	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -OI.primaryRightStick.getModMagnitude();
+    	
+    	
     	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.FORWARD_SCALE);
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.STRAFE_SCALE);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
