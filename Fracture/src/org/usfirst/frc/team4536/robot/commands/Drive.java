@@ -24,8 +24,8 @@ public class Drive extends CommandBase {
     
     protected void execute() {
     	
-    	forwardThrottle = -OI.primaryRightStick.getModY();
-    	strafeThrottle = OI.primaryRightStick.getModX();
+    	forwardThrottle = -OI.primaryLeftStick.getModY();
+    	strafeThrottle = OI.primaryLeftStick.getModX();
     	turnThrottle = OI.primaryRightStick.getModX();
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
