@@ -28,10 +28,12 @@ public class Robot extends IterativeRobot {
 	//public static OI oi;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
+	Command runClimber;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
 	Command holdAngle;
+	Command crossBaseline;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,6 +50,7 @@ public class Robot extends IterativeRobot {
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
 		holdAngle = new HoldAngle(0);
+		crossBaseline = new CrossBaseline();
 		OI.ButtonHandling();
 		
 	}
@@ -85,9 +88,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		if (driveProfile != null)
+		/*if (driveProfile != null)
 			driveProfile.start();
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = chooser.getSelected();*/
+		
+		if (crossBaseline != null)
+			crossBaseline.start();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
