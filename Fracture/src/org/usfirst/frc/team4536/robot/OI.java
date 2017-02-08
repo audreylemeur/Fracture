@@ -35,7 +35,6 @@ public class OI {
 	
 	public static Button fullSpeedClimb;
 	public static Button slowClimb;
-	public static Button stopClimb;
 
 	
 	public static void ButtonHandling() {
@@ -53,7 +52,7 @@ public class OI {
 		
     switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
     	fullSpeedClimb = new JoystickButton(secondaryStick, RobotMap.FULL_CLIMB);
-		slowClimb = new JoystickButton(secondaryStick, RobotMap.HALF_CLIMB);
+		slowClimb = new JoystickButton(secondaryStick, RobotMap.SLOW_CLIMB);
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);
 		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
 		
@@ -63,7 +62,7 @@ public class OI {
 		fieldCentric.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		autoRotate.whenPressed(new AutoRotateDriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
 		fullSpeedClimb.whenPressed(new RunClimber(1));
-		slowClimb.whenPressed(new RunClimber(0.5));
+		slowClimb.whenPressed(new RunClimber(Constants.SLOW_CLIMB_SPEED));
 
 		switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);

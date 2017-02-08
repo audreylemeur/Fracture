@@ -69,5 +69,9 @@ public class Constants {
 	public static final double AUTO_ROTATE_P_CONSTANT = 0.015;
 	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
 	public static final double AUTO_ROTATE_SPEED_CURVE = 1;
+	
+	//Climb 
+	
+	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
 
 }
