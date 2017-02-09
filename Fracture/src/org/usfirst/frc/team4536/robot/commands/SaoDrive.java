@@ -2,6 +2,7 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
@@ -36,8 +37,12 @@ public class SaoDrive extends CommandBase {
 		forwardThrottle = forwardThrottle*Constants.SAO_FORWARD_MAX_SPEED;
 		strafeThrottle = strafeThrottle*Constants.SAO_STRAFE_MAX_SPEED;
 		
-		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
-    	
+		try {
+			driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
+    	}
+    	catch(NavXException e) {
+    		end();
+    	}
     }
     
     protected boolean isFinished() {
