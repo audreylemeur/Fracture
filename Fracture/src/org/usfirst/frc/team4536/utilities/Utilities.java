@@ -188,7 +188,7 @@ public final class Utilities {
 	 * @param a : percent of throttle of one degree of freedom of robot drive
 	 * @param b : percent of throttle of second degree of freedom
 	 * @param scaleParam : max combined percentage of throttle for a and b
-	 * @return
+	 * @return newA : scaled down A that fits within throttle percentage limit
 	 */
 	public static double scale(double a, double b, double scaleParam){
 		
