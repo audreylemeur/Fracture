@@ -28,11 +28,12 @@ public class Robot extends IterativeRobot {
 	//public static OI oi;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
-	Command backupDrive;
 	Command runClimber;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
+	Command holdAngle;
+	Command crossBaseline;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -45,11 +46,11 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", );
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		backupDrive = new BackupDrive();
-    smartDashboardCommand = new SmartDashboardCommand();
-		runClimber = new RunClimber();
+		smartDashboardCommand = new SmartDashboardCommand();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
+		holdAngle = new HoldAngle(0);
+		crossBaseline = new CrossBaseline();
 		OI.ButtonHandling();
 		
 	}
@@ -64,10 +65,6 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
         }
-		backupDrive.cancel();
-
-		runClimber.cancel();
-		
 		cycleTimer.stopTimer();
 		cycleTimer.resetTimer();
 	}
@@ -91,9 +88,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-		if (driveProfile != null)
+		/*if (driveProfile != null)
 			driveProfile.start();
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = chooser.getSelected();*/
+		
+		if (crossBaseline != null)
+			crossBaseline.start();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -137,13 +137,13 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		holdAngle.start();
+		
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
         }
 
-		backupDrive.start();
 		CommandBase.driveTrain.setLastDesiredAngle(60);
-		runClimber.start();	
 		cycleTimer.startTimer();
 	}
 
