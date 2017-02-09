@@ -80,5 +80,27 @@ public class UtilitiesTest {
 		assertEquals(Utilities.shortestAngle(30, 60), 30, 0);
 		assertEquals(Utilities.shortestAngle(45, 160), -65, 0);
 	}
-	
+	@Test 
+	public void testAdjustForStiction() {	
+		double result = ((-11.0/12.0)*(1.0-0.1))-0.1;
+		assertEquals(Utilities.adjustForStiction(-11, 0.1, 12), result, 0);
+		result = ((15.0/19.0)*(1.0-0.005))+0.005;
+		assertEquals(Utilities.adjustForStiction(15, 0.005, 19), result, 0);
+		assertEquals(Utilities.adjustForStiction(0, 0.015, -10), 0, 0);
+		result = ((-13.0/-15.0)*(1.0-0.26))-0.26;
+		assertEquals(Utilities.adjustForStiction(-13, 0.26, -15), result, 0);
+	}
+	@Test 
+	public void testScale() {
+		double result1 = (-0.9*0.6/(0.9+0.5));
+		assertEquals(Utilities.scale(-0.9, -0.5, 0.6), result1, 0);
+		result1 = (-0.4*0.0/(0.4+0.2));
+		assertEquals(Utilities.scale(-0.4, 0.2, 0), result1, 0);
+		result1 = (0.7*0.8/(0.7+0.3));
+		assertEquals(Utilities.scale(0.7, -0.3, 0.8), result1, 0);
+		result1 = (0.0*0.9/(0.0+0.1));
+		assertEquals(Utilities.scale(0, 0.1, 0.9), result1, 0);
+		result1 = (0.2*0.1/(0.2+0.9));
+    	assertEquals(Utilities.scale(0.2, 0.9, 0.1), result1, 0);
+	}
 }
