@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.Utilities;
+import org.usfirst.frc.team4536.utilities.NavXException;
 
 import com.kauailabs.navx.frc.*;
 
@@ -11,6 +12,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
+
+import java.lang.Math;
 
 /**
  * @author Noah
@@ -76,7 +79,6 @@ public class DriveTrain extends Subsystem {
      * Feed values into this method through a command
      */
     public void Drive(double forwardThrottle, double strafeThrottle, double turnThrottle) {
-    	//TODO Make sure the negative signs are correct for Sidewinder and Fracture
     	
     	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
         leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
@@ -139,7 +141,11 @@ public class DriveTrain extends Subsystem {
      * 
      * Method for driving robot-centric while holding a certain angle
      */
-    public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
+    public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) throws NavXException {
+    	
+    	if (Math.abs(navX.getAngle()) < 0.001 && Math.abs(navX.getPitch()) < 0.001 && Math.abs(navX.getRoll()) < 0.001){
+    		throw new NavXException();
+    	}
     	
     	double angleDif = Utilities.angleDifference(navX.getAngle(), desiredAngle);
     	

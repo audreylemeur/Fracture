@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.utilities.NavXException;
 
 /**
  * @author Noah
@@ -23,10 +24,15 @@ public class DriveHoldAngle extends CommandBase {
     }
     
     protected void execute() {
-    	forwardThrottle = -OI.primaryRightStick.getModY();
-		strafeThrottle = OI.primaryRightStick.getModX();
-		
-		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
+    	forwardThrottle = -OI.primaryLeftStick.getModY();
+		  strafeThrottle = OI.primaryLeftStick.getModX();
+      
+    	try {
+    		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
+    	}
+    	catch(NavXException e) {
+    		end();
+    	}
     }
     
     protected boolean isFinished() {
@@ -34,6 +40,7 @@ public class DriveHoldAngle extends CommandBase {
     }
     
     protected void end() {
+    	driveTrain.Drive(0, 0, 0);
     }
     
     protected void interrupted() {
