@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
 
+import java.lang.Math;
+
 /**
  * @author Noah
  * Subsystem for the robot's drivetrain
@@ -141,7 +143,7 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) throws NavXException {
     	
-    	if (navX.getAngle() == 0 && navX.getPitch() == 0 && navX.getRoll() == 0){
+    	if (Math.abs(navX.getAngle()) < 0.001 && Math.abs(navX.getPitch()) < 0.001 && Math.abs(navX.getRoll()) < 0.001){
     		throw new NavXException();
     	}
     	
