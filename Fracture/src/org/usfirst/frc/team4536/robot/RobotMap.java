@@ -43,6 +43,7 @@ public class RobotMap {
 	public static final int CLIMB = 8;
 	public static final int FULL_CLIMB = 2;
 	public static final int SLOW_CLIMB = 4;
+	public static final int RUN_GEAR_SLIDE = 3;
 	
 	//Encoders These values are copied from last year and almost definitely incorrect.
 	
