@@ -2,6 +2,7 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
@@ -29,8 +30,13 @@ public class HoldAngle extends CommandBase {
     	
     	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.FORWARD_SCALE);
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.STRAFE_SCALE);
-
-    	driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, rAng);
+    	
+    	try {
+    		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, rAng);
+    	}
+    	catch(NavXException e) {
+    		end();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
