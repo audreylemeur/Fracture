@@ -3,6 +3,7 @@ package org.usfirst.frc.team4536.robot.commands;
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.robot.MotionProfile;
+import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -77,8 +78,16 @@ protected void initialize() {
 	timer.reset();
 	timer.start();
 	
-	startingAngle = driveTrain.getNavX().getAngle();
-	setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
+	try {
+		
+		startingAngle = driveTrain.getNavX().getAngle();
+		setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
+		
+	}
+	catch(NavXException e) {
+		end();
+	}
+	
 }
 
 protected void execute() {
