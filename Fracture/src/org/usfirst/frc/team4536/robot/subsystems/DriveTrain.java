@@ -131,22 +131,6 @@ public class DriveTrain extends Subsystem {
     	rightBackMotor.set(-rightBackMotorThrottleBasic);
     	
     }
-    
-    /**
-     * @author Noah
-     * @param forwardThrottle -1 to 1
-     * @param strafeThrottle -1 to 1
-     * @param desiredAngle -360 to 360, should use the getAngle method
-     * @param pConstant proportionality constant for the angle
-     * 
-     * Method for driving robot-centric while holding a certain angle
-     */
-    public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) throws NavXException {
-    	
-    	
-    	
-    }
-    
 
     /**
      * @author Theo
