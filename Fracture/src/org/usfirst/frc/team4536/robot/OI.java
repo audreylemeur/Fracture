@@ -51,7 +51,7 @@ public class OI {
 		holdFeeder.whenPressed(new DriveHoldAngle(feederStationAngle));
 		
     switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
-    	fullSpeedClimb = new JoystickButton(secondaryStick, RobotMap.FULL_CLIMB);
+    fullSpeedClimb = new JoystickButton(secondaryStick, RobotMap.FULL_CLIMB);
 		slowClimb = new JoystickButton(secondaryStick, RobotMap.SLOW_CLIMB);
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);
 		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
