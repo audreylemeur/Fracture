@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4536.robot.commands;
 
+import org.usfirst.frc.team4536.utilities.NavXException;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,7 +27,12 @@ public class AutoChooser extends CommandBase {
     }
     
     public void setInitialAngle(double input) {
+    	try {
     	driveTrain.getNavX().setAngleAdjustment(input);
+    	}
+    	catch(NavXException e){
+    		end();
+    	}
     }
     
     protected void initialize() {
