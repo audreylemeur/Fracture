@@ -143,15 +143,7 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) throws NavXException {
     	
-    	if (Math.abs(navX.getAngle()) < 0.001 && Math.abs(navX.getPitch()) < 0.001 && Math.abs(navX.getRoll()) < 0.001){
-    		throw new NavXException();
-    	}
     	
-    	double angleDif = Utilities.angleDifference(navX.getAngle(), desiredAngle);
-    	
-    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
-    	
-    	Drive(forwardThrottle, strafeThrottle, turnThrottle);
     	
     }
     
@@ -214,8 +206,12 @@ public class DriveTrain extends Subsystem {
     }
     
 
-    public AHRS getNavX()
+    public AHRS getNavX() throws NavXException
     {
+
+    	if (Math.abs(navX.getAngle()) < 0.001 && Math.abs(navX.getPitch()) < 0.001 && Math.abs(navX.getRoll()) < 0.001){
+    		throw new NavXException();
+    	}
     	return navX;
     }
 
