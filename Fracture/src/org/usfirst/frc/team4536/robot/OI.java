@@ -43,19 +43,19 @@ public class OI {
 	public static void ButtonHandling() {
 		
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
-		holdFeeder.whenPressed(new DriveHoldAngle(feederStationAngle));
+		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
 		holdFeeder.whenReleased(new Drive());
 		
 		holdLeft = new JoystickButton(primaryRightStick, RobotMap.HOLD_LEFT_BUTTON);
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdLeft.whenPressed(new HoldAngle(Constants.LEFT_PEG_ANGLE));
 		holdLeft.whenReleased(new Drive());
 		
 		holdMiddle = new JoystickButton(primaryRightStick, RobotMap.HOLD_MIDDLE_BUTTON);
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdMiddle.whenPressed(new HoldAngle(Constants.MIDDLE_PEG_ANGLE));
 		holdMiddle.whenReleased(new Drive());
 		
 		holdRight = new JoystickButton(primaryRightStick, RobotMap.HOLD_RIGHT_BUTTON);
-		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
+		holdRight.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		holdRight.whenReleased(new Drive());
 		
 		fieldCentric = new JoystickButton(primaryRightStick, RobotMap.HOLD_CENTER_BUTTON);
@@ -87,9 +87,13 @@ public class OI {
 		switchPrimary.whenPressed(new Drive());
 
 		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
-	
+		slidePositionTop = new JoystickButton(secondaryStick, RobotMap.POSITION_TOP);
 		slidePositionTop.whenPressed(new DriveSlidePositions(Constants.TOP_POSITION));
+		
+		slidePositionGear = new JoystickButton(secondaryStick, RobotMap.POSITION_GEAR);
 		slidePositionGear.whenPressed(new DriveSlidePositions(Constants.GEAR_POSITION));
+		
+		slidePositionMiddle = new JoystickButton(secondaryStick, RobotMap.POSITION_MIDDLE);
 		slidePositionMiddle.whenPressed(new DriveSlidePositions(Constants.MIDDLE_POSITION));
 	
 	}
