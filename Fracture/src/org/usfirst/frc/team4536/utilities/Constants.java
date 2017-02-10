@@ -73,5 +73,11 @@ public class Constants {
 	//Climb 
 	
 	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
+	
+	//Gear Slide
+	
+	public static final double TOP_POSITION = 1.0;
+	public static final double GEAR_POSITION = 0.6;
+	public static final double MIDDLE_POSITION = 0.4;
 
 }

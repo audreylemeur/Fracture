@@ -14,6 +14,7 @@ import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.EnhancedTimer;
+import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
@@ -113,10 +114,16 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {
 			smartDashboardCommand.start();
        }
-		
+    
 		autoChooser.start();
 		
-		CommandBase.driveTrain.getNavX().reset();
+		try {
+    		
+			CommandBase.driveTrain.getNavX().reset();
+    		
+    	}
+		catch(NavXException e) {
+    	}
 
 	}
 
@@ -141,7 +148,9 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		holdAngle.start();
+		if (holdAngle != null){
+			holdAngle.start();
+		}
 		
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();

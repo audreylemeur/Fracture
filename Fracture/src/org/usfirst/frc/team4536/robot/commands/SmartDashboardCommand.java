@@ -3,6 +3,8 @@ package org.usfirst.frc.team4536.robot.commands;
 import org.usfirst.frc.team4536.robot.MotionProfile;
 
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,10 +34,16 @@ public class SmartDashboardCommand extends CommandBase {
     protected void execute() {
     	
     	//NavX
-    	SmartDashboard.putNumber("Adjusted Angle: ", driveTrain.getNavX().getAngle());
-    	SmartDashboard.putNumber("Yaw: ", driveTrain.getNavX().getYaw());
-    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
-    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
+    	try {
+    		
+    		SmartDashboard.putNumber("Adjusted Angle: ", driveTrain.getNavX().getAngle());
+        	SmartDashboard.putNumber("Yaw: ", driveTrain.getNavX().getYaw());
+        	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
+        	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
+    		
+    	}
+    	catch(NavXException e) {
+    	}
     	
     	//Joysticks
     	SmartDashboard.putNumber("Right Joystick Y: ", OI.primaryRightStick.getY());		
@@ -50,8 +58,6 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
 
     }
-    
-
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

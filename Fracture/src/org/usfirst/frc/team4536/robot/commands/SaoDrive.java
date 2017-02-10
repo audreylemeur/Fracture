@@ -38,7 +38,13 @@ public class SaoDrive extends CommandBase {
 		strafeThrottle = strafeThrottle*Constants.SAO_STRAFE_MAX_SPEED;
 		
 		try {
-			driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, desiredAngle);
+			
+			double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), desiredAngle);
+        	
+        	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
+        		
+    		driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
+    		
     	}
     	catch(NavXException e) {
     		end();
