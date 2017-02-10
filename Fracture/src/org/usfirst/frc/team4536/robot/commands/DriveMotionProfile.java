@@ -92,7 +92,13 @@ protected void initialize() {
 
 protected void execute() {
 	try {
-		driveTrain.DriveHoldAngle(prof.getForwardThrottle(getTime()), prof.getStrafeThrottle(getTime()), prof.getDesiredAngle());
+		
+		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), prof.getDesiredAngle());
+    	
+    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
+    		
+		driveTrain.Drive(prof.getForwardThrottle(getTime()), prof.getStrafeThrottle(getTime()), turnThrottle);
+
 	}
 	catch(NavXException e) {
 		end();
