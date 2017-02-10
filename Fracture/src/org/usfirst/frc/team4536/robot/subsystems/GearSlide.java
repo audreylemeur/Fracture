@@ -28,8 +28,10 @@ public class GearSlide extends Subsystem {
     }
     
     /**
-     * @author Jasper
+     * @author Jasper and Eddie
      * @param input, throttle of gear slide motor
+     * 1 is all the way up, 0.3 is all the way down.
+     * 
      */
     
     public void setGearSlide(double input) {
