@@ -9,10 +9,10 @@ import org.usfirst.frc.team4536.utilities.Utilities;
  *@author Theo
  *Class to drive while holding an angle, field-centric.
  */
-public class AutoRotateDriveHoldAngle extends CommandBase {
+public class AutoRotateFieldCentric extends CommandBase {
 	private double forwardThrottle, strafeThrottle, turnThrottle, lastAngle;
 
-    public AutoRotateDriveHoldAngle(double robotAngle) {
+    public AutoRotateFieldCentric() {
         requires(driveTrain);
     }
 
@@ -20,7 +20,7 @@ public class AutoRotateDriveHoldAngle extends CommandBase {
     	forwardThrottle = 0;
     	strafeThrottle = 0;
     	turnThrottle = 0;
-    	lastAngle = 0.0; 
+    	lastAngle = driveTrain.getLastDesiredAngle(); 
     	//Keep the robot from spazzing out.
     }
 

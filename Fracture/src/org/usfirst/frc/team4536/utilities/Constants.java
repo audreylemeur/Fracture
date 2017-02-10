@@ -60,9 +60,12 @@ public class Constants {
 	public static final double SAO_STRAFE_MAX_SPEED = 1;
 	
 	//Field centric
-	
-	public static final double FORWARD_SCALE = 0.8;
-	public static final double STRAFE_SCALE = 0.8;
+
+	public static final double FIELD_FORWARD_SCALE = 0.8; //throttle
+	public static final double FIELD_STRAFE_SCALE = 0.8; //throttle
+	public static final double FIELD_P_CONSTANT = 0.015; 
+	public static final double FIELD_SCALE_PARAM = 0.7; //unitless
+	public static final double FIELD_SPEED_CURVE = 1; //unitless
 	
 	//Field Centric auto-rotate
 	
