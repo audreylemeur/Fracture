@@ -62,9 +62,6 @@ public class OI {
 		fieldCentric.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		fieldCentric.whenReleased(new Drive());
 		
-		autoRotate = new JoystickButton(primaryRightStick, RobotMap.HOLD_SPECIAL_BUTTON);
-		autoRotate.whenPressed(new AutoRotateDriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
-		autoRotate.whenReleased(new Drive());
 		
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		plusDegree.whenPressed(new AngleAdjustment(true));
