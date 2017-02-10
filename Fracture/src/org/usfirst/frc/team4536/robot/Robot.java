@@ -33,8 +33,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
-	Command holdAngle;
+	Command rotateHoldAngle;
 	Command crossBaseline;
+	Command autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -50,8 +51,9 @@ public class Robot extends IterativeRobot {
 		smartDashboardCommand = new SmartDashboardCommand();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
 		cycleTimer = new EnhancedTimer();
-		holdAngle = new HoldAngle(0);
+		rotateHoldAngle = new AutoRotateFieldCentric();
 		crossBaseline = new CrossBaseline();
+		autoChooser = new AutoChooser();
 		OI.ButtonHandling();
 		
 	}
@@ -112,6 +114,8 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {
 			smartDashboardCommand.start();
        }
+    
+		autoChooser.start();
 		
 		try {
     		
@@ -120,7 +124,6 @@ public class Robot extends IterativeRobot {
     	}
 		catch(NavXException e) {
     	}
-		
 
 	}
 
@@ -145,8 +148,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		if (holdAngle != null){
-			holdAngle.start();
+		if (rotateHoldAngle != null){
+			rotateHoldAngle.start();
 		}
 		
 		if (smartDashboardCommand != null) {        	
