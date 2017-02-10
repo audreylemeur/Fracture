@@ -51,8 +51,7 @@ public class OI {
 		plusDegree = new JoystickButton(primaryLeftStick, RobotMap.PLUS_DEGREE_BUTTON);
 		minusDegree = new JoystickButton(primaryLeftStick, RobotMap.MINUS_DEGREE_BUTTON);
 
-		holdFeeder.whenPressed(new DriveHoldAngle(feederStationAngle));
-    
+		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
     switchSao = new JoystickButton(secondaryStick, RobotMap.SAO_SWITCH);
     fullSpeedClimb = new JoystickButton(secondaryStick, RobotMap.FULL_CLIMB);
 		slowClimb = new JoystickButton(secondaryStick, RobotMap.SLOW_CLIMB);
@@ -62,9 +61,9 @@ public class OI {
 		slidePositionGear = new JoystickButton(secondaryStick, RobotMap.POSITION_GEAR);
 		slidePositionMiddle = new JoystickButton(secondaryStick, RobotMap.POSITION_STRAIGHT);
 		
-		holdLeft.whenPressed(new DriveHoldAngle(Constants.LEFT_PEG_ANGLE));
-		holdMiddle.whenPressed(new DriveHoldAngle(Constants.MIDDLE_PEG_ANGLE));
-		holdRight.whenPressed(new DriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
+		holdLeft.whenPressed(new HoldAngle(Constants.LEFT_PEG_ANGLE));
+		holdMiddle.whenPressed(new HoldAngle(Constants.MIDDLE_PEG_ANGLE));
+		holdRight.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		fieldCentric.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
 		autoRotate.whenPressed(new AutoRotateDriveHoldAngle(Constants.RIGHT_PEG_ANGLE));
 		fullSpeedClimb.whenPressed(new RunClimber(1));
