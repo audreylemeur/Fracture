@@ -35,6 +35,7 @@ public class Robot extends IterativeRobot {
 	EnhancedTimer cycleTimer;
 	Command rotateHoldAngle;
 	Command crossBaseline;
+	Command autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -52,6 +53,7 @@ public class Robot extends IterativeRobot {
 		cycleTimer = new EnhancedTimer();
 		rotateHoldAngle = new AutoRotateFieldCentric();
 		crossBaseline = new CrossBaseline();
+		autoChooser = new AutoChooser();
 		OI.ButtonHandling();
 		
 	}
@@ -112,6 +114,8 @@ public class Robot extends IterativeRobot {
 		if (smartDashboardCommand != null) {
 			smartDashboardCommand.start();
        }
+    
+		autoChooser.start();
 		
 		try {
     		
@@ -120,7 +124,6 @@ public class Robot extends IterativeRobot {
     	}
 		catch(NavXException e) {
     	}
-		
 
 	}
 

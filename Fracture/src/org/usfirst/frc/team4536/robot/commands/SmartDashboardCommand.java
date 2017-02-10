@@ -58,8 +58,6 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
 
     }
-    
-
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
