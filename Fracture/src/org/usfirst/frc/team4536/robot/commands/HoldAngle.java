@@ -24,15 +24,22 @@ public class HoldAngle extends CommandBase {
     }
 
     protected void execute() {
-    	forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * OI.primaryRightStick.getModMagnitude();
-    	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -OI.primaryRightStick.getModMagnitude();
-    	
-    	
-    	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.FORWARD_SCALE);
-    	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.STRAFE_SCALE);
     	
     	try {
-    		driveTrain.DriveHoldAngle(forwardThrottle, strafeThrottle, rAng);
+    		
+    		forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * OI.primaryRightStick.getModMagnitude();
+        	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -OI.primaryRightStick.getModMagnitude();
+        	
+        	
+        	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, Constants.FORWARD_SCALE);
+        	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, Constants.STRAFE_SCALE);
+        	
+        	double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), rAng);
+        	
+        	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
+        		
+    		driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
+    		
     	}
     	catch(NavXException e) {
     		end();
