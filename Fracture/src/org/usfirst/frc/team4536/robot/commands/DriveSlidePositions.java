@@ -2,14 +2,16 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
 /**
- *@author Jasper
+ *@author Eddie
  *Command to rotate the gear slide
  */
 //TODO wont work until we use servo code
-public class RunGearSlide extends CommandBase {
-/*
-    public RunGearSlide() {
+
+public class DriveSlidePositions extends CommandBase {
+	public double position;
+    public DriveSlidePositions(double pos) {
     	requires(gearSlide);
+    	position = pos;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,6 +23,8 @@ public class RunGearSlide extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	gearSlide.setGearSlide(position);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,5 +41,5 @@ public class RunGearSlide extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
-    }*/
+    }
 }
