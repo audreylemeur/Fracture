@@ -84,6 +84,7 @@ public class Constants {
 	//Climb 
 	
 	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
+	public static final double CLIMB_ACCEL_LIMIT = 0.1; //seconds for full speed
 	
 	//Gear Slide
 	
