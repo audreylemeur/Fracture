@@ -6,7 +6,7 @@ import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
- * @author Audreys
+ * @author Audrey
  * Class to drive robot-centric while holding an angle
  * Also uses constants specific to Sao
  */
@@ -17,13 +17,12 @@ public class SaoDrive extends CommandBase {
 	
     public SaoDrive() {
 		requires(driveTrain);
-		
-		desiredAngle = driveTrain.getLastDesiredAngle();
     }
     
     protected void initialize() {
     	forwardThrottle = 0;
     	strafeThrottle = 0;
+    	desiredAngle = driveTrain.getLastDesiredAngle();
     }
     
     protected void execute() {
