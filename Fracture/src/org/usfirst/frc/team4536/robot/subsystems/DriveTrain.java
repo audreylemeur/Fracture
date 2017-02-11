@@ -22,14 +22,14 @@ import java.lang.Math;
 public class DriveTrain extends Subsystem {
 
 	//The encoders are untested until we can get Whiplash working.
-	Encoder strafeEncoder;
-	Encoder forwardEncoder;
+	private Encoder strafeEncoder;
+	private Encoder forwardEncoder;
 	
-    Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
-    AHRS navX;
-    double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
-    double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
-    double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
+    private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    private AHRS navX;
+    
+    private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+    private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
     
     
@@ -99,10 +99,23 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveAccelLimit(double leftFrontMotorThrottleInput, double leftBackMotorThrottleInput, double rightFrontMotorThrottleInput, double rightBackMotorThrottleInput) {
     	
-    	leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    	
+    	if(!isFullStop(leftFrontMotorThrottleInput, leftBackMotorThrottleInput, rightFrontMotorThrottleInput, rightBackMotorThrottleInput)){
+    		
+    		leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    		
+    	}else{
+    		
+    		leftFrontMotorThrottleAccel = 0.0;
+        	leftBackMotorThrottleAccel = 0.0;
+        	rightFrontMotorThrottleAccel = 0.0;
+        	rightBackMotorThrottleAccel = 0.0;
+    		
+    	}
     	
     	leftFrontMotorThrottleAccelPrev = leftFrontMotorThrottleAccel;
     	leftBackMotorThrottleAccelPrev = leftBackMotorThrottleAccel;
@@ -215,6 +228,21 @@ public class DriveTrain extends Subsystem {
      */
 	public void setLastDesiredAngle(double desiredAngle) {
 		lastDesiredAngle = desiredAngle;
+	}
+	
+	/**
+	 * @author Audrey
+	 * @param leftFront throttle
+	 * @param leftBack throttle
+	 * @param rightFront throttle
+	 * @param rightBack throttle
+	 * @return true if all throttles are 0.0
+	 */
+	private boolean isFullStop(double leftFront, double leftBack, double rightFront, double rightBack){
+		
+		if (leftFront == 0.0 && leftBack == 0.0 && rightBack == 0.0 && rightFront == 0.0) return true;
+		return false;
+		
 	}
 
 }
