@@ -2,9 +2,7 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
-import org.usfirst.frc.team4536.utilities.NavXException;
+import org.usfirst.frc.team4536.utilities.*;
 
 import com.kauailabs.navx.frc.*;
 
@@ -20,10 +18,11 @@ import java.lang.Math;
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
-
-	//The encoders are untested until we can get Whiplash working.
+  
 	private Encoder strafeEncoder;
 	private Encoder forwardEncoder;
+	
+	EnhancedTimer timer;
 	
     private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
     private AHRS navX;
@@ -63,6 +62,8 @@ public class DriveTrain extends Subsystem {
     	} catch(RuntimeException ex) {
     		DriverStation.reportError("Error instantiating naxV-MXP: "+ex.getMessage(), true);
     	}
+    	
+    	timer = new EnhancedTimer();
     	
     }
 
@@ -150,7 +151,10 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder(){
+    public double getStrafeEncoder() throws EncoderException {
+    	if (strafeEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -158,7 +162,10 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder(){
+    public double getForwardEncoder() throws EncoderException {
+    	if (forwardEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -166,7 +173,7 @@ public class DriveTrain extends Subsystem {
     * @author Theo
     * @return forward encoder rate(velocity) in inches/second.
     */
-    public double getForwardRate(){
+    public double getForwardRate() {
     	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -174,7 +181,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder rate(velocity) in inches/second.
      */
-    public double getStrafeRate(){
+    public double getStrafeRate() {
     	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     

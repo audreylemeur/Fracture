@@ -51,8 +51,8 @@ public class RobotMap {
 	
 	//Encoders These values are copied from last year and almost definitely incorrect.
 	
-	public static final int STRAFE_ENCODER_CHANNEL_A = 8;
-	public static final int STRAFE_ENCODER_CHANNEL_B = 9;
-	public static final int FORWARD_ENCODER_CHANNEL_A = 6;
-	public static final int FORWARD_ENCODER_CHANNEL_B = 7;
+	public static final int STRAFE_ENCODER_CHANNEL_A = 0; //3 Wires
+	public static final int STRAFE_ENCODER_CHANNEL_B = 1; //1 Wire
+	public static final int FORWARD_ENCODER_CHANNEL_A = 2; //3 Wires
+	public static final int FORWARD_ENCODER_CHANNEL_B = 3; //1 Wire
 }
