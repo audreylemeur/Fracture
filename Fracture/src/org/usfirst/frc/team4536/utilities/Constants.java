@@ -70,8 +70,16 @@ public class Constants {
 	//Field Centric auto-rotate
 	
 	public static final double AUTO_ROTATE_P_CONSTANT = 0.015;
-	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
-	public static final double AUTO_ROTATE_SPEED_CURVE = 1;
+	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7; //unitless
+	public static final double AUTO_ROTATE_SPEED_CURVE = 1; //unitless
+	
+	//Field Centric Rotate
+	
+	public static final double ROTATE_P_CONSTANT = 0.015;
+	public static final double ROTATE_SCALE_PARAM = 0.7; //unitless
+	public static final double ROTATE_SPEED_CURVE = 1; //unitless
+	public static final double ROTATE_RIGHT_THROTTLE = 0.2; //throttle
+	public static final double ROTATE_LEFT_THROTTLE = -0.2; //throttle
 	
 	//Climb 
 	
