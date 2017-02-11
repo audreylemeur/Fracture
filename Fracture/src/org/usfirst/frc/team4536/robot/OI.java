@@ -40,6 +40,9 @@ public class OI {
 	public static Button slidePositionGear;
 	public static Button slidePositionMiddle;
 	
+	public static Button rotateRight;
+	public static Button rotateLeft;
+	
 	public static void ButtonHandling() {
 		setFeederStationAngle();
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
@@ -91,6 +94,14 @@ public class OI {
 		
 		slidePositionMiddle = new JoystickButton(secondaryStick, RobotMap.POSITION_MIDDLE);
 		slidePositionMiddle.whenPressed(new DriveSlidePositions(Constants.MIDDLE_POSITION));
+		
+		rotateRight = new JoystickButton(primaryRightStick, RobotMap.ROTATE_RIGHT);
+		rotateRight.whenPressed(new RotateFieldCentric(Constants.ROTATE_RIGHT_THROTTLE));
+		rotateRight.whenReleased(new AutoRotateFieldCentric());
+		
+		rotateLeft = new JoystickButton(primaryRightStick, RobotMap.ROTATE_LEFT);
+		rotateLeft.whenPressed(new RotateFieldCentric(Constants.ROTATE_LEFT_THROTTLE));
+		rotateLeft.whenReleased(new AutoRotateFieldCentric());
 	
 	}
 	
