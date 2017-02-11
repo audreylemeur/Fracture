@@ -18,11 +18,9 @@ public class AutoChooser extends CommandBase {
     	
     	autoChooser.addDefault(" Do Nothing", 0);
     	autoChooser.addObject(" Cross Baseline", 1);
-    	/* TODO These will be added in as we make more auto modes.
     	autoChooser.addObject(" Score Gear Left",  2);
     	autoChooser.addObject(" Score Gear Middle", 3);
     	autoChooser.addObject(" Score Gear Right", 4);
-    	*/
     	SmartDashboard.putData(" Auto Chooser", autoChooser);
     }
     
@@ -33,6 +31,7 @@ public class AutoChooser extends CommandBase {
     	catch(NavXException e){
     		end();
     	}
+    	driveTrain.setLastDesiredAngle(input);
     }
     
     protected void initialize() {
@@ -40,6 +39,18 @@ public class AutoChooser extends CommandBase {
     		case 1:
     			setInitialAngle(0.0);
     			new CrossBaseline().start();
+    		break;
+    		case 2:
+    			setInitialAngle(60.0);
+    			new DriveMotionProfile(10.0, 40.0, 60.0).start();
+    		break;
+    		case 3:
+    			setInitialAngle(0.0);
+    			new DriveMotionProfile(7.0, 0.0, 0.0).start();
+    		break;
+    		case 4:
+    			setInitialAngle(-60.0);
+    			new DriveMotionProfile(10.0, -40.0, -60.0).start();
     		break;
     		default:
     			setInitialAngle(0.0);
