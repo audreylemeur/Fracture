@@ -37,6 +37,8 @@ public class RobotMap {
 	public static final int PRIMARY_SWITCH = 1;
 	public static final int PLUS_DEGREE_BUTTON = 9;
 	public static final int MINUS_DEGREE_BUTTON = 8;
+	public static final int ROTATE_RIGHT = 6;
+	public static final int ROTATE_LEFT = 7;
 
 	//Secondary Stick Buttons
 	public static final int SAO_SWITCH = 1;
