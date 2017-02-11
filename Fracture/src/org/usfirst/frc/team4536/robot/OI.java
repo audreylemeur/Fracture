@@ -47,19 +47,15 @@ public class OI {
 		setFeederStationAngle();
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
-		holdFeeder.whenReleased(new AutoRotateFieldCentric());
 		
 		holdLeft = new JoystickButton(primaryRightStick, RobotMap.HOLD_LEFT_BUTTON);
 		holdLeft.whenPressed(new HoldAngle(Constants.LEFT_PEG_ANGLE));
-		holdLeft.whenReleased(new AutoRotateFieldCentric());
 		
 		holdMiddle = new JoystickButton(primaryRightStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdMiddle.whenPressed(new HoldAngle(Constants.MIDDLE_PEG_ANGLE));
-		holdMiddle.whenReleased(new AutoRotateFieldCentric());
 		
 		holdRight = new JoystickButton(primaryRightStick, RobotMap.HOLD_RIGHT_BUTTON);
 		holdRight.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
-		holdRight.whenReleased(new AutoRotateFieldCentric());
 		
 		plusDegree = new JoystickButton(primaryRightStick, RobotMap.PLUS_DEGREE_BUTTON);
 		plusDegree.whenPressed(new AngleAdjustment(true));
