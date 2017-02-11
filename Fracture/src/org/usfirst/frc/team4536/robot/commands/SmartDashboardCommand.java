@@ -56,6 +56,8 @@ public class SmartDashboardCommand extends CommandBase {
     	//TESTS
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
+    	SmartDashboard.putBoolean("Collision:", driveTrain.checkForCollision());
+    	SmartDashboard.putNumber("Jerk", driveTrain.getJerk());
 
     }
 

@@ -31,7 +31,14 @@ public class DriveTrain extends Subsystem {
     double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
     double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
+    boolean collisionDetected = false;
+    double prevAccelX = 0.0;
+    double prevAccelY = 0.0;
+    double prevAccelZ = 0.0;
     
+    double jerkX;
+    double jerkY;
+    double jerkZ;
     
 	/**
      * @author Noah
@@ -217,5 +224,25 @@ public class DriveTrain extends Subsystem {
 		lastDesiredAngle = desiredAngle;
 	}
 
+	public boolean checkForCollision() {
+		double currLinearAccelX = navX.getWorldLinearAccelX();
+		double currLinearAccelY = navX.getWorldLinearAccelY();
+		double currLinearAccelZ = navX.getWorldLinearAccelZ();
+		
+		jerkX = currLinearAccelX - prevAccelX;
+		jerkY = currLinearAccelY - prevAccelY;
+		jerkZ = currLinearAccelZ - prevAccelZ;
+		
+		if (getJerk() > Constants.COLLISION_DETECTION_THRESHOLD) {
+				collisionDetected = true;
+			
+			}
+		return collisionDetected;
+		
+	}
+	
+	public double getJerk() {
+		return Math.sqrt( Math.pow(jerkX, 2.0) + Math.pow(jerkY, 2.0) + Math.pow(jerkZ, 2.0));
+	}
 }
 

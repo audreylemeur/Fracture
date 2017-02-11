@@ -30,6 +30,7 @@ public class Constants {
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 1.0;
 	public static final double CROSS_BASELINE_SPEED = 0.5;
 	public static final double CROSS_BASELINE_TIMEOUT = 0.5;
+	public static final double COLLISION_DETECTION_THRESHOLD = 2.0;
 	//OI
 	public static final double FEEDER_STATION_ANGLE = 116.6;
 	public static final double LEFT_PEG_ANGLE = 60.0;
