@@ -75,6 +75,7 @@ public double getNeededTime(){
 }
 
 protected void initialize() {
+	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();
 	
