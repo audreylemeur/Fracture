@@ -80,9 +80,9 @@ public class Constants {
 	//Gear Slide
 	
 	public static final double TOP_POSITION = 1.0;
-	public static final double GEAR_POSITION = 0.6;
-	public static final double MIDDLE_POSITION = 0.4;
+	public static final double GEAR_POSITION = 0.52;
+	public static final double MIDDLE_POSITION = 0.6;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
-	public static final double LOWER_LIMIT = 0.4;
+	public static final double LOWER_LIMIT = 0.51;
 
 }
