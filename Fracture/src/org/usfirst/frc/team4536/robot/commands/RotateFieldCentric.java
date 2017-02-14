@@ -6,24 +6,23 @@ import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
- *@author Theo
- *Class to drive while holding an angle, field-centric.
+ * @author Audrey
  */
-public class HoldAngle extends CommandBase {
-	private double forwardThrottle, strafeThrottle, turnThrottle, rAng;
+public class RotateFieldCentric extends CommandBase {
+	private double forwardThrottle, strafeThrottle, turnThrottle;
 
-    public HoldAngle(double robotAngle) {
+    public RotateFieldCentric(double turnInput) {
         requires(driveTrain);
-        rAng = robotAngle;
+    	turnThrottle = turnInput;
     }
 
+    // Called just before this Command runs the first time
     protected void initialize() {
     	forwardThrottle = 0;
     	strafeThrottle = 0;
-    	turnThrottle = 0;
-    	//Keep the robot from spazzing out.
     }
 
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
     	try {
@@ -31,11 +30,9 @@ public class HoldAngle extends CommandBase {
     		double speedCurveMagnitude = Utilities.speedCurve(OI.primaryRightStick.getModMagnitude(), Constants.FIELD_SPEED_CURVE);
     		forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * speedCurveMagnitude;
         	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -speedCurveMagnitude;
-
-        	double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), rAng);
-        	turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
         	
-        	turnThrottle = Utilities.limit(turnThrottle, 1 - Constants.AUTO_ROTATE_SCALE_PARAM);
+        	if(turnThrottle>=0)turnThrottle = 1 - Constants.ROTATE_SCALE_PARAM;
+        	else turnThrottle = -(1 - Constants.ROTATE_SCALE_PARAM);
         	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, 1 - Math.abs(turnThrottle));
         	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, 1 - Math.abs(turnThrottle));
         		
@@ -45,14 +42,13 @@ public class HoldAngle extends CommandBase {
     	catch(NavXException e) {
     		end();
     	}
-    	
-    	driveTrain.setLastDesiredAngle(rAng);
+		
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-  }
+    }
 
     // Called once after isFinished returns true
     protected void end() {

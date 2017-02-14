@@ -2,8 +2,7 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
+import org.usfirst.frc.team4536.utilities.*;
 
 import com.kauailabs.navx.frc.*;
 
@@ -12,22 +11,26 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
 
+import java.lang.Math;
+
 /**
  * @author Noah
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
-
-	//The encoders are untested until we can get Whiplash working.
-	Encoder strafeEncoder;
-	Encoder forwardEncoder;
+  
+	private Encoder strafeEncoder;
+	private Encoder forwardEncoder;
 	
-    Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
-    AHRS navX;
-    double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
-    double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
-    double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
+	EnhancedTimer timer;
+	
+    private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    private AHRS navX;
+    
+    private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+    private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
+    
     
 	/**
      * @author Noah
@@ -60,6 +63,8 @@ public class DriveTrain extends Subsystem {
     		DriverStation.reportError("Error instantiating naxV-MXP: "+ex.getMessage(), true);
     	}
     	
+    	timer = new EnhancedTimer();
+    	
     }
 
     public void initDefaultCommand() {
@@ -76,7 +81,6 @@ public class DriveTrain extends Subsystem {
      * Feed values into this method through a command
      */
     public void Drive(double forwardThrottle, double strafeThrottle, double turnThrottle) {
-    	//TODO Make sure the negative signs are correct for Sidewinder and Fracture
     	
     	leftFrontMotorThrottle = forwardThrottle + turnThrottle + strafeThrottle;
         leftBackMotorThrottle = forwardThrottle + turnThrottle - strafeThrottle;
@@ -96,10 +100,23 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveAccelLimit(double leftFrontMotorThrottleInput, double leftBackMotorThrottleInput, double rightFrontMotorThrottleInput, double rightBackMotorThrottleInput) {
     	
-    	leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    	
+    	if(!isFullStop(leftFrontMotorThrottleInput, leftBackMotorThrottleInput, rightFrontMotorThrottleInput, rightBackMotorThrottleInput)){
+    		
+    		leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    		
+    	}else{
+    		
+    		leftFrontMotorThrottleAccel = 0.0;
+        	leftBackMotorThrottleAccel = 0.0;
+        	rightFrontMotorThrottleAccel = 0.0;
+        	rightBackMotorThrottleAccel = 0.0;
+    		
+    	}
     	
     	leftFrontMotorThrottleAccelPrev = leftFrontMotorThrottleAccel;
     	leftBackMotorThrottleAccelPrev = leftBackMotorThrottleAccel;
@@ -129,32 +146,15 @@ public class DriveTrain extends Subsystem {
     	rightBackMotor.set(-rightBackMotorThrottleBasic);
     	
     }
-    
-    /**
-     * @author Noah
-     * @param forwardThrottle -1 to 1
-     * @param strafeThrottle -1 to 1
-     * @param desiredAngle -360 to 360, should use the getAngle method
-     * @param pConstant proportionality constant for the angle
-     * 
-     * Method for driving robot-centric while holding a certain angle
-     */
-    public void DriveHoldAngle(double forwardThrottle, double strafeThrottle, double desiredAngle) {
-    	
-    	double angleDif = Utilities.angleDifference(navX.getAngle(), desiredAngle);
-    	
-    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
-    	
-    	Drive(forwardThrottle, strafeThrottle, turnThrottle);
-    	
-    }
-    
 
     /**
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder(){
+    public double getStrafeEncoder() throws EncoderException {
+    	if (strafeEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -162,7 +162,10 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder(){
+    public double getForwardEncoder() throws EncoderException {
+    	if (forwardEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -170,7 +173,7 @@ public class DriveTrain extends Subsystem {
     * @author Theo
     * @return forward encoder rate(velocity) in inches/second.
     */
-    public double getForwardRate(){
+    public double getForwardRate() {
     	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -178,7 +181,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder rate(velocity) in inches/second.
      */
-    public double getStrafeRate(){
+    public double getStrafeRate() {
     	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -208,8 +211,12 @@ public class DriveTrain extends Subsystem {
     }
     
 
-    public AHRS getNavX()
+    public AHRS getNavX() throws NavXException
     {
+
+    	if (Math.abs(navX.getAngle()) < 0.001 && Math.abs(navX.getPitch()) < 0.001 && Math.abs(navX.getRoll()) < 0.001){
+    		throw new NavXException();
+    	}
     	return navX;
     }
 
@@ -228,6 +235,21 @@ public class DriveTrain extends Subsystem {
      */
 	public void setLastDesiredAngle(double desiredAngle) {
 		lastDesiredAngle = desiredAngle;
+	}
+	
+	/**
+	 * @author Audrey
+	 * @param leftFront throttle
+	 * @param leftBack throttle
+	 * @param rightFront throttle
+	 * @param rightBack throttle
+	 * @return true if all throttles are 0.0
+	 */
+	private boolean isFullStop(double leftFront, double leftBack, double rightFront, double rightBack){
+		
+		if (leftFront == 0.0 && leftBack == 0.0 && rightBack == 0.0 && rightFront == 0.0) return true;
+		return false;
+		
 	}
 
 }

@@ -3,23 +3,29 @@ package org.usfirst.frc.team4536.robot.commands;
 import org.usfirst.frc.team4536.robot.MotionProfile;
 
 import org.usfirst.frc.team4536.robot.OI;
-import org.usfirst.frc.team4536.utilities.Utilities;
+import org.usfirst.frc.team4536.utilities.*;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
 public class SmartDashboardCommand extends CommandBase {
-
+	
+	EnhancedTimer timer;
+	double time;
+	
     public SmartDashboardCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	timer = new EnhancedTimer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+    	timer.resetTimer();
+    	timer.startTimer();
+    	
+    	SmartDashboard.putNumber("Error", 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,11 +37,19 @@ public class SmartDashboardCommand extends CommandBase {
     
     protected void execute() {
     	
+    	time = timer.getTime();
+    	
     	//NavX
-    	SmartDashboard.putNumber("Adjusted Angle: ", driveTrain.getNavX().getAngle());
-    	SmartDashboard.putNumber("Yaw: ", driveTrain.getNavX().getYaw());
-    	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
-    	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
+    	try {
+    		
+    		SmartDashboard.putNumber("Adjusted Angle: ", driveTrain.getNavX().getAngle());
+        	SmartDashboard.putNumber("Yaw: ", driveTrain.getNavX().getYaw());
+        	SmartDashboard.putNumber("Pitch: ", driveTrain.getNavX().getPitch());
+        	SmartDashboard.putNumber("Roll: ", driveTrain.getNavX().getRoll());
+    		
+    	}
+    	catch(NavXException e) {
+    	}
     	
     	//Joysticks
     	SmartDashboard.putNumber("Right Joystick Y: ", OI.primaryRightStick.getY());		
@@ -48,10 +62,18 @@ public class SmartDashboardCommand extends CommandBase {
     	//TESTS
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
+    	
+    	try {
+    	SmartDashboard.putNumber("Forward Encoder", driveTrain.getForwardEncoder());
+    	SmartDashboard.putNumber("Forward Encoder Rate", driveTrain.getForwardRate());
+    	SmartDashboard.putNumber("Strafe Encoder", driveTrain.getStrafeEncoder());
+    	SmartDashboard.putNumber("Strafe Encoder Rate", driveTrain.getStrafeRate());
+    	}
+    	catch (EncoderException e) {
+    		SmartDashboard.putNumber("Error", 1);
+    	}
 
     }
-    
-
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -60,6 +82,7 @@ public class SmartDashboardCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	timer.stopTimer();
     }
 
     // Called when another command which requires one or more of the same

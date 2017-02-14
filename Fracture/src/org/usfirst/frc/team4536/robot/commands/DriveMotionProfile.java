@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.robot.MotionProfile;
+import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -14,7 +16,7 @@ public class DriveMotionProfile extends CommandBase{
 /**
  * @author Theo
  * @param distance the distance we want the robot to travel. Can be negative or positive. In feet.
- * @param goalAngle the angle at which we want the robot to be moving. In feet.
+ * @param goalAngle the angle at which we want the robot to be moving. In degrees.
  * @param startAngle the angle the robot is facing. In degrees.
  * Uses the default values for max speed and max acceleration.
  */
@@ -76,12 +78,31 @@ protected void initialize() {
 	timer.reset();
 	timer.start();
 	
-	startingAngle = driveTrain.getNavX().getAngle();
-	setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
+	try {
+		
+		startingAngle = driveTrain.getNavX().getAngle();
+		setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
+		
+	}
+	catch(NavXException e) {
+		end();
+	}
+	
 }
 
 protected void execute() {
-	driveTrain.DriveHoldAngle(prof.getForwardThrottle(getTime()), prof.getStrafeThrottle(getTime()), prof.getDesiredAngle());
+	try {
+		
+		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), startingAngle);
+    	
+    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
+    		
+		driveTrain.Drive(prof.getForwardThrottle(getTime()), prof.getStrafeThrottle(getTime()), turnThrottle);
+
+	}
+	catch(NavXException e) {
+		end();
+	}
 }
 
 protected boolean isFinished() {

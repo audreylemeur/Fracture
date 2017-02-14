@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4536.robot.commands;
 
+import org.usfirst.frc.team4536.robot.OI;
 import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.NavXException;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -26,13 +29,21 @@ public class AngleAdjustment extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	oldAdjustment = driveTrain.getNavX().getAngleAdjustment();
+    	try {
+    		
+    		oldAdjustment = driveTrain.getNavX().getAngleAdjustment();
 
-    	if(trimRight){
-    		driveTrain.getNavX().setAngleAdjustment(oldAdjustment-Constants.TRIM_STEP);
-    	}else if(!trimRight){
-    		driveTrain.getNavX().setAngleAdjustment(oldAdjustment+Constants.TRIM_STEP);
+        	if(trimRight){
+        		driveTrain.getNavX().setAngleAdjustment(oldAdjustment-Constants.TRIM_STEP);
+        	}else if(!trimRight){
+        		driveTrain.getNavX().setAngleAdjustment(oldAdjustment+Constants.TRIM_STEP);
+        	}
+    		
     	}
+    	catch(NavXException e) {
+    		end();
+    	}
+    	
     	
     }
 
