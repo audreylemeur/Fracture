@@ -25,8 +25,8 @@ public class Constants {
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.015; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
-	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 1.0;
-	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 1.0;
+	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 2.0;
+	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 2.0;
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 1.0;
 	public static final double CROSS_BASELINE_SPEED = 0.5;
 	public static final double CROSS_BASELINE_TIMEOUT = 0.5;
@@ -69,9 +69,9 @@ public class Constants {
 	
 	//Field Centric auto-rotate
 	
-	public static final double AUTO_ROTATE_P_CONSTANT = 0.015;
+	public static final double AUTO_ROTATE_P_CONSTANT = 0.03;
 	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
-	public static final double AUTO_ROTATE_SPEED_CURVE = 1;
+	public static final double AUTO_ROTATE_SPEED_CURVE = 2.0;
 	
 	//Climb 
 	
