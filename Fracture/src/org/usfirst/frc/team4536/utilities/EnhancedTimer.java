@@ -54,6 +54,14 @@ public class EnhancedTimer {
 		}
 		
 		/**
+		 * @author Noah
+		 * @return Gets the current time in seconds
+		 */
+		public double getTime() {
+			return timer.get();
+		}
+		
+		/**
 		 * @author Audrey
 		 * Updates the cycle time calculation of our code. This should only be called once per cycle or it will be incorrect.
 		 */

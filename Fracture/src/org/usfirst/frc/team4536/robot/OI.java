@@ -31,7 +31,6 @@ public class OI {
 	public static double feederStationAngle;
 	public static Button switchSao;
 	public static Button switchPrimary;
-	public static Button climb;
 	public static Button backupDrive;
 	public static Button fullSpeedClimb;
 	public static Button slowClimb;
@@ -40,23 +39,22 @@ public class OI {
 	public static Button slidePositionGear;
 	public static Button slidePositionMiddle;
 	
+	public static Button rotateRight;
+	public static Button rotateLeft;
+	
 	public static void ButtonHandling() {
 		setFeederStationAngle();
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
 		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
-		holdFeeder.whenReleased(new AutoRotateFieldCentric());
 		
 		holdLeft = new JoystickButton(primaryRightStick, RobotMap.HOLD_LEFT_BUTTON);
 		holdLeft.whenPressed(new HoldAngle(Constants.LEFT_PEG_ANGLE));
-		holdLeft.whenReleased(new AutoRotateFieldCentric());
 		
 		holdMiddle = new JoystickButton(primaryRightStick, RobotMap.HOLD_MIDDLE_BUTTON);
 		holdMiddle.whenPressed(new HoldAngle(Constants.MIDDLE_PEG_ANGLE));
-		holdMiddle.whenReleased(new AutoRotateFieldCentric());
 		
 		holdRight = new JoystickButton(primaryRightStick, RobotMap.HOLD_RIGHT_BUTTON);
 		holdRight.whenPressed(new HoldAngle(Constants.RIGHT_PEG_ANGLE));
-		holdRight.whenReleased(new AutoRotateFieldCentric());
 		
 		plusDegree = new JoystickButton(primaryRightStick, RobotMap.PLUS_DEGREE_BUTTON);
 		plusDegree.whenPressed(new AngleAdjustment(true));
@@ -81,8 +79,6 @@ public class OI {
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);
 		switchPrimary.whenPressed(new AutoRotateFieldCentric());
 
-		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
-		
 		slidePositionTop = new JoystickButton(secondaryStick, RobotMap.POSITION_TOP);
 		slidePositionTop.whenPressed(new DriveSlidePositions(Constants.TOP_POSITION));
 		
@@ -91,6 +87,14 @@ public class OI {
 		
 		slidePositionMiddle = new JoystickButton(secondaryStick, RobotMap.POSITION_MIDDLE);
 		slidePositionMiddle.whenPressed(new DriveSlidePositions(Constants.MIDDLE_POSITION));
+		
+		rotateRight = new JoystickButton(primaryRightStick, RobotMap.ROTATE_RIGHT);
+		rotateRight.whenPressed(new RotateFieldCentric(Constants.ROTATE_RIGHT_THROTTLE));
+		rotateRight.whenReleased(new AutoRotateFieldCentric());
+		
+		rotateLeft = new JoystickButton(primaryRightStick, RobotMap.ROTATE_LEFT);
+		rotateLeft.whenPressed(new RotateFieldCentric(Constants.ROTATE_LEFT_THROTTLE));
+		rotateLeft.whenReleased(new AutoRotateFieldCentric());
 	
 	}
 	

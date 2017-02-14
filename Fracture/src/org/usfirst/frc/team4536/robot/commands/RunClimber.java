@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.utilities.Constants;
+import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
  * @author Noah
@@ -16,7 +17,9 @@ public class RunClimber extends CommandBase {
     }
     
     protected void execute() {
+    	
     	climber.setClimber(climbSpeed);
+
     }
     
     protected boolean isFinished() {
