@@ -17,6 +17,7 @@ public class Constants {
 	
 	//Camera
 
+
 	public static final int CAMERA_RESOLUTION_WIDTH = 200;
 	public static final int CAMERA_RESOLUTION_HEIGHT = 150;
 	
