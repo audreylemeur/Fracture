@@ -17,8 +17,8 @@ public class Constants {
 	
 	//Camera
 
-	public static final int CAMERA_RESOLUTION_WIDTH = 1280;
-	public static final int CAMERA_RESOLUTION_HEIGHT = 780;
+	public static final int CAMERA_RESOLUTION_WIDTH = 800;
+	public static final int CAMERA_RESOLUTION_HEIGHT = 600;
 	
 	//Drive Train
   
