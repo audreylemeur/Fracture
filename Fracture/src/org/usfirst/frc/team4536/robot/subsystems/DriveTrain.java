@@ -2,9 +2,7 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
-import org.usfirst.frc.team4536.utilities.NavXException;
+import org.usfirst.frc.team4536.utilities.*;
 
 import com.kauailabs.navx.frc.*;
 
@@ -20,17 +18,19 @@ import java.lang.Math;
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
-
-	//The encoders are untested until we can get Whiplash working.
-	Encoder strafeEncoder;
-	Encoder forwardEncoder;
+  
+	private Encoder strafeEncoder;
+	private Encoder forwardEncoder;
 	
-    Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
-    AHRS navX;
-    double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
-    double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
-    double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
+	EnhancedTimer timer;
+	
+    private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
+    private AHRS navX;
+    
+    private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
+    private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
+    
     
 	/**
      * @author Noah
@@ -62,6 +62,8 @@ public class DriveTrain extends Subsystem {
     	} catch(RuntimeException ex) {
     		DriverStation.reportError("Error instantiating naxV-MXP: "+ex.getMessage(), true);
     	}
+    	
+    	timer = new EnhancedTimer();
     	
     }
 
@@ -98,10 +100,23 @@ public class DriveTrain extends Subsystem {
      */
     public void DriveAccelLimit(double leftFrontMotorThrottleInput, double leftBackMotorThrottleInput, double rightFrontMotorThrottleInput, double rightBackMotorThrottleInput) {
     	
-    	leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    	double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    	
+    	if(!isFullStop(leftFrontMotorThrottleInput, leftBackMotorThrottleInput, rightFrontMotorThrottleInput, rightBackMotorThrottleInput)){
+    		
+    		leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+    		
+    	}else{
+    		
+    		leftFrontMotorThrottleAccel = 0.0;
+        	leftBackMotorThrottleAccel = 0.0;
+        	rightFrontMotorThrottleAccel = 0.0;
+        	rightBackMotorThrottleAccel = 0.0;
+    		
+    	}
     	
     	leftFrontMotorThrottleAccelPrev = leftFrontMotorThrottleAccel;
     	leftBackMotorThrottleAccelPrev = leftBackMotorThrottleAccel;
@@ -136,7 +151,10 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder(){
+    public double getStrafeEncoder() throws EncoderException {
+    	if (strafeEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -144,7 +162,10 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder(){
+    public double getForwardEncoder() throws EncoderException {
+    	if (forwardEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
     	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -152,7 +173,7 @@ public class DriveTrain extends Subsystem {
     * @author Theo
     * @return forward encoder rate(velocity) in inches/second.
     */
-    public double getForwardRate(){
+    public double getForwardRate() {
     	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -160,7 +181,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder rate(velocity) in inches/second.
      */
-    public double getStrafeRate(){
+    public double getStrafeRate() {
     	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -214,6 +235,21 @@ public class DriveTrain extends Subsystem {
      */
 	public void setLastDesiredAngle(double desiredAngle) {
 		lastDesiredAngle = desiredAngle;
+	}
+	
+	/**
+	 * @author Audrey
+	 * @param leftFront throttle
+	 * @param leftBack throttle
+	 * @param rightFront throttle
+	 * @param rightBack throttle
+	 * @return true if all throttles are 0.0
+	 */
+	private boolean isFullStop(double leftFront, double leftBack, double rightFront, double rightBack){
+		
+		if (leftFront == 0.0 && leftBack == 0.0 && rightBack == 0.0 && rightFront == 0.0) return true;
+		return false;
+		
 	}
 
 }

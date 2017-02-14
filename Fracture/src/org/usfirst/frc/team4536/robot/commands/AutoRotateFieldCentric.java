@@ -9,10 +9,10 @@ import org.usfirst.frc.team4536.utilities.Utilities;
  *@author Theo
  *Class to drive while holding an angle, field-centric.
  */
-public class AutoRotateDriveHoldAngle extends CommandBase {
+public class AutoRotateFieldCentric extends CommandBase {
 	private double forwardThrottle, strafeThrottle, turnThrottle, lastAngle;
 
-    public AutoRotateDriveHoldAngle(double robotAngle) {
+    public AutoRotateFieldCentric() {
         requires(driveTrain);
     }
 
@@ -20,7 +20,7 @@ public class AutoRotateDriveHoldAngle extends CommandBase {
     	forwardThrottle = 0;
     	strafeThrottle = 0;
     	turnThrottle = 0;
-    	lastAngle = 0.0; 
+    	lastAngle = driveTrain.getLastDesiredAngle(); 
     	//Keep the robot from spazzing out.
     }
 
@@ -33,7 +33,7 @@ public class AutoRotateDriveHoldAngle extends CommandBase {
         	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -speedCurveMagnitude;
         	 
         	if(OI.primaryRightStick.getMagnitude() < Constants.DEAD_ZONE){		
-        		 turnThrottle = Constants.AUTO_ROTATE_P_CONSTANT * Utilities.shortestAngle(driveTrain.getNavX().getAngle(), lastAngle);
+        		 turnThrottle = 0; //Constants.AUTO_ROTATE_P_CONSTANT * Utilities.shortestAngle(driveTrain.getNavX().getAngle(), lastAngle);
         	 }
         	 else{
         		turnThrottle = Constants.AUTO_ROTATE_P_CONSTANT * Utilities.shortestAngle(driveTrain.getNavX().getAngle(), OI.primaryRightStick.getDirectionDegrees());
