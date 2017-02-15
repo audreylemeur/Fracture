@@ -1,0 +1,37 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Adjusted Angle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+		<location x="1" y="148"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="279" y="7"/>
+		<width>595</width>
+		<height>420</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field=" Auto Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="3" y="2"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="Yaw: "/>
+	<hidden field="Joystick Angle"/>
+	<hidden field="Error"/>
+	<hidden field="Left Joystick X: "/>
+	<hidden field="Left Joystick Y: "/>
+	<hidden field="Secondary Joystick Y: "/>
+	<hidden field="Secondary Joystick X: "/>
+	<hidden field="Strafe Encoder Rate"/>
+	<hidden field="Right Joystick Y: "/>
+	<hidden field="Right Joystick X: "/>
+	<hidden field="Pitch: "/>
+	<hidden field="Strafe Encoder"/>
+	<hidden field="Last Desired Angle"/>
+	<hidden field="Forward Encoder"/>
+	<hidden field="Forward Encoder Rate"/>
+	<hidden field="Roll: "/>
+</xml>
