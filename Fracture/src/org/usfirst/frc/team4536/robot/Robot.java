@@ -34,7 +34,6 @@ public class Robot extends IterativeRobot {
 	public static boolean allowCam1 = true;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
-	Command runClimber;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	Command driveProfile;
 	EnhancedTimer cycleTimer;
@@ -126,24 +125,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = chooser.getSelected();
-		/*if (driveProfile != null)
-			driveProfile.start();
-		autonomousCommand = chooser.getSelected();*/
-		
-		if (crossBaseline != null)
-			crossBaseline.start();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		//if (autonomousCommand != null)
-			//autonomousCommand.start();
 		
 		cycleTimer.startTimer();
 
