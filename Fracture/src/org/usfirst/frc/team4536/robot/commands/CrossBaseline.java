@@ -22,7 +22,8 @@ public class CrossBaseline extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	driveTrain.Drive(Constants.CROSS_BASELINE_SPEED, 0.0, 0.0);
+    	driveTrain.Drive(0.0, Constants.STRAFE_STICTION, 0.0);
+    	//driveTrain.Drive(Constants.CROSS_BASELINE_SPEED, 0.0, 0.0);
     	if (isTimedOut()){
     		driveTrain.Drive(0.0, 0.0, 0.0);
     	}
