@@ -151,10 +151,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder() throws EncoderException {
-    	if (strafeEncoder.get() == 0) {
-    		throw new EncoderException();
-    	}
+    public double getStrafeEncoder() {
     	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -162,10 +159,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder() throws EncoderException {
-    	if (forwardEncoder.get() == 0) {
-    		throw new EncoderException();
-    	}
+    public double getForwardEncoder() {
     	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     

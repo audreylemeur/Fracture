@@ -2,6 +2,10 @@ package org.usfirst.frc.team4536.utilities;
 
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * @author Noah
+ * Timer with fancy methods
+ */
 public class EnhancedTimer {
 
 	/*------------------------------------------------Objects---------------------------------------------*/

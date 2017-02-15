@@ -51,7 +51,7 @@ public class RobotMap {
 	public static final int SWITCH_CAMERA = 7;
 
 	
-	//Encoders These values are copied from last year and almost definitely incorrect.
+	//Encoders
 	
 	public static final int STRAFE_ENCODER_CHANNEL_A = 0; //3 Wires
 	public static final int STRAFE_ENCODER_CHANNEL_B = 1; //1 Wire
