@@ -232,6 +232,14 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	/**
+	 * @author Theo
+	 * resets the collision detected boolean to false.
+	 */
+	public void resetCollision(){
+		//collisionDetected = false;
+	}
+	
+	/**
 	 * @author Audrey
 	 * @param leftFront throttle
 	 * @param leftBack throttle

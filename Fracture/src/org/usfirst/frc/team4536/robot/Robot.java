@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team4536.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Mat;
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Constants;
@@ -27,6 +30,8 @@ import org.usfirst.frc.team4536.utilities.Utilities;
 public class Robot extends IterativeRobot {
 
 	//public static OI oi;
+	//Controls which camera will be used(Camera 1 is default)
+	public static boolean allowCam1 = true;
 	Command smartDashboardCommand;
 	Command autonomousCommand;
 	Command runClimber;
@@ -43,10 +48,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-		camera0.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
-		// chooser.addDefault("Default Auto", );
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		setupCameras();
 		SmartDashboard.putData("Auto mode", chooser);
 		smartDashboardCommand = new SmartDashboardCommand();
 		driveProfile = new DriveMotionProfile(2.0, 15.0, 10.0, 0, -135);
@@ -56,6 +58,40 @@ public class Robot extends IterativeRobot {
 		autoChooser = new AutoChooser();
 		OI.ButtonHandling();
 		
+	}
+	
+	private void setupCameras()
+	{
+		Thread t = new Thread(() -> {
+			
+			UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+			camera1.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
+			UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+			camera1.setResolution(Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
+			
+			CvSink cvSink1 = CameraServer.getInstance().getVideo(camera1);
+			CvSink cvSink2 = CameraServer.getInstance().getVideo(camera2);
+			CvSource outputStream = CameraServer.getInstance().putVideo("Switcher", Constants.CAMERA_RESOLUTION_WIDTH, Constants.CAMERA_RESOLUTION_HEIGHT);
+			
+			Mat image = new Mat();
+			
+			while(Thread.interrupted() == false){
+				if(allowCam1){
+					cvSink2.setEnabled(false);
+					cvSink1.setEnabled(true);
+					cvSink1.grabFrame(image);
+				}
+				else{
+					cvSink2.setEnabled(true);
+					cvSink1.setEnabled(false);
+					cvSink2.grabFrame(image);
+				}
+				
+				outputStream.putFrame(image);
+			}
+		});
+		t.start();
+			
 	}
 
 	/**
