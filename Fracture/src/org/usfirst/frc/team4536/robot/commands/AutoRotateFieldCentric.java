@@ -50,11 +50,11 @@ public class AutoRotateFieldCentric extends CommandBase {
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, 1 - Math.abs(turnThrottle));
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
-    
+  
     protected boolean isFinished() {
         return false;
-        }
-    
+    }
+
     protected void end() {
     }
     
