@@ -47,7 +47,7 @@ public class RobotMap {
 	public static final int POSITION_GEAR = 3;
 	public static final int POSITION_MIDDLE = 10;
 	
-	//Encoders These values are copied from last year and almost definitely incorrect.
+	//Encoders
 	
 	public static final int STRAFE_ENCODER_CHANNEL_A = 0; //3 Wires
 	public static final int STRAFE_ENCODER_CHANNEL_B = 1; //1 Wire
