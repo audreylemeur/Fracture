@@ -18,13 +18,13 @@ public class CrossBaseline extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(12.0);
+    	setTimeout(Constants.CROSS_BASELINE_TIMEOUT);
     	timer.startTimer();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (timer.getTime() > Constants.CROSS_BASELINE_TIMEOUT) {
+    	if (timer.getTime() > Constants.CROSS_BASELINE_RUN_TIME) {
     		driveTrain.Drive(0.0, 0.0, 0.0);
     	}
     	else {
