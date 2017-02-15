@@ -1,23 +1,25 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.utilities.Constants;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team4536.utilities.EnhancedTimer;
 
 /**
  * @author Eddie
- * crosses the baseline in autonomous
+ * Crosses the baseline in autonomous
  */
 public class CrossBaseline extends CommandBase {
-
-   
+	
+	EnhancedTimer timer;
+	
     public CrossBaseline() {
     	requires(driveTrain);
+    	timer = new EnhancedTimer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	setTimeout(Constants.CROSS_BASELINE_TIMEOUT);
+    	timer.startTimer();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +27,12 @@ public class CrossBaseline extends CommandBase {
     	driveTrain.Drive(0.0, Constants.STRAFE_STICTION, 0.0);
     	//driveTrain.Drive(Constants.CROSS_BASELINE_SPEED, 0.0, 0.0);
     	if (isTimedOut()){
+    	}
+    	if (timer.getTime() > Constants.CROSS_BASELINE_RUN_TIME) {
     		driveTrain.Drive(0.0, 0.0, 0.0);
+    	}
+    	else {
+    		driveTrain.Drive(Constants.CROSS_BASELINE_SPEED, 0.0, 0.0);
     	}
     }
 

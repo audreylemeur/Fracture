@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * @author Noah
+ * Command for putting things on the smart dash board
  */
 public class SmartDashboardCommand extends CommandBase {
 	
@@ -63,16 +64,11 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
     	
-    	try {
     	SmartDashboard.putNumber("Forward Encoder", driveTrain.getForwardEncoder());
     	SmartDashboard.putNumber("Forward Encoder Rate", driveTrain.getForwardRate());
     	SmartDashboard.putNumber("Strafe Encoder", driveTrain.getStrafeEncoder());
     	SmartDashboard.putNumber("Strafe Encoder Rate", driveTrain.getStrafeRate());
-    	}
-    	catch (EncoderException e) {
-    		SmartDashboard.putNumber("Error", 1);
-    	}
-
+    	
     }
 
 	// Make this return true when this Command no longer needs to run execute()
