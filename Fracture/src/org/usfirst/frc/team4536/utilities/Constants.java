@@ -12,7 +12,7 @@ public class Constants {
 	public static final double TURN_SPEED_CURVE = 0.0;
 	public static final double STRAFE_SPEED_CURVE = 0.0;
 	public static final double SCALE_PARAM = 0.7; //TODO this needs fine tuning
-	public static final double FORWARD_STICTION = 0.07; //TODO IDK what value this should be
+	public static final double FORWARD_STICTION = 0.17; //TODO IDK what value this should be
 	public static final double DRIVE_TRAIN_MAX_VELOCITY = 13.0; //TODO IDK what value this should be
 	
 	//Camera
@@ -24,6 +24,7 @@ public class Constants {
 	//Drive Train
   
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
+	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.04; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
 
