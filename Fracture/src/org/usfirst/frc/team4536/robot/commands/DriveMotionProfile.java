@@ -95,7 +95,7 @@ protected void execute() {
 		
 		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), startingAngle);
     	
-    	double turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
+    	double turnThrottle = angleDif * Constants.AUTO_HOLD_ANGLE_P_CONSTANT;
     		
 		driveTrain.Drive(prof.getForwardThrottle(getTime()), prof.getStrafeThrottle(getTime()), turnThrottle);
 

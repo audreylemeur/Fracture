@@ -31,7 +31,6 @@ public class OI {
 	public static double feederStationAngle;
 	public static Button switchSao;
 	public static Button switchPrimary;
-	public static Button climb;
 	public static Button backupDrive;
 	public static Button fullSpeedClimb;
 	public static Button slowClimb;
@@ -42,6 +41,8 @@ public class OI {
 	
 	public static Button rotateRight;
 	public static Button rotateLeft;
+	
+	public static Button switchCamera;
 	
 	public static void ButtonHandling() {
 		setFeederStationAngle();
@@ -80,8 +81,6 @@ public class OI {
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);
 		switchPrimary.whenPressed(new AutoRotateFieldCentric());
 
-		climb = new JoystickButton(secondaryStick, RobotMap.CLIMB);
-		
 		slidePositionTop = new JoystickButton(secondaryStick, RobotMap.POSITION_TOP);
 		slidePositionTop.whenPressed(new DriveSlidePositions(Constants.TOP_POSITION));
 		
@@ -98,6 +97,9 @@ public class OI {
 		rotateLeft = new JoystickButton(primaryRightStick, RobotMap.ROTATE_LEFT);
 		rotateLeft.whenPressed(new RotateFieldCentric(Constants.ROTATE_LEFT_THROTTLE));
 		rotateLeft.whenReleased(new AutoRotateFieldCentric());
+		
+		switchCamera = new JoystickButton(secondaryStick, RobotMap.SWITCH_CAMERA);
+		switchCamera.whenPressed(new CameraSwitcher());
 	
 	}
 	
