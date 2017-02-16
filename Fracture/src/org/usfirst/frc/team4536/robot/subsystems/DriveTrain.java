@@ -2,9 +2,7 @@ package org.usfirst.frc.team4536.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
-import org.usfirst.frc.team4536.utilities.NavXException;
+import org.usfirst.frc.team4536.utilities.*;
 
 import com.kauailabs.navx.frc.*;
 
@@ -20,10 +18,11 @@ import java.lang.Math;
  * Subsystem for the robot's drivetrain
  */
 public class DriveTrain extends Subsystem {
-
-	//The encoders are untested until we can get Whiplash working.
+  
 	private Encoder strafeEncoder;
 	private Encoder forwardEncoder;
+	
+	EnhancedTimer timer;
 	
     private Spark leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor;
     private AHRS navX;
@@ -31,7 +30,14 @@ public class DriveTrain extends Subsystem {
     private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
     private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
+    boolean collisionDetected = false;
+    double prevAccelX = 0.0;
+    double prevAccelY = 0.0;
+    double prevAccelZ = 0.0;
     
+    double jerkX;
+    double jerkY;
+    double jerkZ;
     
 	/**
      * @author Noah
@@ -58,11 +64,15 @@ public class DriveTrain extends Subsystem {
     	rightFrontMotor.set(0.0);
     	rightBackMotor.set(0.0);
     	
+    	resetEncoders();
+    	
     	try {
     		navX = new AHRS(SPI.Port.kMXP);
     	} catch(RuntimeException ex) {
     		DriverStation.reportError("Error instantiating naxV-MXP: "+ex.getMessage(), true);
     	}
+    	
+    	timer = new EnhancedTimer();
     	
     }
 
@@ -100,22 +110,12 @@ public class DriveTrain extends Subsystem {
     public void DriveAccelLimit(double leftFrontMotorThrottleInput, double leftBackMotorThrottleInput, double rightFrontMotorThrottleInput, double rightBackMotorThrottleInput) {
     	
     	double leftFrontMotorThrottleAccel, leftBackMotorThrottleAccel, rightFrontMotorThrottleAccel, rightBackMotorThrottleAccel;
+    		
+    	leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
+        rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
     	
-    	if(!isFullStop(leftFrontMotorThrottleInput, leftBackMotorThrottleInput, rightFrontMotorThrottleInput, rightBackMotorThrottleInput)){
-    		
-    		leftFrontMotorThrottleAccel = Utilities.accelLimit(leftFrontMotorThrottleInput, leftFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-        	leftBackMotorThrottleAccel = Utilities.accelLimit(leftBackMotorThrottleInput, leftBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-        	rightFrontMotorThrottleAccel = Utilities.accelLimit(rightFrontMotorThrottleInput, rightFrontMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-        	rightBackMotorThrottleAccel = Utilities.accelLimit(rightBackMotorThrottleInput, rightBackMotorThrottleAccelPrev, Constants.DRIVE_TRAIN_ACCEL_LIMIT);
-    		
-    	}else{
-    		
-    		leftFrontMotorThrottleAccel = 0.0;
-        	leftBackMotorThrottleAccel = 0.0;
-        	rightFrontMotorThrottleAccel = 0.0;
-        	rightBackMotorThrottleAccel = 0.0;
-    		
-    	}
     	
     	leftFrontMotorThrottleAccelPrev = leftFrontMotorThrottleAccel;
     	leftBackMotorThrottleAccelPrev = leftBackMotorThrottleAccel;
@@ -150,7 +150,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder(){
+    public double getStrafeEncoder() {
     	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -158,7 +158,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder(){
+    public double getForwardEncoder() {
     	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
     }
     
@@ -166,7 +166,7 @@ public class DriveTrain extends Subsystem {
     * @author Theo
     * @return forward encoder rate(velocity) in inches/second.
     */
-    public double getForwardRate(){
+    public double getForwardRate() {
     	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -174,7 +174,7 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder rate(velocity) in inches/second.
      */
-    public double getStrafeRate(){
+    public double getStrafeRate() {
     	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
     }
     
@@ -231,6 +231,14 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	/**
+	 * @author Theo
+	 * resets the collision detected boolean to false.
+	 */
+	public void resetCollision(){
+		//collisionDetected = false;
+	}
+	
+	/**
 	 * @author Audrey
 	 * @param leftFront throttle
 	 * @param leftBack throttle
@@ -245,5 +253,25 @@ public class DriveTrain extends Subsystem {
 		
 	}
 
+	public boolean checkForCollision() {
+		double currLinearAccelX = navX.getWorldLinearAccelX();
+		double currLinearAccelY = navX.getWorldLinearAccelY();
+		double currLinearAccelZ = navX.getWorldLinearAccelZ();
+		
+		jerkX = currLinearAccelX - prevAccelX;
+		jerkY = currLinearAccelY - prevAccelY;
+		jerkZ = currLinearAccelZ - prevAccelZ;
+		
+		if (getJerk() > Constants.COLLISION_DETECTION_THRESHOLD) {
+				collisionDetected = true;
+			
+			}
+		return collisionDetected;
+		
+	}
+	
+	public double getJerk() {
+		return Math.sqrt( Math.pow(jerkX, 2.0) + Math.pow(jerkY, 2.0) + Math.pow(jerkZ, 2.0));
+	}
 }
 
