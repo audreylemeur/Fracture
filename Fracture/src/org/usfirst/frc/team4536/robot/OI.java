@@ -42,6 +42,8 @@ public class OI {
 	public static Button rotateRight;
 	public static Button rotateLeft;
 	
+	public static Button switchCamera;
+	
 	public static void ButtonHandling() {
 		setFeederStationAngle();
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
@@ -95,6 +97,9 @@ public class OI {
 		rotateLeft = new JoystickButton(primaryRightStick, RobotMap.ROTATE_LEFT);
 		rotateLeft.whenPressed(new RotateFieldCentric(Constants.ROTATE_LEFT_THROTTLE));
 		rotateLeft.whenReleased(new AutoRotateFieldCentric());
+		
+		switchCamera = new JoystickButton(secondaryStick, RobotMap.SWITCH_CAMERA);
+		switchCamera.whenPressed(new CameraSwitcher());
 	
 	}
 	

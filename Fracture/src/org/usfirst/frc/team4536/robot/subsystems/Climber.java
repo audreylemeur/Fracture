@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class Climber extends Subsystem {
 	
 	Spark motor;
-	double prevSpeed;
+	double prevSpeed = 0.0;
 	/**
 	 * @author Noah
 	 * @param motorPort
