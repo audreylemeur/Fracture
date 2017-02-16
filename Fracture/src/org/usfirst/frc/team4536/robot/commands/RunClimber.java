@@ -1,15 +1,18 @@
 package org.usfirst.frc.team4536.robot.commands;
 
-import org.usfirst.frc.team4536.utilities.Constants;
-import org.usfirst.frc.team4536.utilities.Utilities;
-
 /**
  * @author Noah
- * Command to run the climber with a joystick
+ * Command to run the climber with a specified value
  */
 public class RunClimber extends CommandBase {
+	
 	double climbSpeed;
-    public RunClimber(double speed) {
+    
+	/**
+	 * @author Noah
+	 * @param speed Only accepts positive values.
+	 */
+	public RunClimber(double speed) {
         requires(climber);
         climbSpeed = speed;
     }

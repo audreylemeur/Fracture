@@ -1,5 +1,20 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="722" y="374"/>
+		<height>52</height>
+		<property name="Image File" value="C:\Users\Noahtheawesomest\Desktop\SmartDashoardBar.png"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="415" y="376"/>
+		<height>52</height>
+		<property name="Image File" value="C:\Users\Noahtheawesomest\Desktop\SmartDashoardBar.png"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="571" y="8"/>
+		<height>418</height>
+		<property name="Image File" value="C:\Users\Noahtheawesomest\Desktop\SmartDashoardBar.png"/>
+	</static-widget>
 	<widget field="Adjusted Angle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
 		<location x="1" y="148"/>
 	</widget>
@@ -23,6 +38,7 @@
 	<hidden field="Error"/>
 	<hidden field="Left Joystick X: "/>
 	<hidden field="Left Joystick Y: "/>
+	<hidden field="Auto Selector"/>
 	<hidden field="Secondary Joystick Y: "/>
 	<hidden field="Secondary Joystick X: "/>
 	<hidden field="Strafe Encoder Rate"/>
