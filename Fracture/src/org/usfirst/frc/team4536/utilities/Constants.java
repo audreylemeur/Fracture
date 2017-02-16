@@ -102,5 +102,22 @@ public class Constants {
 	public static final double MIDDLE_POSITION = 0.6;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
 	public static final double LOWER_LIMIT = 0.51;
+	
+	//Score Gear Left
+	
+	public static final double GEAR_LEFT_DISTANCE = 10.0; //feet
+	public static final double GEAR_LEFT_GOAL_ANGLE = 40.0; //degrees
+	public static final double GEAR_LEFT_START_ANGLE = 60.0; //degrees
+	
+	//Score Gear Middle
 
+	public static final double GEAR_MIDDLE_DISTANCE = 7.0; //feet
+	public static final double GEAR_MIDDLE_GOAL_ANGLE = 0.0; //degrees
+	public static final double GEAR_MIDDLE_START_ANGLE = 0.0; //degrees
+	
+	//Score Gear Right
+	
+	public static final double GEAR_RIGHT_DISTANCE = 10.0; //feet
+	public static final double GEAR_RIGHT_GOAL_ANGLE = -40.0; //degrees
+	public static final double GEAR_RIGHT_START_ANGLE = -60.0; //degrees
 }
