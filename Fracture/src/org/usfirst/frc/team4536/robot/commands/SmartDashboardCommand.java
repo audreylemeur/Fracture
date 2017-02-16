@@ -56,6 +56,13 @@ public class SmartDashboardCommand extends CommandBase {
     	//TESTS
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
+    	
+    	//Encoders
+    	
+    	SmartDashboard.putNumber("Foward Encoder: ", driveTrain.getForwardEncoder());
+    	SmartDashboard.putNumber("Forward Encoder Rate: ", driveTrain.getForwardRate());
+    	SmartDashboard.putNumber("Strafe: ", driveTrain.getStrafeEncoder());
+    	SmartDashboard.putNumber("Strafe Encoder Rate: ", driveTrain.getStrafeRate());
 
     }
 

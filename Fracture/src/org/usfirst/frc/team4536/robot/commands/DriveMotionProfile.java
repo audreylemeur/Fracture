@@ -75,6 +75,7 @@ public double getNeededTime(){
 }
 
 protected void initialize() {
+	
 	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();
@@ -92,6 +93,7 @@ protected void initialize() {
 }
 
 protected void execute() {
+	
 	try {
 		
 		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), startingAngle);
