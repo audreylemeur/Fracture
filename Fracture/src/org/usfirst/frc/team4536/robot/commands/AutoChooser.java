@@ -40,7 +40,6 @@ public class AutoChooser extends CommandBase {
     		case 1:
     			setInitialAngle(0.0);
     			new CrossBaseline().start();
-    			new CrossBaseline().start();
     		break;
     		case 2:
     			setInitialAngle(Constants.GEAR_LEFT_START_ANGLE);
