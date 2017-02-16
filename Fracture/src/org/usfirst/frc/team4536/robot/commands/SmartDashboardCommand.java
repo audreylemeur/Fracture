@@ -69,6 +69,10 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Strafe Encoder", driveTrain.getStrafeEncoder());
     	SmartDashboard.putNumber("Strafe Encoder Rate", driveTrain.getStrafeRate());
     	
+    	SmartDashboard.putBoolean("Collision:", driveTrain.checkForCollision());
+    	SmartDashboard.putNumber("Jerk", driveTrain.getJerk());
+
+
     }
 
 	// Make this return true when this Command no longer needs to run execute()
