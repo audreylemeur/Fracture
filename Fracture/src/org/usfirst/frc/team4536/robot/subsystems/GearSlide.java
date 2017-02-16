@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author Jasper
+ * Command to run the gear slide servo.
  */
 public class GearSlide extends Subsystem {
 
 	Servo gearSlideMotor;
+	
 	/**
 	 * @author Jasper
 	 * @param motorPort
@@ -20,9 +22,9 @@ public class GearSlide extends Subsystem {
 		gearSlideMotor = new Servo(motorPort);
 	}
 	//TODO will not work until we replace with servo stuff
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
     public void initDefaultCommand() {
     	
     	
@@ -32,11 +34,9 @@ public class GearSlide extends Subsystem {
     
     /**
      * @author Jasper and Eddie
-     * @param input, throttle of gear slide motor
+     * @param input Throttle of gear slide motor
      * 1 is all the way up, 0.3 is all the way down.
-     * 
      */
-    
     public void setGearSlide(double input) {
     	double slideLimit = Utilities.limit(input, Constants.LOWER_LIMIT, Constants.UPPER_LIMIT);
     	gearSlideMotor.set(slideLimit);
