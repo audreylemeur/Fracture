@@ -56,7 +56,8 @@ public class Constants {
 	public static final double DEFAULT_ACCELERATION = 4.0; //Measured in meters per second squared.
 	public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
 
-	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_STRAFE = 175.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_FORWARD = 141.0; //Ticks per inch
 
     
 	//Angle Adjustments
