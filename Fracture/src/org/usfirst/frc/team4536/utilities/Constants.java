@@ -24,7 +24,6 @@ public class Constants {
 	
 	//Drive Train
   
-	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
 	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.04; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
@@ -89,7 +88,13 @@ public class Constants {
 	public static final double ROTATE_SPEED_CURVE = 1; //unitless
 	public static final double ROTATE_RIGHT_THROTTLE = 0.4; //throttle
 	public static final double ROTATE_LEFT_THROTTLE = -0.4; //throttle
-
+	
+	// HoldAngle
+	
+	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
+	public static final double HOLD_ANGLE_SCALE_PARAM = 0.7;
+	public static final double HOLD_ANGLE_SPEED_CURVE = 1.0; //unitless
+	
 	//Climb 
 	
 	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
@@ -102,5 +107,22 @@ public class Constants {
 	public static final double MIDDLE_POSITION = 0.6;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
 	public static final double LOWER_LIMIT = 0.51;
+	
+	//Score Gear Left
+	
+	public static final double GEAR_LEFT_DISTANCE = 10.0; //feet
+	public static final double GEAR_LEFT_GOAL_ANGLE = 40.0; //degrees
+	public static final double GEAR_LEFT_START_ANGLE = 60.0; //degrees
+	
+	//Score Gear Middle
 
+	public static final double GEAR_MIDDLE_DISTANCE = 7.0; //feet
+	public static final double GEAR_MIDDLE_GOAL_ANGLE = 0.0; //degrees
+	public static final double GEAR_MIDDLE_START_ANGLE = 0.0; //degrees
+	
+	//Score Gear Right
+	
+	public static final double GEAR_RIGHT_DISTANCE = 10.0; //feet
+	public static final double GEAR_RIGHT_GOAL_ANGLE = -40.0; //degrees
+	public static final double GEAR_RIGHT_START_ANGLE = -60.0; //degrees
 }
