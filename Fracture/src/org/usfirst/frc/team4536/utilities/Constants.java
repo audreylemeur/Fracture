@@ -18,23 +18,11 @@ public class Constants {
 	
 	//Camera
 
-<<<<<<< HEAD
-=======
-
->>>>>>> cce6e9fa1dec82917f9072426ae1d3f3376c8b35
 	public static final int CAMERA_RESOLUTION_WIDTH = 200;
 	public static final int CAMERA_RESOLUTION_HEIGHT = 150;
 	
 	//Drive Train
   
-<<<<<<< HEAD
-	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
-	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
-	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
-	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 0.8;
-	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 2.0;
-	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 2.0;
-=======
 	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.04; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
@@ -43,14 +31,17 @@ public class Constants {
 	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 2.0;
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 2.0;
 
->>>>>>> cce6e9fa1dec82917f9072426ae1d3f3376c8b35
 	public static final double CROSS_BASELINE_SPEED = 0.5;
   
 	public static final double CROSS_BASELINE_RUN_TIME = 3.0;
 	public static final double CROSS_BASELINE_TIMEOUT = 5.0;
 
 	public static final double COLLISION_DETECTION_THRESHOLD = 2.0;
+	
+	public static enum PEG_POSITION {LEFT_PEG, MIDDLE_PEG, RIGHT_PEG};
+
 	//OI
+	
 	public static final double FEEDER_STATION_ANGLE = 116.6;
 	public static final double LEFT_PEG_ANGLE = 60.0;
 	public static final double MIDDLE_PEG_ANGLE = 0.0;
@@ -100,15 +91,12 @@ public class Constants {
 	public static final double ROTATE_SPEED_CURVE = 1; //unitless
 	public static final double ROTATE_RIGHT_THROTTLE = 0.4; //throttle
 	public static final double ROTATE_LEFT_THROTTLE = -0.4; //throttle
-<<<<<<< HEAD
-=======
-	
+
 	// HoldAngle
 	
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
 	public static final double HOLD_ANGLE_SCALE_PARAM = 0.7;
 	public static final double HOLD_ANGLE_SPEED_CURVE = 1.0; //unitless
->>>>>>> cce6e9fa1dec82917f9072426ae1d3f3376c8b35
 	
 	//Climb 
 	
