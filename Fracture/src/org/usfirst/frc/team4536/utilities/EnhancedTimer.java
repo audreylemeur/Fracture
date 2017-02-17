@@ -2,6 +2,10 @@ package org.usfirst.frc.team4536.utilities;
 
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * @author Noah
+ * Timer with fancy methods
+ */
 public class EnhancedTimer {
 
 	/*------------------------------------------------Objects---------------------------------------------*/
@@ -51,6 +55,14 @@ public class EnhancedTimer {
 		public final void stopTimer() {
 			
 			timer.stop();
+		}
+		
+		/**
+		 * @author Noah
+		 * @return Gets the current time in seconds
+		 */
+		public double getTime() {
+			return timer.get();
 		}
 		
 		/**

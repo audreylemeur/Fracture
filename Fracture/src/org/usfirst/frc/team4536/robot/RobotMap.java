@@ -48,11 +48,16 @@ public class RobotMap {
 	public static final int POSITION_TOP = 4;
 	public static final int POSITION_GEAR = 3;
 	public static final int POSITION_MIDDLE = 5;
+<<<<<<< HEAD
+=======
+	public static final int SWITCH_CAMERA = 7;
+
+>>>>>>> cce6e9fa1dec82917f9072426ae1d3f3376c8b35
 	
-	//Encoders These values are copied from last year and almost definitely incorrect.
+	//Encoders
 	
-	public static final int STRAFE_ENCODER_CHANNEL_A = 8;
-	public static final int STRAFE_ENCODER_CHANNEL_B = 9;
-	public static final int FORWARD_ENCODER_CHANNEL_A = 6;
-	public static final int FORWARD_ENCODER_CHANNEL_B = 7;
+	public static final int STRAFE_ENCODER_CHANNEL_A = 0; //3 Wires
+	public static final int STRAFE_ENCODER_CHANNEL_B = 1; //1 Wire
+	public static final int FORWARD_ENCODER_CHANNEL_A = 2; //3 Wires
+	public static final int FORWARD_ENCODER_CHANNEL_B = 3; //1 Wire
 }

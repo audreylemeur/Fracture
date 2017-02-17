@@ -6,16 +6,16 @@ import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.utilities.Utilities;
 
 /**
- *@author Theo
- *Class to drive while holding an angle, field-centric.
+ * @author Theo
+ * Class to drive field-centric while turning slowly to whatever angle the robot is moving in.
  */
 public class AutoRotateFieldCentric extends CommandBase {
 	private double forwardThrottle, strafeThrottle, turnThrottle, lastAngle;
-
+	
     public AutoRotateFieldCentric() {
         requires(driveTrain);
     }
-
+    
     protected void initialize() {
     	forwardThrottle = 0;
     	strafeThrottle = 0;
@@ -23,7 +23,7 @@ public class AutoRotateFieldCentric extends CommandBase {
     	lastAngle = driveTrain.getLastDesiredAngle(); 
     	//Keep the robot from spazzing out.
     }
-
+    
     protected void execute() {
     	
     	try {
@@ -50,18 +50,14 @@ public class AutoRotateFieldCentric extends CommandBase {
     	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, 1 - Math.abs(turnThrottle));
     	driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     }
-
-    // Make this return true when this Command no longer needs to run execute()
+  
     protected boolean isFinished() {
         return false;
-  }
-
-    // Called once after isFinished returns true
-    protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    protected void end() {
+    }
+    
     protected void interrupted() {
     }
 }
