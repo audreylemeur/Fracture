@@ -87,7 +87,6 @@ protected void initialize() {
 		
 	}
 	catch(NavXException e) {
-		isFinished();
 	}
 	
 }
@@ -104,7 +103,6 @@ protected void execute() {
 
 	}
 	catch(NavXException e) {
-		isFinished();
 	}
 }
 
