@@ -48,8 +48,8 @@ public class RobotMap {
 	public static final int POSITION_TOP = 4;
 	public static final int POSITION_GEAR = 3;
 	public static final int POSITION_MIDDLE = 5;
+	
 	public static final int SWITCH_CAMERA = 7;
-
 	
 	//Encoders
 	

@@ -44,15 +44,15 @@ public class AutoChooser extends CommandBase {
     		break;
     		case 2:
     			setInitialAngle(Constants.GEAR_LEFT_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_LEFT_DISTANCE, Constants.GEAR_LEFT_GOAL_ANGLE, Constants.GEAR_LEFT_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.LEFT_PEG)).start();
     		break;
     		case 3:
     			setInitialAngle(Constants.GEAR_MIDDLE_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_MIDDLE_DISTANCE, Constants.GEAR_MIDDLE_GOAL_ANGLE, Constants.GEAR_MIDDLE_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.MIDDLE_PEG)).start();
     		break;
     		case 4:
     			setInitialAngle(Constants.GEAR_RIGHT_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_RIGHT_DISTANCE, Constants.GEAR_RIGHT_GOAL_ANGLE, Constants.GEAR_RIGHT_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.RIGHT_PEG)).start();
     		break;
     		case 5:
     			setInitialAngle(0.0);

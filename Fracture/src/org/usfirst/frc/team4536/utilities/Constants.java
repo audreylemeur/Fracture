@@ -18,7 +18,6 @@ public class Constants {
 	
 	//Camera
 
-
 	public static final int CAMERA_RESOLUTION_WIDTH = 200;
 	public static final int CAMERA_RESOLUTION_HEIGHT = 150;
 	
@@ -38,7 +37,11 @@ public class Constants {
 	public static final double CROSS_BASELINE_TIMEOUT = 5.0;
 
 	public static final double COLLISION_DETECTION_THRESHOLD = 2.0;
+	
+	public static enum PEG_POSITION {LEFT_PEG, MIDDLE_PEG, RIGHT_PEG};
+
 	//OI
+	
 	public static final double FEEDER_STATION_ANGLE = 116.6;
 	public static final double LEFT_PEG_ANGLE = 60.0;
 	public static final double MIDDLE_PEG_ANGLE = 0.0;
@@ -88,7 +91,7 @@ public class Constants {
 	public static final double ROTATE_SPEED_CURVE = 1; //unitless
 	public static final double ROTATE_RIGHT_THROTTLE = 0.4; //throttle
 	public static final double ROTATE_LEFT_THROTTLE = -0.4; //throttle
-	
+
 	// HoldAngle
 	
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
