@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4536.robot.commands;
 
+import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.NavXException;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -44,16 +45,16 @@ public class AutoChooser extends CommandBase {
     			//new CrossBaseline().start();
     		break;
     		case 2:
-    			setInitialAngle(60.0);
-    			new DriveMotionProfile(10.0, 40.0, 60.0).start();
+    			setInitialAngle(Constants.GEAR_LEFT_START_ANGLE);
+    			(new ScoreGear(Constants.PEG_POSITION.LEFT_PEG)).start();
     		break;
     		case 3:
-    			setInitialAngle(0.0);
-    			new DriveMotionProfile(7.0, 0.0, 0.0).start();
+    			setInitialAngle(Constants.GEAR_MIDDLE_START_ANGLE);
+    			(new ScoreGear(Constants.PEG_POSITION.MIDDLE_PEG)).start();
     		break;
     		case 4:
-    			setInitialAngle(-60.0);
-    			new DriveMotionProfile(10.0, -40.0, -60.0).start();
+    			setInitialAngle(Constants.GEAR_RIGHT_START_ANGLE);
+    			(new ScoreGear(Constants.PEG_POSITION.RIGHT_PEG)).start();
     		break;
     		case 5:
     			setInitialAngle(0.0);

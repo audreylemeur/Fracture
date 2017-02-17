@@ -64,11 +64,21 @@ public class SmartDashboardCommand extends CommandBase {
     	SmartDashboard.putNumber("Last Desired Angle", driveTrain.getLastDesiredAngle());
     	SmartDashboard.putNumber("Joystick Angle", OI.primaryRightStick.getDirectionDegrees());
     	
-    	SmartDashboard.putNumber("Forward Encoder", driveTrain.getForwardEncoder());
-    	SmartDashboard.putNumber("Forward Encoder Rate", driveTrain.getForwardRate());
-    	SmartDashboard.putNumber("Strafe Encoder", driveTrain.getStrafeEncoder());
-    	SmartDashboard.putNumber("Strafe Encoder Rate", driveTrain.getStrafeRate());
+    	//Encoders
+    	try {
+    	SmartDashboard.putNumber("Forward Encoder", driveTrain.getForwardEncoder(0));
+    	SmartDashboard.putNumber("Forward Encoder Rate", driveTrain.getForwardRate(0));
+    	SmartDashboard.putNumber("Strafe Encoder", driveTrain.getStrafeEncoder(0));
+    	SmartDashboard.putNumber("Strafe Encoder Rate", driveTrain.getStrafeRate(0));
+    	}
+    	catch(EncoderException e) {
+    		SmartDashboard.putNumber("Error", 1);
+    	}
     	
+    	SmartDashboard.putBoolean("Collision:", driveTrain.checkForCollision());
+    	SmartDashboard.putNumber("Jerk", driveTrain.getJerk());
+
+
     }
 
 	// Make this return true when this Command no longer needs to run execute()

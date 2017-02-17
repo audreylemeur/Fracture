@@ -75,6 +75,8 @@ public double getNeededTime(){
 }
 
 protected void initialize() {
+	
+	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();
 	
@@ -85,12 +87,12 @@ protected void initialize() {
 		
 	}
 	catch(NavXException e) {
-		end();
 	}
 	
 }
 
 protected void execute() {
+	
 	try {
 		
 		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), startingAngle);
@@ -101,12 +103,19 @@ protected void execute() {
 
 	}
 	catch(NavXException e) {
-		end();
 	}
 }
 
 protected boolean isFinished() {
-	return false;
+	try {
+		
+		double t = driveTrain.getNavX().getAngle();
+		return false;
+
+	}
+	catch(NavXException e) {
+		return true;
+	}
 }
 
 protected void end() {
