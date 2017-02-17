@@ -150,32 +150,44 @@ public class DriveTrain extends Subsystem {
      * @author Theo
      * @return strafe encoder distance in inches.
      */
-    public double getStrafeEncoder() {
-    	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
+    public double getStrafeEncoder(double time) throws EncoderException {
+    	if (time > 1 && strafeEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
+    	return (strafeEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_STRAFE);
     }
     
     /**
      * @author Theo
      * @return forward encoder distance in inches.
      */
-    public double getForwardEncoder() {
-    	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT);
+    public double getForwardEncoder(double time) throws EncoderException {
+    	if (time > 1 && forwardEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
+    	return (forwardEncoder.get()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_FORWARD);
     }
     
    /**
     * @author Theo
     * @return forward encoder rate(velocity) in inches/second.
     */
-    public double getForwardRate() {
-    	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
+    public double getForwardRate(double time) throws EncoderException {
+    	if (time > 1 && forwardEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
+    	return forwardEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_FORWARD;
     }
     
     /**
      * @author Theo
      * @return strafe encoder rate(velocity) in inches/second.
      */
-    public double getStrafeRate() {
-    	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT;
+    public double getStrafeRate(double time) throws EncoderException {
+    	if (time > 1 && strafeEncoder.get() == 0) {
+    		throw new EncoderException();
+    	}
+    	return strafeEncoder.getRate()/Constants.DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_STRAFE;
     }
     
     /**
@@ -234,8 +246,8 @@ public class DriveTrain extends Subsystem {
 	 * @author Theo
 	 * resets the collision detected boolean to false.
 	 */
-	public void resetCollision(){
-		//collisionDetected = false;
+	public void resetCollision() {
+		collisionDetected = false;
 	}
 	
 	/**
@@ -252,6 +264,11 @@ public class DriveTrain extends Subsystem {
 		return false;
 		
 	}
+	
+	/**
+	 * @author Jasper
+	 * @return collisionDetected whether the robot has collided with something
+	 */
 
 	public boolean checkForCollision() {
 		double currLinearAccelX = navX.getWorldLinearAccelX();
@@ -270,8 +287,14 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	
+	/**
+	 * @author Jasper
+	 * @return returns the combined jerk in three dimensions
+	 */
+	
 	public double getJerk() {
 		return Math.sqrt( Math.pow(jerkX, 2.0) + Math.pow(jerkY, 2.0) + Math.pow(jerkZ, 2.0));
 	}
+	
 }
 

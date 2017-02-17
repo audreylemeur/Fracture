@@ -18,13 +18,11 @@ public class Constants {
 	
 	//Camera
 
-
 	public static final int CAMERA_RESOLUTION_WIDTH = 200;
 	public static final int CAMERA_RESOLUTION_HEIGHT = 150;
 	
 	//Drive Train
   
-	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
 	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.04; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
@@ -39,7 +37,11 @@ public class Constants {
 	public static final double CROSS_BASELINE_TIMEOUT = 5.0;
 
 	public static final double COLLISION_DETECTION_THRESHOLD = 2.0;
+	
+	public static enum PEG_POSITION {LEFT_PEG, MIDDLE_PEG, RIGHT_PEG};
+
 	//OI
+	
 	public static final double FEEDER_STATION_ANGLE = 116.6;
 	public static final double LEFT_PEG_ANGLE = 60.0;
 	public static final double MIDDLE_PEG_ANGLE = 0.0;
@@ -54,7 +56,8 @@ public class Constants {
 	public static final double DEFAULT_ACCELERATION = 4.0; //Measured in meters per second squared.
 	public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
 
-	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_STRAFE = 175.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_FORWARD = 141.0; //Ticks per inch
 
     
 	//Angle Adjustments
@@ -90,6 +93,12 @@ public class Constants {
 	public static final double ROTATE_RIGHT_THROTTLE = 0.4; //throttle
 	public static final double ROTATE_LEFT_THROTTLE = -0.4; //throttle
 
+	// HoldAngle
+	
+	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
+	public static final double HOLD_ANGLE_SCALE_PARAM = 0.7;
+	public static final double HOLD_ANGLE_SPEED_CURVE = 1.0; //unitless
+	
 	//Climb 
 	
 	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
