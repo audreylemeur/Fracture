@@ -43,11 +43,11 @@ public class RobotMap {
 	//Secondary Stick Buttons
 	public static final int SAO_SWITCH = 1;
 	public static final int CLIMB = 8;
-	public static final int FULL_CLIMB = 2;
-	public static final int SLOW_CLIMB = 4;
-	public static final int POSITION_TOP = 11;
+	public static final int FULL_CLIMB = 6;
+	public static final int SLOW_CLIMB = 7;
+	public static final int POSITION_TOP = 4;
 	public static final int POSITION_GEAR = 3;
-	public static final int POSITION_MIDDLE = 10;
+	public static final int POSITION_MIDDLE = 5;
 	
 	//Encoders These values are copied from last year and almost definitely incorrect.
 	
