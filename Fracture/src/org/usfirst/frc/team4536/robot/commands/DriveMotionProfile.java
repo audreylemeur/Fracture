@@ -11,7 +11,7 @@ public class DriveMotionProfile extends CommandBase{
 	Timer timer = new Timer();
 	MotionProfile prof;
 	double startingAngle;
-	double proportionalityConstant = Constants.FORWARD_NAVX_PROPORTIONALITY;
+	double proportionalityConstant = Constants.AUTO_HOLD_ANGLE_P_CONSTANT;
 
 /**
  * @author Theo

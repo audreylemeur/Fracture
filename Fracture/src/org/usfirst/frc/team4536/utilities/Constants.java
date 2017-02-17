@@ -45,8 +45,6 @@ public class Constants {
 	
 	//Profile constants
 	//These might need changing, they're mostly just copied from last year.
-	
-	public static final double FORWARD_NAVX_PROPORTIONALITY = 0.07; //Measured in throttle per inch.
 
 	public static final double DEFAULT_SPEED = 10.0; //Measured in meters per second.
 	public static final double DEFAULT_ACCELERATION = 4.0; //Measured in meters per second squared.

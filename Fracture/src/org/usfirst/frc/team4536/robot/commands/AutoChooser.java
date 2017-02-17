@@ -22,6 +22,7 @@ public class AutoChooser extends CommandBase {
     	autoChooser.addObject(" Score Gear Middle", 3);
     	autoChooser.addObject(" Score Gear Right", 4);
     	autoChooser.addObject(" Test ", 5);
+    	autoChooser.addObject("AutoHoldAngle", 6);
     	SmartDashboard.putData(" Auto Chooser", autoChooser);
     }
     
@@ -39,7 +40,8 @@ public class AutoChooser extends CommandBase {
     	switch ((int) autoChooser.getSelected().hashCode()) {
     		case 1:
     			setInitialAngle(0.0);
-    			new CrossBaseline().start();
+    			new AutoHoldAngle(45.0, 0, 1.0, 2.0).start();
+    			//new CrossBaseline().start();
     		break;
     		case 2:
     			setInitialAngle(60.0);
@@ -55,7 +57,12 @@ public class AutoChooser extends CommandBase {
     		break;
     		case 5:
     			setInitialAngle(0.0);
-    			new DriveMotionProfile(2.0, 5.0, 5.0).start();;
+    			new DriveMotionProfile(2.0, 5.0, 5.0).start();
+    		break;	
+    		case 6:
+    			setInitialAngle(0.0);
+    			new AutoHoldAngle(45.0, 0.0, 1.0, 2.0).start();
+    		break;	
     		default:
     			setInitialAngle(0.0);
     			new DoNothing().start();
