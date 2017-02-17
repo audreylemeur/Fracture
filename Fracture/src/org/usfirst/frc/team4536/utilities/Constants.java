@@ -103,6 +103,9 @@ public class Constants {
 	
 	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
 	public static final double CLIMB_ACCEL_LIMIT = 0.1;
+	public static final double OFF_GROUND_ANGLE = 45; //pitch degrees
+	public static final double OFF_GROUND_TIME = 0.25; //seconds
+	
 	
 	//Gear Slide
 	
