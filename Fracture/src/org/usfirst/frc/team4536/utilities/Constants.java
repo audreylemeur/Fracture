@@ -27,7 +27,7 @@ public class Constants {
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
 
-	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 1.0;
+	public static final double BACKUP_DRIVE_STRAFE_SPEED_CURVE = 0.8;
 	public static final double BACKUP_DRIVE_TURN_SPEED_CURVE = 2.0;
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 2.0;
 
