@@ -77,6 +77,7 @@ public double getNeededTime(){
 
 protected void initialize() {
 	
+	driveTrain.resetCollision();
 	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();

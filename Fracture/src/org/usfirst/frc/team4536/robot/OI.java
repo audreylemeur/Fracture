@@ -83,6 +83,7 @@ public class OI {
 		
 		switchPrimary = new JoystickButton(primaryRightStick, RobotMap.PRIMARY_SWITCH);
 		switchPrimary.whenPressed(new AutoRotateFieldCentric());
+		switchPrimary.whenPressed(new DriveSlidePositions(Constants.MIDDLE_POSITION));
 
 		slidePositionTop = new JoystickButton(secondaryStick, RobotMap.POSITION_TOP);
 		slidePositionTop.whenPressed(new DriveSlidePositions(Constants.TOP_POSITION));
@@ -107,14 +108,11 @@ public class OI {
 	}
 	
 	public static void setFeederStationAngle(){
-		if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Blue) {
-			feederStationAngle = Constants.FEEDER_STATION_ANGLE;
+		if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
+			feederStationAngle = -Constants.FEEDER_STATION_ANGLE;
 		}
-		else if ((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
-			feederStationAngle = -Constants.FEEDER_STATION_ANGLE;	
-		}
-		else {
-			feederStationAngle = 0.0;
+		else {//((DriverStation.getInstance()).getAlliance() == DriverStation.Alliance.Red) {
+			feederStationAngle = Constants.FEEDER_STATION_ANGLE;	
 		}
 	}
 }

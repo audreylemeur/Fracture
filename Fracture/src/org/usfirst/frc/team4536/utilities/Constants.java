@@ -80,7 +80,7 @@ public class Constants {
 	
 	//Field Centric auto-rotate
 	
-	public static final double AUTO_ROTATE_P_CONSTANT = 0.02;
+	public static final double AUTO_ROTATE_P_CONSTANT = 0.01;
 	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
 	public static final double AUTO_ROTATE_SPEED_CURVE = 2.0;
 
@@ -106,10 +106,10 @@ public class Constants {
 	//Gear Slide
 	
 	public static final double TOP_POSITION = 1.0;
-	public static final double GEAR_POSITION = 0.52;
-	public static final double MIDDLE_POSITION = 0.6;//TODO tweak later
+	public static final double GEAR_POSITION = 0.48;//0.52;
+	public static final double MIDDLE_POSITION = 0.7;//0.6;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
-	public static final double LOWER_LIMIT = 0.51;
+	public static final double LOWER_LIMIT = 0.47;//0.51;
 	
 	//Score Gear Left
 	
