@@ -30,7 +30,14 @@ public class DriveTrain extends Subsystem {
     private double leftFrontMotorThrottle, leftBackMotorThrottle, rightFrontMotorThrottle, rightBackMotorThrottle;
     private double leftFrontMotorThrottleAccelPrev, leftBackMotorThrottleAccelPrev, rightFrontMotorThrottleAccelPrev, rightBackMotorThrottleAccelPrev;
     private double lastDesiredAngle;
+    boolean collisionDetected = false;
+    double prevAccelX = 0.0;
+    double prevAccelY = 0.0;
+    double prevAccelZ = 0.0;
     
+    double jerkX;
+    double jerkY;
+    double jerkZ;
     
 	/**
      * @author Noah
@@ -227,8 +234,8 @@ public class DriveTrain extends Subsystem {
 	 * @author Theo
 	 * resets the collision detected boolean to false.
 	 */
-	public void resetCollision(){
-		//collisionDetected = false;
+	public void resetCollision() {
+		collisionDetected = false;
 	}
 	
 	/**
@@ -245,6 +252,37 @@ public class DriveTrain extends Subsystem {
 		return false;
 		
 	}
+	
+	/**
+	 * @author Jasper
+	 * @return collisionDetected whether the robot has collided with something
+	 */
 
+	public boolean checkForCollision() {
+		double currLinearAccelX = navX.getWorldLinearAccelX();
+		double currLinearAccelY = navX.getWorldLinearAccelY();
+		double currLinearAccelZ = navX.getWorldLinearAccelZ();
+		
+		jerkX = currLinearAccelX - prevAccelX;
+		jerkY = currLinearAccelY - prevAccelY;
+		jerkZ = currLinearAccelZ - prevAccelZ;
+		
+		if (getJerk() > Constants.COLLISION_DETECTION_THRESHOLD) {
+				collisionDetected = true;
+			
+			}
+		return collisionDetected;
+		
+	}
+	
+	/**
+	 * @author Jasper
+	 * @return returns the combined jerk in three dimensions
+	 */
+	
+	public double getJerk() {
+		return Math.sqrt( Math.pow(jerkX, 2.0) + Math.pow(jerkY, 2.0) + Math.pow(jerkZ, 2.0));
+	}
+	
 }
 

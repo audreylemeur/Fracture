@@ -28,14 +28,14 @@ public class HoldAngle extends CommandBase {
     	
     	try {
     		
-    		double speedCurveMagnitude = Utilities.speedCurve(OI.primaryRightStick.getModMagnitude(), Constants.FIELD_SPEED_CURVE);
+    		double speedCurveMagnitude = Utilities.speedCurve(OI.primaryRightStick.getModMagnitude(), Constants.HOLD_ANGLE_SPEED_CURVE);
     		forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * speedCurveMagnitude;
         	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - OI.primaryRightStick.getDirectionDegrees())) * Constants.FORWARD_STRAFE_RATIO * -speedCurveMagnitude;
 
         	double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), rAng);
         	turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
         	
-        	turnThrottle = Utilities.limit(turnThrottle, 1 - Constants.AUTO_ROTATE_SCALE_PARAM);
+        	turnThrottle = Utilities.limit(turnThrottle, 1 - Constants.HOLD_ANGLE_SCALE_PARAM);
         	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, 1 - Math.abs(turnThrottle));
         	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, 1 - Math.abs(turnThrottle));
         		
