@@ -12,7 +12,7 @@ public class DriveMotionProfile extends CommandBase{
 	Timer timer = new Timer();
 	MotionProfile prof;
 	double startingAngle;
-	double proportionalityConstant = Constants.FORWARD_NAVX_PROPORTIONALITY;
+	double proportionalityConstant = Constants.AUTO_HOLD_ANGLE_P_CONSTANT;
 
 /**
  * @author Theo
@@ -89,7 +89,6 @@ protected void initialize() {
 		
 	}
 	catch(NavXException e) {
-		end();
 	}
 	
 }
@@ -106,7 +105,6 @@ protected void execute() {
 
 	}
 	catch(NavXException e) {
-		end();
 	}
 	
 	if (driveTrain.checkForCollision()) {
@@ -116,7 +114,15 @@ protected void execute() {
 }
 
 protected boolean isFinished() {
-	return false;
+	try {
+		
+		double t = driveTrain.getNavX().getAngle();
+		return false;
+
+	}
+	catch(NavXException e) {
+		return true;
+	}
 }
 
 protected void end() {

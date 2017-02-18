@@ -34,6 +34,7 @@ public class OI {
 	public static Button backupDrive;
 	public static Button fullSpeedClimb;
 	public static Button slowClimb;
+	public static Button offGround;
 
 	public static Button slidePositionTop;
 	public static Button slidePositionGear;
@@ -104,6 +105,9 @@ public class OI {
 		
 		switchCamera = new JoystickButton(secondaryStick, RobotMap.SWITCH_CAMERA);
 		switchCamera.whenPressed(new CameraSwitcher());
+		
+		offGround = new JoystickButton(secondaryStick, RobotMap.OFF_GROUND);
+		offGround.whenPressed(new OffGround());
 	
 	}
 	
