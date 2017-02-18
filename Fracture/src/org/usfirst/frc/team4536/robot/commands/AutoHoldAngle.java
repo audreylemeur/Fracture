@@ -42,14 +42,12 @@ public class AutoHoldAngle extends CommandBase {
     		forwardThrottle = Math.cos(Math.toRadians(driveTrain.getNavX().getAngle() - dDirection)) * speedCurveMagnitude;
         	strafeThrottle = Math.sin(Math.toRadians(driveTrain.getNavX().getAngle() - dDirection)) * Constants.FORWARD_STRAFE_RATIO * -speedCurveMagnitude;
 
-        	double angleDif = Utilities.shortestAngle(driveTrain.getNavX().getAngle(), dAng);
+        	double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), dAng);
         	turnThrottle = angleDif * Constants.HOLD_ANGLE_P_CONSTANT;
         	
-        	//turnThrottle = Utilities.limit(turnThrottle, 1 - Constants.AUTO_ROTATE_SCALE_PARAM);
-        	turnThrottle = 0.2;
+        	turnThrottle = Utilities.limit(turnThrottle, 1 - Constants.AUTO_ROTATE_SCALE_PARAM);
         	forwardThrottle = Utilities.scale(forwardThrottle, strafeThrottle, 1 - Math.abs(turnThrottle));
         	strafeThrottle = Utilities.scale(strafeThrottle, forwardThrottle, 1 - Math.abs(turnThrottle));
-        		System.out.println("in AutoHoldAngle.execute " + forwardThrottle + "; " + strafeThrottle + "; " + turnThrottle);
     		driveTrain.Drive(forwardThrottle, strafeThrottle, turnThrottle);
     		
     	}
@@ -63,7 +61,7 @@ public class AutoHoldAngle extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
   }
 
     // Called once after isFinished returns true

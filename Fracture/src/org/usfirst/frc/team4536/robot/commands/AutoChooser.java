@@ -41,8 +41,7 @@ public class AutoChooser extends CommandBase {
     	switch ((int) autoChooser.getSelected().hashCode()) {
     		case 1:
     			setInitialAngle(0.0);
-    			new AutoHoldAngle(45.0, 0, 1.0, 2.0).start();
-    			//new CrossBaseline().start();
+    			new CrossBaseline().start();
     		break;
     		case 2:
     			setInitialAngle(Constants.GEAR_LEFT_START_ANGLE);
@@ -62,7 +61,7 @@ public class AutoChooser extends CommandBase {
     		break;	
     		case 6:
     			setInitialAngle(0.0);
-    			new AutoHoldAngle(45.0, 0.0, 1.0, 2.0).start();
+    			new AutoHoldAngle(-60, 120, 0.2, 2.0).start();
     		break;	
     		default:
     			setInitialAngle(0.0);
