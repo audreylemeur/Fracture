@@ -4,6 +4,7 @@ import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.robot.MotionProfile;
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -106,6 +107,11 @@ protected void execute() {
 	catch(NavXException e) {
 		end();
 	}
+	
+	if (driveTrain.checkForCollision()) {
+		end();
+	}
+	
 }
 
 protected boolean isFinished() {
