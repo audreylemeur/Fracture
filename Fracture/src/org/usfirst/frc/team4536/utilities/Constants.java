@@ -94,7 +94,7 @@ public class Constants {
 	// HoldAngle
 	
 	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
-	public static final double HOLD_ANGLE_SCALE_PARAM = 0.7;
+	public static final double HOLD_ANGLE_SCALE_PARAM = 0.6;
 	public static final double HOLD_ANGLE_SPEED_CURVE = 1.0; //unitless
 	
 	//Climb 
@@ -109,7 +109,7 @@ public class Constants {
 	
 	public static final double TOP_POSITION = 1.0;
 	public static final double GEAR_POSITION = 0.48;//0.52;
-	public static final double MIDDLE_POSITION = 0.7;//0.6;//TODO tweak later
+	public static final double MIDDLE_POSITION = 0.65;//0.6;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
 	public static final double LOWER_LIMIT = 0.47;//0.51;
 	
