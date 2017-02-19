@@ -23,6 +23,7 @@ public class AutoChooser extends CommandBase {
     	autoChooser.addObject(" Score Gear Middle", 3);
     	autoChooser.addObject(" Score Gear Right", 4);
     	autoChooser.addObject(" Test ", 5);
+    	autoChooser.addObject("AutoHoldAngle", 6);
     	SmartDashboard.putData(" Auto Chooser", autoChooser);
     }
     
@@ -44,19 +45,24 @@ public class AutoChooser extends CommandBase {
     		break;
     		case 2:
     			setInitialAngle(Constants.GEAR_LEFT_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_LEFT_DISTANCE, Constants.GEAR_LEFT_GOAL_ANGLE, Constants.GEAR_LEFT_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.LEFT_PEG)).start();
     		break;
     		case 3:
     			setInitialAngle(Constants.GEAR_MIDDLE_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_MIDDLE_DISTANCE, Constants.GEAR_MIDDLE_GOAL_ANGLE, Constants.GEAR_MIDDLE_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.MIDDLE_PEG)).start();
     		break;
     		case 4:
     			setInitialAngle(Constants.GEAR_RIGHT_START_ANGLE);
-    			new DriveMotionProfile(Constants.GEAR_RIGHT_DISTANCE, Constants.GEAR_RIGHT_GOAL_ANGLE, Constants.GEAR_RIGHT_START_ANGLE).start();
+    			(new ScoreGear(Constants.PEG_POSITION.RIGHT_PEG)).start();
     		break;
     		case 5:
     			setInitialAngle(0.0);
-    			new DriveMotionProfile(2.0, 5.0, 5.0).start();;
+    			new DriveMotionProfile(2.0, 5.0, 5.0).start();
+    		break;	
+    		case 6:
+    			setInitialAngle(0.0);
+    			new AutoHoldAngle(-60, 120, 0.2, 2.0).start();
+    		break;	
     		default:
     			setInitialAngle(0.0);
     			new DoNothing().start();

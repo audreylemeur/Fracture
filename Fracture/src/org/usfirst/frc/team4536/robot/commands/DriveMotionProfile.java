@@ -4,6 +4,7 @@ import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.robot.MotionProfile;
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,7 +12,7 @@ public class DriveMotionProfile extends CommandBase{
 	Timer timer = new Timer();
 	MotionProfile prof;
 	double startingAngle;
-	double proportionalityConstant = Constants.FORWARD_NAVX_PROPORTIONALITY;
+	double proportionalityConstant = Constants.AUTO_HOLD_ANGLE_P_CONSTANT;
 
 /**
  * @author Theo
@@ -76,6 +77,7 @@ public double getNeededTime(){
 
 protected void initialize() {
 	
+	driveTrain.resetCollision();
 	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();
@@ -87,7 +89,6 @@ protected void initialize() {
 		
 	}
 	catch(NavXException e) {
-		end();
 	}
 	
 }
@@ -104,12 +105,24 @@ protected void execute() {
 
 	}
 	catch(NavXException e) {
+	}
+	
+	if (driveTrain.checkForCollision()) {
 		end();
 	}
+	
 }
 
 protected boolean isFinished() {
-	return false;
+	try {
+		
+		double t = driveTrain.getNavX().getAngle();
+		return false;
+
+	}
+	catch(NavXException e) {
+		return true;
+	}
 }
 
 protected void end() {
