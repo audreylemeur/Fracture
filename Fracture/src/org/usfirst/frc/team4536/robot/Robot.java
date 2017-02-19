@@ -137,7 +137,7 @@ public class Robot extends IterativeRobot {
 
 		if (smartDashboardCommand != null) {
 			smartDashboardCommand.start();
-       }
+        }
     
 		autoChooser.start();
 		
