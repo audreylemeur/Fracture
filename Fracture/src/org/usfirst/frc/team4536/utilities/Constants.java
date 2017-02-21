@@ -80,13 +80,8 @@ public class Constants {
 	
 	//Field Centric auto-rotate
 	
-<<<<<<< HEAD
-	public static final double AUTO_ROTATE_P_CONSTANT = 0.03;
-	public static final double AUTO_ROTATE_SCALE_PARAM = 0.70;
-=======
 	public static final double AUTO_ROTATE_P_CONSTANT = 0.01;
 	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
->>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
 	public static final double AUTO_ROTATE_SPEED_CURVE = 2.0;
 	
 	//Tank Field Centric auto-rotate
@@ -111,29 +106,23 @@ public class Constants {
 	
 	//Climb 
 	
-<<<<<<< HEAD
+
 	public static final double SLOW_CLIMB_SPEED = 0.50; //between 0 and 1
 	public static final double CLIMB_ACCEL_LIMIT = 0.10;
-=======
-	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
-	public static final double CLIMB_ACCEL_LIMIT = 0.1;
-	public static final double OFF_GROUND_ANGLE = 45; //pitch degrees
+	public static final double OFF_GROUND_ANGLE = 30; //roll degrees (pitch on sidewinder)
 	public static final double OFF_GROUND_TIME = 0.25; //seconds
-	
->>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
 	
 	//Gear Slide
 	
-	public static final double TOP_POSITION = 1.0;
-<<<<<<< HEAD
+	public static final double TOP_POSITION = 0.73;
 	public static final double GEAR_POSITION = 0.520;
 	public static final double MIDDLE_POSITION = 0.60;//TODO tweak later
-	public static final double UPPER_LIMIT = 1.0;
-	public static final double LOWER_LIMIT = 0.510;
-=======
+	public static final double UPPER_LIMIT = 0.73;
+	public static final double LOWER_LIMIT = 0.47;
+
 	public static final double GEAR_POSITION = 0.48;//0.52;
 	public static final double MIDDLE_POSITION = 0.65;//0.6;//TODO tweak later
-	public static final double UPPER_LIMIT = 1.0;
+	public static final double UPPER_LIMIT = 0.73;
 	public static final double LOWER_LIMIT = 0.47;//0.51;
 	
 	//Score Gear Left
@@ -143,8 +132,7 @@ public class Constants {
 	public static final double GEAR_LEFT_START_ANGLE = 64.0; //degrees
 	
 	//Score Gear Middle
->>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
-
+  
 	public static final double GEAR_MIDDLE_DISTANCE = 8.0; //feet
 	public static final double GEAR_MIDDLE_GOAL_ANGLE = 0.0; //degrees
 	public static final double GEAR_MIDDLE_START_ANGLE = 0.0; //degrees
