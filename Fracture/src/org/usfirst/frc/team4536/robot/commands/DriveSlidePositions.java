@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.utilities.Constants;
 /**
  *@author Eddie
  *Command to rotate the gear slide
@@ -17,7 +18,6 @@ public class DriveSlidePositions extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gearSlide.setGearSlide(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +33,6 @@ public class DriveSlidePositions extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	gearSlide.setGearSlide(0);
     }
 
     // Called when another command which requires one or more of the same

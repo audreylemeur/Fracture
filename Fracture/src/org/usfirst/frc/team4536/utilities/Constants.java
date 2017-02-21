@@ -63,42 +63,42 @@ public class Constants {
     
 	public static final double SAO_FORWARD_CURVE = 2.0;
 	public static final double SAO_STRAFE_CURVE = 2.0;
-	public static final double SAO_FORWARD_MAX_SPEED = .5;
-	public static final double SAO_STRAFE_MAX_SPEED = .7;
+	public static final double SAO_FORWARD_MAX_SPEED = .50;
+	public static final double SAO_STRAFE_MAX_SPEED = .70;
 	
 	//Field centric
 
-	public static final double FIELD_FORWARD_SCALE = 0.8; //throttle
-	public static final double FIELD_STRAFE_SCALE = 0.8; //throttle
+	public static final double FIELD_FORWARD_SCALE = 0.80; //throttle
+	public static final double FIELD_STRAFE_SCALE = 0.80; //throttle
 	public static final double FIELD_P_CONSTANT = 0.02; 
-	public static final double FIELD_SCALE_PARAM = 0.7; //unitless
+	public static final double FIELD_SCALE_PARAM = 0.70; //unitless
 	public static final double FIELD_SPEED_CURVE = 1.0; //unitless
 	
 	//Field Centric auto-rotate
 	
 	public static final double AUTO_ROTATE_P_CONSTANT = 0.03;
-	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
+	public static final double AUTO_ROTATE_SCALE_PARAM = 0.70;
 	public static final double AUTO_ROTATE_SPEED_CURVE = 2.0;
 
 	//Field Centric Rotate
 	
 	public static final double ROTATE_P_CONSTANT = 0.02;
-	public static final double ROTATE_SCALE_PARAM = 0.7; //unitless
-	public static final double ROTATE_SPEED_CURVE = 1; //unitless
-	public static final double ROTATE_RIGHT_THROTTLE = 0.4; //throttle
-	public static final double ROTATE_LEFT_THROTTLE = -0.4; //throttle
+	public static final double ROTATE_SCALE_PARAM = 0.70; //unitless
+	public static final double ROTATE_SPEED_CURVE = 1.0; //unitless
+	public static final double ROTATE_RIGHT_THROTTLE = 0.40; //throttle
+	public static final double ROTATE_LEFT_THROTTLE = -0.40; //throttle
 
 	//Climb 
 	
-	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
-	public static final double CLIMB_ACCEL_LIMIT = 0.1;
+	public static final double SLOW_CLIMB_SPEED = 0.50; //between 0 and 1
+	public static final double CLIMB_ACCEL_LIMIT = 0.10;
 	
 	//Gear Slide
 	
 	public static final double TOP_POSITION = 1.0;
-	public static final double GEAR_POSITION = 0.52;
-	public static final double MIDDLE_POSITION = 0.6;//TODO tweak later
+	public static final double GEAR_POSITION = 0.520;
+	public static final double MIDDLE_POSITION = 0.60;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
-	public static final double LOWER_LIMIT = 0.51;
+	public static final double LOWER_LIMIT = 0.510;
 
 }
