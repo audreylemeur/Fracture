@@ -33,14 +33,18 @@ public class SmartDashboardCommand extends CommandBase {
     	timer.resetTimer();
     	timer.startTimer();
     	
+    	
+    	//OI.feederStationAngle = -Constants.FEEDER_STATION_ANGLE;
+    	
     	switch ((int) team.getSelected().hashCode()) {
 		case 1:
-			OI.feederStationAngle = Constants.FEEDER_STATION_ANGLE;
+			OI.feederStationAngle = Constants.BLUE_FEEDER_STATION_ANGLE;
 		break;
 		default:
-			OI.feederStationAngle = -Constants.FEEDER_STATION_ANGLE;
+			OI.feederStationAngle = Constants.RED_FEEDER_STATION_ANGLE;
 		break;
     	}
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,6 +55,15 @@ public class SmartDashboardCommand extends CommandBase {
      */
     
     protected void execute() {
+    	
+    	switch ((int) team.getSelected().hashCode()) {
+		case 1:
+			OI.feederStationAngle = Constants.BLUE_FEEDER_STATION_ANGLE;
+		break;
+		default:
+			OI.feederStationAngle = Constants.RED_FEEDER_STATION_ANGLE;
+		break;
+    	}
     	
     	time = timer.getTime();
     	
