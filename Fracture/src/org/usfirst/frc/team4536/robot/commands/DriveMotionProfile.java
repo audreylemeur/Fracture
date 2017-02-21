@@ -37,7 +37,7 @@ public DriveMotionProfile(double distance, double goalAngle, double startAngle) 
  */
 public DriveMotionProfile(double distance, double maxSpeed, double maxAcceleration, double goalAngle, double startAngle) {
 
-	startingAngle = startAngle;
+	//startingAngle = startAngle;
 	requires(driveTrain);
 	prof = new MotionProfile(distance, maxSpeed, maxAcceleration, goalAngle, startAngle);
 }
@@ -85,8 +85,8 @@ protected void initialize() {
 	
 	try {
 		
-		driveTrain.getNavX().getAngle();
-		//startingAngle = driveTrain.getNavX().getAngle();
+		//driveTrain.getNavX().getAngle();
+		startingAngle = driveTrain.getNavX().getAngle();
 		setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
 		
 	}
