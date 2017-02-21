@@ -4,6 +4,7 @@ import org.usfirst.frc.team4536.utilities.Constants;
 import org.usfirst.frc.team4536.utilities.NavXException;
 import org.usfirst.frc.team4536.robot.MotionProfile;
 import org.usfirst.frc.team4536.robot.OI;
+import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4536.utilities.Utilities;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -11,7 +12,7 @@ public class DriveMotionProfile extends CommandBase{
 	Timer timer = new Timer();
 	MotionProfile prof;
 	double startingAngle;
-	double proportionalityConstant = Constants.FORWARD_NAVX_PROPORTIONALITY;
+	double proportionalityConstant = Constants.AUTO_HOLD_ANGLE_P_CONSTANT;
 
 /**
  * @author Theo
@@ -36,6 +37,7 @@ public DriveMotionProfile(double distance, double goalAngle, double startAngle) 
  */
 public DriveMotionProfile(double distance, double maxSpeed, double maxAcceleration, double goalAngle, double startAngle) {
 
+	//startingAngle = startAngle;
 	requires(driveTrain);
 	prof = new MotionProfile(distance, maxSpeed, maxAcceleration, goalAngle, startAngle);
 }
@@ -75,22 +77,26 @@ public double getNeededTime(){
 }
 
 protected void initialize() {
+	
+	driveTrain.resetCollision();
+	driveTrain.resetEncoders();
 	timer.reset();
 	timer.start();
 	
 	try {
 		
+		//driveTrain.getNavX().getAngle();
 		startingAngle = driveTrain.getNavX().getAngle();
 		setTimeout(prof.getTimeNeeded() + Constants.PROFILE_TIMEOUT_OFFSET);
 		
 	}
 	catch(NavXException e) {
-		end();
 	}
 	
 }
 
 protected void execute() {
+	
 	try {
 		
 		double angleDif = Utilities.angleDifference(driveTrain.getNavX().getAngle(), startingAngle);
@@ -101,12 +107,26 @@ protected void execute() {
 
 	}
 	catch(NavXException e) {
+	}
+	
+	if (driveTrain.checkForCollision()) {
 		end();
 	}
+	
 }
 
 protected boolean isFinished() {
-	return false;
+	try {
+		if (getTime() > getNeededTime() + Constants.PROFILE_TIMEOUT_OFFSET) {
+			return true;
+		}
+		double t = driveTrain.getNavX().getAngle();
+		return false;
+
+	}
+	catch(NavXException e) {
+		return true;
+	}
 }
 
 protected void end() {

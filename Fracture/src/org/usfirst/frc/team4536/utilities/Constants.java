@@ -18,14 +18,12 @@ public class Constants {
 	
 	//Camera
 
-
 	public static final int CAMERA_RESOLUTION_WIDTH = 200;
 	public static final int CAMERA_RESOLUTION_HEIGHT = 150;
 	
 	//Drive Train
   
-	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
-	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.04; //Throttle per degree
+	public static final double AUTO_HOLD_ANGLE_P_CONSTANT = 0.05; //Throttle per degree
 	public static final double FORWARD_STRAFE_RATIO = 3.0; //Ratio of forward velocity to strafing velocity
 	public static final double DRIVE_TRAIN_ACCEL_LIMIT = 0.1; //In seconds
 
@@ -34,25 +32,31 @@ public class Constants {
 	public static final double BACKUP_DRIVE_FORWARD_SPEED_CURVE = 2.0;
 
 	public static final double CROSS_BASELINE_SPEED = 0.5;
-	public static final double CROSS_BASELINE_RUN_TIME = 3.0;
+  
+	public static final double CROSS_BASELINE_RUN_TIME = 2.0;
 	public static final double CROSS_BASELINE_TIMEOUT = 5.0;
+
 	public static final double COLLISION_DETECTION_THRESHOLD = 2.0;
+	
+	public static enum PEG_POSITION {LEFT_PEG, MIDDLE_PEG, RIGHT_PEG};
+
 	//OI
-	public static final double FEEDER_STATION_ANGLE = 116.6;
+	
+	public static final double BLUE_FEEDER_STATION_ANGLE = -116.6;
+	public static final double RED_FEEDER_STATION_ANGLE = 116.6;
 	public static final double LEFT_PEG_ANGLE = 60.0;
 	public static final double MIDDLE_PEG_ANGLE = 0.0;
 	public static final double RIGHT_PEG_ANGLE = -60.0;
 	
 	//Profile constants
 	//These might need changing, they're mostly just copied from last year.
-	
-	public static final double FORWARD_NAVX_PROPORTIONALITY = 0.07; //Measured in throttle per inch.
 
-	public static final double DEFAULT_SPEED = 10.0; //Measured in meters per second.
+	public static final double DEFAULT_SPEED = 2.0; //Measured in meters per second.
 	public static final double DEFAULT_ACCELERATION = 4.0; //Measured in meters per second squared.
 	public static final double PROFILE_TIMEOUT_OFFSET = 0.5; //Measured in seconds. Gives the motion profile a bit of extra time to do what it needs.
 
-	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT = 16.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_STRAFE = 175.0; //Ticks per inch
+	public static final double DRIVE_ENCODER_PROPORTIONALITY_CONSTANT_FORWARD = 141.0; //Ticks per inch
 
     
 	//Angle Adjustments
@@ -76,9 +80,20 @@ public class Constants {
 	
 	//Field Centric auto-rotate
 	
+<<<<<<< HEAD
 	public static final double AUTO_ROTATE_P_CONSTANT = 0.03;
 	public static final double AUTO_ROTATE_SCALE_PARAM = 0.70;
+=======
+	public static final double AUTO_ROTATE_P_CONSTANT = 0.01;
+	public static final double AUTO_ROTATE_SCALE_PARAM = 0.7;
+>>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
 	public static final double AUTO_ROTATE_SPEED_CURVE = 2.0;
+	
+	//Tank Field Centric auto-rotate
+	
+	public static final double TANK_ROTATE_P_CONSTANT = 0.01;
+	public static final double TANK_ROTATE_SCALE_PARAM = 0.5;
+	public static final double TANK_ROTATE_SPEED_CURVE = 2.0;
 
 	//Field Centric Rotate
 	
@@ -88,17 +103,55 @@ public class Constants {
 	public static final double ROTATE_RIGHT_THROTTLE = 0.40; //throttle
 	public static final double ROTATE_LEFT_THROTTLE = -0.40; //throttle
 
+	// HoldAngle
+	
+	public static final double HOLD_ANGLE_P_CONSTANT = 0.02; //Throttle per degree
+	public static final double HOLD_ANGLE_SCALE_PARAM = 0.6;
+	public static final double HOLD_ANGLE_SPEED_CURVE = 1.0; //unitless
+	
 	//Climb 
 	
+<<<<<<< HEAD
 	public static final double SLOW_CLIMB_SPEED = 0.50; //between 0 and 1
 	public static final double CLIMB_ACCEL_LIMIT = 0.10;
+=======
+	public static final double SLOW_CLIMB_SPEED = 0.5; //between 0 and 1
+	public static final double CLIMB_ACCEL_LIMIT = 0.1;
+	public static final double OFF_GROUND_ANGLE = 45; //pitch degrees
+	public static final double OFF_GROUND_TIME = 0.25; //seconds
+	
+>>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
 	
 	//Gear Slide
 	
 	public static final double TOP_POSITION = 1.0;
+<<<<<<< HEAD
 	public static final double GEAR_POSITION = 0.520;
 	public static final double MIDDLE_POSITION = 0.60;//TODO tweak later
 	public static final double UPPER_LIMIT = 1.0;
 	public static final double LOWER_LIMIT = 0.510;
+=======
+	public static final double GEAR_POSITION = 0.48;//0.52;
+	public static final double MIDDLE_POSITION = 0.65;//0.6;//TODO tweak later
+	public static final double UPPER_LIMIT = 1.0;
+	public static final double LOWER_LIMIT = 0.47;//0.51;
+	
+	//Score Gear Left
+	
+	public static final double GEAR_LEFT_DISTANCE = 4;//8.0; //feet
+	public static final double GEAR_LEFT_GOAL_ANGLE = 30.0; //degrees
+	public static final double GEAR_LEFT_START_ANGLE = 64.0; //degrees
+	
+	//Score Gear Middle
+>>>>>>> 2a4435c535dd5ada80461b60da8479efecd42be6
 
+	public static final double GEAR_MIDDLE_DISTANCE = 8.0; //feet
+	public static final double GEAR_MIDDLE_GOAL_ANGLE = 0.0; //degrees
+	public static final double GEAR_MIDDLE_START_ANGLE = 0.0; //degrees
+	
+	//Score Gear Right
+	
+	public static final double GEAR_RIGHT_DISTANCE = 10.0; //feet
+	public static final double GEAR_RIGHT_GOAL_ANGLE = -40.0; //degrees
+	public static final double GEAR_RIGHT_START_ANGLE = -60.0; //degrees
 }

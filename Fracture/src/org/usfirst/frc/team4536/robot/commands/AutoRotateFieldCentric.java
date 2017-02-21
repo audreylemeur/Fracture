@@ -10,6 +10,7 @@ import org.usfirst.frc.team4536.utilities.Utilities;
  * Class to drive field-centric while turning slowly to whatever angle the robot is moving in.
  */
 public class AutoRotateFieldCentric extends CommandBase {
+	
 	private double forwardThrottle, strafeThrottle, turnThrottle, lastAngle;
 	
     public AutoRotateFieldCentric() {
