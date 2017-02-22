@@ -114,21 +114,16 @@ public class Constants {
 	
 	//Gear Slide
 	
-	public static final double TOP_POSITION = 0.73;
-	public static final double GEAR_POSITION = 0.520;
-	public static final double MIDDLE_POSITION = 0.60;//TODO tweak later
-	public static final double UPPER_LIMIT = 0.73;
-	public static final double LOWER_LIMIT = 0.47;
+	public static final double TOP_POSITION = 0.65;
+	public static final double GEAR_POSITION = 0.30;
+	public static final double MIDDLE_POSITION = 0.48;//TODO tweak later
+	public static final double UPPER_LIMIT = 0.65;
+	public static final double LOWER_LIMIT = 0.29;
 
-	public static final double GEAR_POSITION = 0.48;//0.52;
-	public static final double MIDDLE_POSITION = 0.65;//0.6;//TODO tweak later
-	public static final double UPPER_LIMIT = 0.73;
-	public static final double LOWER_LIMIT = 0.47;//0.51;
-	
 	//Score Gear Left
 	
-	public static final double GEAR_LEFT_DISTANCE = 4;//8.0; //feet
-	public static final double GEAR_LEFT_GOAL_ANGLE = 30.0; //degrees
+	public static final double GEAR_LEFT_DISTANCE = 6.0;//8.0; //feet
+	public static final double GEAR_LEFT_GOAL_ANGLE = 23.0; //degrees
 	public static final double GEAR_LEFT_START_ANGLE = 64.0; //degrees
 	
 	//Score Gear Middle
