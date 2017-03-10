@@ -21,29 +21,13 @@ public class SmartDashboardCommand extends CommandBase {
 	
     public SmartDashboardCommand() {
     	timer = new EnhancedTimer();
-    	
-    	team = new SendableChooser();
-    	team.addDefault("Red", 0);
-    	team.addObject("Blue", 1);
-    	SmartDashboard.putData("Team Chooser", team);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	timer.resetTimer();
     	timer.startTimer();
-    	
-    	
-    	//OI.feederStationAngle = -Constants.FEEDER_STATION_ANGLE;
-    	
-    	switch ((int) team.getSelected().hashCode()) {
-		case 1:
-			OI.feederStationAngle = Constants.BLUE_FEEDER_STATION_ANGLE;
-		break;
-		default:
-			OI.feederStationAngle = Constants.RED_FEEDER_STATION_ANGLE;
-		break;
-    	}
+ 
     	
     }
 
@@ -55,15 +39,6 @@ public class SmartDashboardCommand extends CommandBase {
      */
     
     protected void execute() {
-    	
-    	switch ((int) team.getSelected().hashCode()) {
-		case 1:
-			OI.feederStationAngle = Constants.BLUE_FEEDER_STATION_ANGLE;
-		break;
-		default:
-			OI.feederStationAngle = Constants.RED_FEEDER_STATION_ANGLE;
-		break;
-    	}
     	
     	time = timer.getTime();
     	
