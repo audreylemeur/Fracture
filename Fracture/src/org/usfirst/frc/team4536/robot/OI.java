@@ -7,7 +7,6 @@ import org.usfirst.frc.team4536.utilities.Constants;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -51,7 +50,7 @@ public class OI {
 		//setFeederStationAngle();
 		
 		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
-		holdFeeder.whenPressed(new HoldAngle(Constants.BLUE_FEEDER_STATION_ANGLE));
+		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
 		holdFeeder.whenPressed(new DriveSlidePositions(Constants.GEAR_POSITION));
 		
 		holdLeft = new JoystickButton(primaryRightStick, RobotMap.HOLD_LEFT_BUTTON);
@@ -117,11 +116,10 @@ public class OI {
 	
 	}
 	
-	/*
-	public static void setFeederStationAngle(){
-		holdFeeder = new JoystickButton(primaryRightStick, RobotMap.HOLD_FEEDER_BUTTON);
-		holdFeeder.whenPressed(new HoldAngle(feederStationAngle));
-		holdFeeder.whenPressed(new DriveSlidePositions(Constants.GEAR_POSITION));
+	public static void setFeederStationAngle(double angle){
+		
+		feederStationAngle = angle;
+		
 	}
-	*/
+	
 }
