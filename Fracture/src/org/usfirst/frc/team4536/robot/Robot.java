@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
 	Command rotateHoldAngle;
 	Command crossBaseline;
 	Command autoChooser;
+	Command allianceChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -55,6 +56,7 @@ public class Robot extends IterativeRobot {
 		rotateHoldAngle = new AutoRotateFieldCentric();
 		crossBaseline = new CrossBaseline();
 		autoChooser = new AutoChooser();
+		allianceChooser = new AllianceChooser();
 		OI.ButtonHandling();
 		
 	}
@@ -142,6 +144,7 @@ public class Robot extends IterativeRobot {
 		//OI.setFeederStationAngle();
     
 		autoChooser.start();
+		allianceChooser.start();
 		
 		try {
     		
@@ -177,6 +180,8 @@ public class Robot extends IterativeRobot {
 		if (rotateHoldAngle != null){
 			rotateHoldAngle.start();
 		}
+		
+		allianceChooser.start();
 		
 		if (smartDashboardCommand != null) {        	
         	smartDashboardCommand.start();
